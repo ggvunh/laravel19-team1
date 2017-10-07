@@ -16,3 +16,7 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@home');
+
+Route::get('/index.html', function(){
+	return view('admin_template');
+});
