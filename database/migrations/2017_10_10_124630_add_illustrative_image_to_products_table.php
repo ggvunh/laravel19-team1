@@ -26,7 +26,7 @@ class AddIllustrativeImageToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            dropColumn('illustrative_photo');
+            $table->dropColumn('illustrative_photo');
         });
     }
 }

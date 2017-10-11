@@ -17,7 +17,7 @@
                 <div class="col-md-3 product-grids">
                     <div class="agile-products">
                         <div class="new-tag"><h6>{{$product->status}}</h6></div>
-                            <a href="single.html"><img src="
+                            <a href="{{url('products/' . $product->id)}}"><img src="
                                {{$product->illustrative_photo}}" class="img-fixed" alt="img" width="211" height="242">
                            </a>
                         <div class="agile-product-text">
@@ -32,6 +32,7 @@
                             </form>
                         </div>
                     </div>
+                    <div class="clearfix"> </div>
                 </div>
             @endforeach
         </div>

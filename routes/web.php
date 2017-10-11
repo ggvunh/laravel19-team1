@@ -15,3 +15,18 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 Route::get('/search','HomeController@search');
+Route::get('/home', 'HomeController@home');
+
+Route::get('/admin', function(){
+	return view('admin_template');
+});
+
+// Route::get('/login.html', function(){
+// 	return view('auth.login');
+// });
+
+// Route::get('/signup.html', function(){
+// 	return view('auth.signup');
+// });
+
+
