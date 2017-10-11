@@ -21,12 +21,3 @@ Route::get('/admin', function(){
 	return view('admin_template');
 });
 
-// Route::get('/login.html', function(){
-// 	return view('auth.login');
-// });
-
-// Route::get('/signup.html', function(){
-// 	return view('auth.signup');
-// });
-
-
