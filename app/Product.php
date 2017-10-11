@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable=[
-    	'name', 'category_id', 'description', 'unit_price', 
+    	'name', 'category_id', 'description', 'unit_price',
     	'manufacturer_id', 'quality_in_store', 'status', 'review'
     ];
 
@@ -19,8 +19,8 @@ class Product extends Model
     	return $this->belongsTo('App\Manufacturer');
     }
 
-    public function photo() {
-    	return $this->hasOne('App\Photo');
+    public function photos() {
+    	return $this->hasMany('App\Photo');
     }
 
     public function orderDetails() {
