@@ -27,7 +27,7 @@
                                 <input type="hidden" name="cmd" value="_cart" />
                                 <input type="hidden" name="add" value="1" />
                                 <input type="hidden" name="w3ls_item" value="{{$product->name}}" />
-                                <input type="hidden" name="amount" value="100.00" />
+                                <input type="hidden" name="amount" value="{{$product->unit_price}}" />
                                 <button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
                             </form>
                         </div>

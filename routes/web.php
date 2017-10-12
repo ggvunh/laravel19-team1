@@ -29,4 +29,4 @@ Route::get('/admin', function(){
 // 	return view('auth.signup');
 // });
 
-
+Route::get('products/{product}','HomeController@viewProduct');

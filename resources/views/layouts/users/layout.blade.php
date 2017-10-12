@@ -4,23 +4,23 @@
 <title>Tech Shop an E-commerce Online Shopping Category </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="csrf-token" content="{{ csrf_token() }}" />
 <meta name="keywords" content="Smart Bazaar Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 <!-- Custom Theme files -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/animate.min.css" rel="stylesheet" type="text/css" media="all" /><!-- animation -->
-<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" /> <!-- menu style -->
+<link href="{{url('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{url('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{url('css/animate.min.css')}}" rel="stylesheet" type="text/css" media="all" /><!-- animation -->
+<link href="{{url('css/menu.css')}}" rel="stylesheet" type="text/css" media="all" /> <!-- menu style -->
 <!-- //Custom Theme files -->
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet">
+<link href="{{url('css/font-awesome.css')}}" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="js/jquery-2.2.3.min.js"></script>
-<script src="js/jquery-scrolltofixed-min.js" type="text/javascript"></script><!-- fixed nav js -->
+<script src="{{url('js/jquery-2.2.3.min.js')}}"></script>
+<script src="{{url('js/jquery-scrolltofixed-min.js')}}" type="text/javascript"></script><!-- fixed nav js -->
 <script>
     $(document).ready(function() {
 
@@ -48,8 +48,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
 <!-- web-fonts -->
 <!-- start-smooth-scrolling -->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="{{url('js/move-top.js')}}"></script>
+<script type="text/javascript" src="{{url('js/easing.js')}}"></script>
 <script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".scroll").click(function(event){
@@ -75,6 +75,34 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!-- //smooth-scrolling-of-move-up -->
+	<style >
+		table
+		{
+			color: #333;
+			font-family: Helvetica, Arial, sans-serif;
+			width: 640px;
+			border-collapse:
+			collapse; border-spacing: 0;
+		}
+
+		td, th
+		{
+			border: 1px solid transparent; /* No more visible border */
+			height: 30px;
+			transition: all 0.3s;  /* Simple transition for hover effect */
+		}
+
+		th
+		{
+			background: #DFDFDF;  /* Darken header a bit */
+			font-weight: bold;
+		}
+
+		td
+		{
+			background: #FAFAFA;
+		}
+	</style>
 </head>
 <body>
 	<!-- header -->
@@ -131,7 +159,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="header-search">
 					<form action="{{url('/search')}}" method="get">
-						
+
 						<input type="search" name="key" placeholder="Search for a Product..." required="">
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
@@ -309,7 +337,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="move-text">
 					<div class="marquee"><a href="offers.html"> New collections are available here...... <span>Get extra 10% off on everything | no extra taxes </span> <span> Try shipping pass free for 15 days with unlimited</span></a></div>
-					<script type="text/javascript" src="js/jquery.marquee.min.js"></script>
+					<script type="text/javascript" src="{{url('js/jquery.marquee.min.js')}}"></script>
 					<script>
 					  $('.marquee').marquee({ pauseOnHover: true });
 					  //@ sourceURL=pen.js
@@ -424,7 +452,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!-- cart-js -->
     <div>
-    	<script src="js/minicart.js"></script>
+    	<script src="{{url('js/minicart.js')}}"></script>
     	<script>
             w3ls.render();
 
@@ -443,12 +471,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         </script>
     	<!-- //cart-js -->
     	<!-- menu js aim -->
-    	<script src="js/jquery.menu-aim.js"> </script>
-    	<script src="js/main.js"></script> <!-- Resource jQuery -->
+    	<script src="{{url('js/jquery.menu-aim.js')}}"> </script>
+    	<script src="{{url('js/main.js')}}"></script> <!-- Resource jQuery -->
     	<!-- //menu js aim -->
     	<!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/bootstrap.js"></script>
+        <script src="{{url('js/bootstrap.js')}}"></script>
         @yield('js')
     </div>
