@@ -20,6 +20,15 @@ Route::get('/home', 'HomeController@home');
 Route::get('/admin', function(){
 	return view('admin_template');
 });
+Route::get('/products', 'ProductController@getBooks');
+// load form create
+Route::get('/products/create', 'ProductController@create');
+// push data to server
+Route::post('/products', 'ProductController@save');
+Route::get('/products/{product}/edit', 'ProductController@edit');
+Route::put('/products/{product}', 'ProductController@update');
+Route::get('/products/search', 'ProductController@search');
+Route::get('/products/{product}/delete', 'ProductController@delete');
 
 // Route::get('/login.html', function(){
 // 	return view('auth.login');
