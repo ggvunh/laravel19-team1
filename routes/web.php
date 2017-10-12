@@ -30,3 +30,12 @@ Route::put('/products/{product}', 'ProductController@update');
 Route::get('/products/search', 'ProductController@search');
 Route::get('/products/{product}/delete', 'ProductController@delete');
 
+// Route::get('/login.html', function(){
+// 	return view('auth.login');
+// });
+
+// Route::get('/signup.html', function(){
+// 	return view('auth.signup');
+// });
+
+Route::get('products/{product}','HomeController@viewProduct');

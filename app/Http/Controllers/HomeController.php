@@ -7,6 +7,7 @@ use App\Product;
 use App\Category;
 use App\Manufacturer;
 use App\Photo;
+use App\Specification;
 use Illuminate\Support\Facades\Input;
 use App\User;
 
@@ -41,4 +42,12 @@ class HomeController extends Controller
         return view('products.search', compact(['products','request']));
 
     }
+
+    public function viewProduct(Product $product)
+    {
+        $photos=Photo::All()->where('product_id',$product->id);
+        $specifications=Specification::All();
+        return view('products.viewProduct',compact(['product','photos','specifications']));
+    }
+
 }
