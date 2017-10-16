@@ -8,7 +8,7 @@
 				<h2><span class="label label-default">Edit Product</span></h2>
 			</div>
 			<br>
-			{!! Form::model($product, ['url' => 'products/' . $product->id, 'method' => 'put']) !!}
+			{!! Form::model($product, ['url' => 'products/' . $product->id, 'method' => 'put','enctype' => 'multipart/form-data']) !!}
 			@include('partials.forms.product')
 			{!! Form::close() !!}
 		</div>

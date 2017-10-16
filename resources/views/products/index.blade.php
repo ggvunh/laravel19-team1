@@ -18,10 +18,12 @@
 									</select>
 								</div>
 								<div class="form-group">
+									<span>
 									<input name="name" type="text" class="form-control search-input" placeholder="Search...">
 									<button type="submit" style="border:0;background:transparent;text-indent: -30px;">
 									<span class="glyphicon glyphicon-search"></span>
 									</button>
+									</span>
 								</div>
 								</form>
 							</div>
@@ -35,26 +37,26 @@
 									<th>Name</th>
 									<th>Category Name</th>
 									<th>Manufacturer Name</th>
-									<th>Description</th>
-									<th>Price</th>
+									{{-- <th>Description</th> --}}
+									{{-- <th>Price</th>
 									<th>Quality</th>
 									<th>Status</th>
-									<th>Review</th>
+									<th>Review</th> --}}
 									<th>Menu</th>
 									
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach ($products as $value): ?>
+								@foreach ($products as $value)
 									<tr>
-										<td>{{ $value->name}}</td>
+										<td><a href="{{ url('products/product/'.$value->id) }}">{{ $value->name}}</a></td>
 										<td>{{ $value->category->name}}</td>
 										<td>{{ $value->manufacturer->name}}</td>
-										<td>{{ $value->description}}</td>
-										<td>{{ $value->unit_price}}</td>
+										{{-- <td>{{ $value->description}}</td> --}}
+										{{-- <td>{{ $value->unit_price}}</td>
 										<td>{{ $value->quality_in_store}}</td>
 										<td>{{ $value->status}}</td>
-										<td>{{ $value->review}}</td>
+										<td>{{ $value->review}}</td> --}}
 										<td>
 											<a href="{{ url('products/' . $value->id . '/edit') }}"><i class="fa fa-pencil"></i> Edit
 											</a> 
@@ -63,9 +65,7 @@
 				   							</a>
 										</td>
 									</tr>
-								<?php endforeach ?>
-								<tr>
-								</tr>	
+								@endforeach	
 							</tbody>
 						</table>
 					</div>
