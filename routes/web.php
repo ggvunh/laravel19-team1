@@ -29,7 +29,7 @@ Route::get('/products/{product}/edit', 'ProductController@edit');
 Route::put('/products/{product}', 'ProductController@update');
 Route::get('/products/search', 'ProductController@search');
 Route::get('/products/{product}/delete', 'ProductController@delete');
-
+Route::get('/products/product/{product}','ProductController@view');
 // Route::get('/login.html', function(){
 // 	return view('auth.login');
 // });

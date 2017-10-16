@@ -9,6 +9,6 @@ class Photo extends Model
     protected $fillable=['product_id', 'url'];
 
   	public function product() {
-  		return $this->hasOne('App\Product');
+  		return $this->belongsTo('App\Product');
   	}
 }
