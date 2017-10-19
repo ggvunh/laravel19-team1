@@ -27,6 +27,7 @@ class SearchOrderController extends Controller
 
     public function detail(Order $order)
     {
+        //dd($order);
         $total_price=$order->orderDetails->sum('unit_price');
         return view('order.detail',compact(['order','total_price']));
     }
