@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('category_id')->unsigned()->nullable();
-            $table->string('description');
-            $table->float('unit_price');
+            $table->longText('description');
+            $table->double('unit_price');
             $table->integer('manufacturer_id')->unsigned()->nullable();
             $table->integer('quality_in_store');
             $table->string('status');

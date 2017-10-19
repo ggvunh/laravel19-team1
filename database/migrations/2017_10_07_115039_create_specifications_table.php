@@ -17,7 +17,7 @@ class CreateSpecificationsTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned()->nullable();
             $table->string('key');
-            $table->float('value');
+            $table->string('value');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
