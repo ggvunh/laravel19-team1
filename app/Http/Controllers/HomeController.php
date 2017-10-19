@@ -18,6 +18,11 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function list (){
+        $data = Home::select('id', 'name','parent_id')->orberBy('id','DESC')->get()->toArray();
+        return view('user.list');
+    }
+
     public function __construct()
     {
         $this->middleware('auth');

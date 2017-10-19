@@ -21,6 +21,15 @@ Route::get('/admin', function(){
 	return view('admin_template');
 });
 Route::get('/products', 'ProductController@getproducts');
+Route::group(['prefix'=>'user'],function(){
+	Route::group(['prefix'=>'list'],function(){
+		Route::get('add',['as'=>'layouts.users.getAdd','uses'=>'OrderController@getAdd']);
+		Route::post('add',['as'=>'layouts.users.postAdd','uses'=>'OrderController@postAdd']);
+		Route::get('list',['as'=>'layouts.users.list','uses'=>'OrderController@getList']);
+		Route::get('cancel/{id}',['as'=>'layouts.users.getCancel','uses'=>'OrderController@getCancel']);
+	});
+});
+Route::get('/products', 'ProductController@getBooks');
 // load form create
 Route::get('/products/create', 'ProductController@create');
 Route::get('/search-product', 'ProductController@search');
@@ -41,8 +50,5 @@ Route::get('/search-date','SearchOrderController@searchDate');
 // 	return view('auth.login');
 // });
 
-// Route::get('/signup.html', function(){
-// 	return view('auth.signup');
-// });
 
 Route::get('products/{product}','HomeController@viewProduct');
