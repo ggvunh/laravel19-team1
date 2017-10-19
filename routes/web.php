@@ -20,13 +20,11 @@ Route::get('/home', 'HomeController@home');
 Route::get('/admin', function(){
 	return view('admin_template');
 });
-
-// Route::get('/login.html', function(){
-// 	return view('auth.login');
-// });
-
-// Route::get('/signup.html', function(){
-// 	return view('auth.signup');
-// });
-
-
+Route::group(['prefix'=>'user'],function(){
+	Route::group(['prefix'=>'list'],function(){
+		Route::get('add',['as'=>'layouts.users.getAdd','uses'=>'OrderController@getAdd']);
+		Route::post('add',['as'=>'layouts.users.postAdd','uses'=>'OrderController@postAdd']);
+		Route::get('list',['as'=>'layouts.users.list','uses'=>'OrderController@getList']);
+		Route::get('cancel/{id}',['as'=>'layouts.users.getCancel','uses'=>'OrderController@getCancel']);
+	});
+});
