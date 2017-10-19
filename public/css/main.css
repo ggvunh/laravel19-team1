@@ -17,3 +17,7 @@
 .detail_product h3,h2 {
 	color: blue;
 }
+
+.pagination {
+	float: right;
+}
