@@ -29,7 +29,7 @@ Route::group(['prefix'=>'user'],function(){
 		Route::get('cancel/{id}',['as'=>'layouts.users.getCancel','uses'=>'OrderController@getCancel']);
 	});
 });
-Route::get('/products', 'ProductController@getBooks');
+// Route::get('/products', 'ProductController@getBooks');
 // load form create
 Route::get('/products/create', 'ProductController@create');
 Route::get('/search-product', 'ProductController@search');
