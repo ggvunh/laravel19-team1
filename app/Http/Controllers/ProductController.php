@@ -21,10 +21,23 @@ class ProductController extends Controller
 
     }
 
-    public function getBooks()
+    public function getproducts()
     {
-      $products = Product::all();
-      return view('products.index', compact('products'));
+      $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+      $total_records=Product::count();
+      $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
+      $total_page = ceil($total_records / $limit);
+      if ($current_page > $total_page){
+          $current_page = $total_page;
+      }
+      else if ($current_page < 1){
+          $current_page = 1;
+      }
+      $start = ($current_page - 1) * $limit;
+      $products = Product::orderBy('created_at', 'dec')->offset($start)->limit($limit)->get();
+      $previous_page=$current_page-1;
+      $next_page=$current_page+1;
+      return view('products.index', compact(['products','limit','previous_page','next_page']));
     }
 
     public function create()
@@ -119,25 +132,54 @@ class ProductController extends Controller
       }  
 		  return redirect('/products');
     }
-    public function search(CreateProductRequest $request)
+    public function search()
     {
+      //$username = $request->old('name_product');
+      //dd($username);
     	$products=Product::all()->pluck('name', 'id');
-    	$data =$request->all();
+    	$data =Input::all();
     	$filter=$data['filter'];
-    	$name=ucfirst(strtolower($data['name']));
+    	$name=$data['name'];
+      $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+      $limit = isset($_GET['limit']) ? $_GET['limit'] : 100;
     	if ($filter=="Product Name") {
-	    		$products = Product::all()
-			     ->where('name', $name);
-			    return view('products.index', compact('products'));
+	    		$dataproducts = Product::where('name','like','%'.$name.'%')->orderBy('created_at', 'dec');
+          $total_records=$dataproducts->count();
+          $total_page = ceil($total_records / $limit);
+          if ($current_page > $total_page){
+              $current_page = $total_page;
+          }
+          else if ($current_page < 1){
+              $current_page = 1;
+          }
+          $start = ($current_page - 1) * $limit;
+          $products=$dataproducts->offset($start)->limit($limit)->get();
+          $previous_page=$current_page-1;
+          $next_page=$current_page+1;
+			    return view('products.index', compact('products','limit','previous_page','next_page'));
 	    	}	     
     	else {
-    			$manufacturer = Manufacturer::all()
-		         ->where('name', $name)
-		         ->first();
-      			$products = $manufacturer->products;
-    			return view('products.index', compact('products'));
+    			$manufacturers = Manufacturer::where('name','like','%'.$name.'%')->get();
+          $manufacturerArray=array();
+          foreach ($manufacturers as $manufacturer) {
+            $manufacturerArray[]=$manufacturer->id;
+          }
+          
+          $dataproducts = Product::whereIn('manufacturer_id',$manufacturerArray)->orderBy('created_at', 'dec');
+          $total_records=$dataproducts->count();
+          $total_page = ceil($total_records / $limit);
+          if ($current_page > $total_page){
+              $current_page = $total_page;
+          }
+          else if ($current_page < 1){
+              $current_page = 1;
+          }
+          $start = ($current_page - 1) * $limit;
+          $products=$dataproducts->offset($start)->limit($limit)->get();
+          $previous_page=$current_page-1;
+          $next_page=$current_page+1;
+    			return view('products.index', compact(['products','limit','previous_page','next_page']));
     		}	
-      
     }
 
     public function view(Product $product) 

@@ -22,7 +22,6 @@ class CreateProductsTable extends Migration
             $table->integer('manufacturer_id')->unsigned()->nullable();
             $table->integer('quality_in_store');
             $table->string('status');
-            $table->string('review');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('manufacturer_id')->references('id')->on('manufacturers');
             $table->timestamps();

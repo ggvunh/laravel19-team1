@@ -14,18 +14,22 @@
   @endif
 </div>
 <div>
-  <input type="hidden" name="productimage" value="{{$product->illustrative_photo}}">
-  <input type="hidden" name="photoimages" value="{{ $product->photos}}">
+  <input type="hidden" name="productimage" value="@if (!empty($product))
+  {{$product->illustrative_photo}}
+  @endif">
+  <input type="hidden" name="photoimages" value="@if (!empty($product))
+  {{ $product->photos}}
+   @endif">
 </div>
 <div class="form-group">
-  {!! Form::label('illustrative_photo', 'Image') !!}
+  {!! Form::label('illustrative_photo', 'Avatar') !!}
   <div class="form-controls">
     {!! Form::file('illustrative_photo', ['onchange'=>"loadFile(event)"]) !!}
   </div>
   <img id="output"/>
 </div>
 <div class="form-group">
-  {!! Form::label('photos[]', 'Photos') !!}
+  {!! Form::label('photos[]', 'Sub images') !!}
   <div class="form-controls">
     {!! Form::file('photos[]',['multiple', 'onchange'=>"loadPhoto(event)"]) !!}
   </div>
@@ -98,12 +102,6 @@
     </span>
   @endif
 </div>
-<div class="form-group">
-  {!! Form::label('review', 'Review') !!}
-  <div class="form-controls">
-    {!! Form::textarea('review', null, ['class' => 'form-control','size' => '30x5']) !!}
-  </div>
-</div>
 {!! Form::submit('Save Product', ['class' => 'btn btn-primary']) !!}
 @if (isset($image))
   <script>
@@ -120,11 +118,6 @@
    <script>
     src='{{url('upload/'.$photo->url)}}';
      $("#photo").append('<li >'+'<img ' +'src='+src+' height=100' +' width=120'+'</li>');
-    // var output = document.getElementById('photo'+i);
-    // output.src = URL.createObjectURL(event.target.files[i]);
-    // output.width="120";
-    // output.height="100";
-    
   </script>    
   @endforeach
 @endif
@@ -143,10 +136,6 @@
 
     src=URL.createObjectURL(event.target.files[i]);
      $("#photo").append('<li >'+'<img ' +'src='+src+' height=100' +' width=120'+'</li>');
-    // var output = document.getElementById('photo'+i);
-    // output.src = URL.createObjectURL(event.target.files[i]);
-    // output.width="120";
-    // output.height="100";
    }
   };
 </script>
