@@ -41,7 +41,7 @@
 									<th>Status</th>
 									<th>Review</th>
 									<th>Menu</th>
-									
+
 								</tr>
 							</thead>
 							<tbody>
@@ -57,7 +57,7 @@
 										<td>{{ $value->review}}</td>
 										<td>
 											<a href="{{ url('products/' . $value->id . '/edit') }}"><i class="fa fa-pencil"></i> Edit
-											</a> 
+											</a>
 				   							<a id="delete_data"  href="{{ url('products/' . $value->id . '/delete') }}" >
 				   								<i class="fa fa-trash"></i> Delete
 				   							</a>
@@ -65,7 +65,7 @@
 									</tr>
 								<?php endforeach ?>
 								<tr>
-								</tr>	
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -85,6 +85,46 @@
 					</div>
 				</div>
 			</div>
-		</div>				
+		</div>
 	</section>
+	<!-- footer-top -->
+	<div class="w3agile-ftr-top">
+		<div class="container">
+			<div class="ftr-toprow">
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>FREE SHIPPING</h4>
+						<p>Shipping after 30 minutes with Da Nang's customer, 2-5 days with customer in others. </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>CUSTOMER CARE</h4>
+						<p>24/24 online advisory staff.</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>GOOD QUALITY</h4>
+						<p>Brand new products. </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	@yield('footer_top')
+	</div>
+	<!-- //footer-top -->
 	@stop
