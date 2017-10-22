@@ -52,3 +52,16 @@ Route::get('/search-date','SearchOrderController@searchDate');
 
 
 Route::get('products/{product}','HomeController@viewProduct');
+Route::get('/pricesearch','HomeController@PriceSearch');
+//Cart
+Route::get('/carts/{id}/add','CartController@add');
+Route::get('/carts/destroy', 'CartController@destroy');
+Route::get('/checkout', 'CartController@checkout');
+Route::get('/carts/{rowId}/delete', 'CartController@delete');
+Route::get('/loadCarts', 'CartController@loadCarts');
+Route::get('carts/{rowId}/down-count', 'CartController@down_count');
+Route::get('carts/{rowId}/up-count', 'CartController@up_count');
+Route::get('carts/total','CartController@total');
+
+Route::get('/checkout/info', 'HomeController@checkoutInfo');
+Route::get('/order/confirm', 'HomeController@confirmOrder');

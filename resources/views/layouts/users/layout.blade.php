@@ -1,108 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Tech Shop </title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Smart Bazaar Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
+	@yield('head')
+	<title>Tech Shop an E-commerce Online Shopping Category </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Smart Bazaar Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	
+	<!-- Custom Theme files -->
+	<link href="{{url('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{url('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{url('css/animate.min.css')}}" rel="stylesheet" type="text/css" media="all" /><!-- animation -->
+	<link href="{{url('css/menu.css')}}" rel="stylesheet" type="text/css" media="all" /> <!-- menu style -->
+	<!-- //Custom Theme files -->
+	<!-- font-awesome icons -->
+	<link href="{{url('css/font-awesome.css')}}" rel="stylesheet">
+	<!-- //font-awesome icons -->
+	<!-- js -->
+	<script src="{{url('js/jquery-2.2.3.min.js')}}"></script>
+	<script src="{{url('js/jquery-scrolltofixed-min.js')}}" type="text/javascript"></script><!-- fixed nav js -->
+	<script>
+	    $(document).ready(function() {
 
-<!-- Custom Theme files -->
-<link href="{{url('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{url('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{url('css/animate.min.css')}}" rel="stylesheet" type="text/css" media="all" /><!-- animation -->
-<link href="{{url('css/menu.css')}}" rel="stylesheet" type="text/css" media="all" /> <!-- menu style -->
-<!-- //Custom Theme files -->
-<!-- font-awesome icons -->
-<link href="{{url('css/font-awesome.css')}}" rel="stylesheet">
-<!-- //font-awesome icons -->
-<!-- js -->
-<script src="{{url('js/jquery-2.2.3.min.js')}}"></script>
-<script src="{{url('js/jquery-scrolltofixed-min.js')}}" type="text/javascript"></script><!-- fixed nav js -->
-<script>
-    $(document).ready(function() {
+	        // Dock the header to the top of the window when scrolled past the banner. This is the default behaviour.
 
-        // Dock the header to the top of the window when scrolled past the banner. This is the default behaviour.
+	        $('.header-two').scrollToFixed();
+	        // previous summary up the page.
 
-        $('.header-two').scrollToFixed();
-        // previous summary up the page.
+	        var summaries = $('.summary');
+	        summaries.each(function(i) {
+	            var summary = $(summaries[i]);
+	            var next = summaries[i + 1];
 
-        var summaries = $('.summary');
-        summaries.each(function(i) {
-            var summary = $(summaries[i]);
-            var next = summaries[i + 1];
-
-            summary.scrollToFixed({
-                marginTop: $('.header-two').outerHeight(true) + 10,
-                zIndex: 999
-            });
-        });
-    });
-</script>
-<!-- //js -->
-<!-- web-fonts -->
-<link href="https://fonts.googleapis.com/css?family=Arimo|Roboto+Condensed|Tinos" rel="stylesheet" type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Lovers+Quarrel' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
-<!-- web-fonts -->
-<!-- start-smooth-scrolling -->
-<script type="text/javascript" src="{{url('js/move-top.js')}}"></script>
-<script type="text/javascript" src="{{url('js/easing.js')}}"></script>
-<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$(".scroll").click(function(event){
-				event.preventDefault();
-				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-			});
-		});
-</script>
-<!-- //end-smooth-scrolling -->
-<!-- smooth-scrolling-of-move-up -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-
-			$().UItoTop({ easingType: 'easeOutQuart' });
-
-		});
+	            summary.scrollToFixed({
+	                marginTop: $('.header-two').outerHeight(true) + 10,
+	                zIndex: 999
+	            });
+	        });
+	    });
 	</script>
-	<!-- //smooth-scrolling-of-move-up -->
-	<style >
-		table
-		{
-			color: #333;
-			font-family: Helvetica, Arial, sans-serif;
-			width: 640px;
-			border-collapse:
-			collapse; border-spacing: 0;
-		}
+	<!-- //js -->
+	<!-- web-fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Arimo|Roboto+Condensed|Tinos" rel="stylesheet" type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Lovers+Quarrel' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
+	<!-- web-fonts -->
+	<!-- start-smooth-scrolling -->
+	<script type="text/javascript" src="{{url('js/move-top.js')}}"></script>
+	<script type="text/javascript" src="{{url('js/easing.js')}}"></script>
+	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+	</script>
+	<!-- //end-smooth-scrolling -->
+	<!-- smooth-scrolling-of-move-up -->
+		<script type="text/javascript">
+			$(document).ready(function() {
 
-		td, th
-		{
-			border: 1px solid transparent; /* No more visible border */
-			height: 30px;
-			transition: all 0.3s;  /* Simple transition for hover effect */
-		}
+				var defaults = {
+					containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear'
+				};
 
-		th
-		{
-			background: #DFDFDF;  /* Darken header a bit */
-			font-weight: bold;
-		}
+				$().UItoTop({ easingType: 'easeOutQuart' });
 
-		td
-		{
-			background: #FAFAFA;
-		}
-	</style>
+			});
+		</script>
+		<!-- //smooth-scrolling-of-move-up -->
+		<style >
+			table
+			{
+				color: #333;
+				font-family: Helvetica, Arial, sans-serif;
+				width: 640px;
+				border-collapse:
+				collapse; border-spacing: 0;
+			}
+
+			td, th
+			{
+				border: 1px solid transparent; /* No more visible border */
+				height: 30px;
+				transition: all 0.3s;  /* Simple transition for hover effect */
+			}
+
+			th
+			{
+				background: #DFDFDF;  /* Darken header a bit */
+				font-weight: bold;
+			}
+
+			td
+			{
+				background: #FAFAFA;
+			}
+		</style>
 </head>
 <body>
 	<!-- header -->
@@ -155,7 +156,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-					<h1><a href="index.html"><span>T</span>ech <i>Shop</i></a></h1>
+					<h1><a href="{{url('/')}}"><span>T</span>ech <i>Shop</i></a></h1>
 					<h6>Your stores. Your place.</h6>
 				</div>
 				<div class="header-search">
@@ -168,16 +169,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					</form>
 				</div>
 				<div class="header-cart">
-					<div class="my-account">
-						<a href="contact.html"><i class="fa fa-map-marker" aria-hidden="true"></i> CONTACT US</a>
-					</div>
-					<div class="cart">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart" />
-							<input type="hidden" name="display" value="1" />
-							<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-					</div>
+					<a id="cart" href="{{url('/checkout')}}" class="btn btn-primary btn-circle btn-lg" style="margin-top:5px">
+						<i class="fa fa-shopping-cart"></i> Cart <span id="count" class="badge" >{{\Cart::count()}}</span>
+					</a>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>
@@ -352,46 +346,101 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <div class="container">
             @yield('content')
     </div>
-    <!-- footer-top -->
-	<div class="w3agile-ftr-top">
+
+	<!-- deals -->
+	<div class="deals">
 		<div class="container">
-			<div class="ftr-toprow">
-				<div class="col-md-4 ftr-top-grids">
-					<div class="ftr-top-left">
-						<i class="fa fa-truck" aria-hidden="true"></i>
-					</div>
-					<div class="ftr-top-right">
-						<h4>FREE SHIPPING</h4>
-						<p>Shipping after 30 minutes with Da Nang's customer, 2-5 days with customer in others. </p>
-					</div>
-					<div class="clearfix"> </div>
+			<h3 class="w3ls-title">DEALS OF THE DAY </h3>
+			<div class="deals-row">
+				<div class="col-md-3 focus-grid">
+					<a href="products.html" class="wthree-btn">
+						<div class="focus-image"><i class="fa fa-mobile"></i></div>
+						<h4 class="clrchg">Mobiles</h4>
+					</a>
 				</div>
-				<div class="col-md-4 ftr-top-grids">
-					<div class="ftr-top-left">
-						<i class="fa fa-user" aria-hidden="true"></i>
-					</div>
-					<div class="ftr-top-right">
-						<h4>CUSTOMER CARE</h4>
-						<p>24/24 online advisory staff.</p>
-					</div>
-					<div class="clearfix"> </div>
+				<div class="col-md-3 focus-grid">
+					<a href="products.html" class="wthree-btn wthree1">
+						<div class="focus-image"><i class="fa fa-laptop"></i></div>
+						<h4 class="clrchg"> Electronics & Appliances</h4>
+					</a>
 				</div>
-				<div class="col-md-4 ftr-top-grids">
-					<div class="ftr-top-left">
-						<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-					</div>
-					<div class="ftr-top-right">
-						<h4>GOOD QUALITY</h4>
-						<p>Brand new products. </p>
-					</div>
-					<div class="clearfix"> </div>
+				<div class="col-md-3 focus-grid">
+					<a href="products4.html" class="wthree-btn wthree2">
+						<div class="focus-image"><i class="fa fa-wheelchair"></i></div>
+						<h4 class="clrchg">Furnitures</h4>
+					</a>
+				</div>
+				<div class="col-md-3 focus-grid">
+					<a href="products3.html" class="wthree-btn wthree3">
+						<div class="focus-image"><i class="fa fa-home"></i></div>
+						<h4 class="clrchg">Home Decor</h4>
+					</a>
+				</div>
+				<div class="col-md-2 focus-grid w3focus-grid-mdl">
+					<a href="products9.html" class="wthree-btn wthree3">
+						<div class="focus-image"><i class="fa fa-book"></i></div>
+						<h4 class="clrchg">Books & Music</h4>
+					</a>
+				</div>
+				<div class="col-md-2 focus-grid w3focus-grid-mdl">
+					<a href="products1.html" class="wthree-btn wthree4">
+						<div class="focus-image"><i class="fa fa-asterisk"></i></div>
+						<h4 class="clrchg">Fashion</h4>
+					</a>
+				</div>
+				<div class="col-md-2 focus-grid w3focus-grid-mdl">
+					<a href="products2.html" class="wthree-btn wthree2">
+						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
+						<h4 class="clrchg">Kids</h4>
+					</a>
+				</div>
+				<div class="col-md-2 focus-grid w3focus-grid-mdl">
+					<a href="products5.html" class="wthree-btn wthree">
+						<div class="focus-image"><i class="fa fa-shopping-basket"></i></div>
+						<h4 class="clrchg">Groceries</h4>
+					</a>
+				</div>
+				<div class="col-md-2 focus-grid w3focus-grid-mdl">
+					<a href="products7.html" class="wthree-btn wthree5">
+						<div class="focus-image"><i class="fa fa-medkit"></i></div>
+						<h4 class="clrchg">Health</h4>
+					</a>
+				</div>
+				<div class="col-md-2 focus-grid w3focus-grid-mdl">
+					<a href="products8.html" class="wthree-btn wthree1">
+						<div class="focus-image"><i class="fa fa-car"></i></div>
+						<h4 class="clrchg">Automotive</h4>
+					</a>
+				</div>
+				<div class="col-md-3 focus-grid">
+					<a href="products5.html" class="wthree-btn wthree2">
+						<div class="focus-image"><i class="fa fa-cutlery"></i></div>
+						<h4 class="clrchg">Food</h4>
+					</a>
+				</div>
+				<div class="col-md-3 focus-grid">
+					<a href="products4.html" class="wthree-btn wthree5">
+						<div class="focus-image"><i class="fa fa-futbol-o"></i></div>
+						<h4 class="clrchg">Sports</h4>
+					</a>
+				</div>
+				<div class="col-md-3 focus-grid">
+					<a href="products2.html" class="wthree-btn wthree3">
+						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
+						<h4 class="clrchg">Games & Toys</h4>
+					</a>
+				</div>
+				<div class="col-md-3 focus-grid">
+					<a href="products6.html" class="wthree-btn ">
+						<div class="focus-image"><i class="fa fa-gift"></i></div>
+						<h4 class="clrchg">Gifts</h4>
+					</a>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-    @yield('footer_top')
 	</div>
-	<!-- //footer-top -->
+	<!-- //deals -->
 	<!-- footer -->
 	<div class="footer">
 		<div class="container">
@@ -451,25 +500,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		</div>
         @yield('footer')
 	</div>
-	<!-- cart-js -->
+
     <div>
-    	<script src="{{url('js/minicart.js')}}"></script>
-    	<script>
-            w3ls.render();
+		<!-- cart-js -->
+    	<script type="text/javascript"> 
 
-            w3ls.cart.on('w3sb_checkout', function (evt) {
-            	var items, len, i;
-
-            	if (this.subtotal() > 0) {
-            		items = this.items();
-
-            		for (i = 0, len = items.length; i < len; i++) {
-            			items[i].set('shipping', 0);
-            			items[i].set('shipping2', 0);
-            		}
-            	}
-            });
-        </script>
+		function addCart(id)
+		{
+			var root = '{{url('/carts')}}';
+			$.get(root + '/' + id + '/' + 'add', function(data, status){
+				console.log(data);
+			  $('#count').replaceWith('<span class="badge" id="count">' + data.count +'</span>');
+			});
+        }
+		</script>
     	<!-- //cart-js -->
     	<!-- menu js aim -->
     	<script src="{{url('js/jquery.menu-aim.js')}}"> </script>

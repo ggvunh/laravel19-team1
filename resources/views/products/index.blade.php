@@ -38,7 +38,7 @@
 									<th>Category Name</th>
 									<th>Manufacturer Name</th>
 									<th>Menu</th>
-									
+
 								</tr>
 							</thead>
 							<tbody>
@@ -49,7 +49,7 @@
 										<td>{{ $product->manufacturer->name}}</td>
 										<td>
 											<a href="{{ url('products/' . $product->id . '/edit') }}"><i class="fa fa-pencil"></i> Edit 
-											</a> 
+											</a>
 				   							<a id="delete_data"  href="{{ url('products/' . $product->id . '/delete') }}" >
 				   								<i class="fa fa-trash"></i> Delete
 				   							</a>
@@ -93,40 +93,46 @@
 					</div>
 				</div>
 			</div>
-		</div>				
+		</div>
 	</section>
-	
-	<script type="text/javascript">
-		
-		function myFunction() {
-			var x = document.getElementById("select-page").value;
-			window.location='products?limit='+x;
-		}
-	</script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			
-	    $('.page .pagination').find('li').click(function() {
-	    	//alert("ok");
-				//e.preventDefault();
-				$(this).attr("class","active");
-				// var concept = $(this).text();
-				// //alert(concept);
-				// $(this).attr("href","{{ url('products?page=1&limit='.$limit) }}");
-				// console.log(this);
-				// var concept = $(this).text();
-				// if(param=="orderdate")
-				// {
-				// 	$("#x").attr("id", "datepicker");
-				// }
-				// else
-				// {
-				// $("#datepicker").attr("id", "x");
-				// }	
-				// $('.search-panel span#search_concept').text(concept);
-				// $('.input-group #search_param').val(param);
-				
-			});
-		});
-	</script>
+	<!-- footer-top -->
+	<div class="w3agile-ftr-top">
+		<div class="container">
+			<div class="ftr-toprow">
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>FREE SHIPPING</h4>
+						<p>Shipping after 30 minutes with Da Nang's customer, 2-5 days with customer in others. </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>CUSTOMER CARE</h4>
+						<p>24/24 online advisory staff.</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>GOOD QUALITY</h4>
+						<p>Brand new products. </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	@yield('footer_top')
+	</div>
+	<!-- //footer-top -->
 	@stop
