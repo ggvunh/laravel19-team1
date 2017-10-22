@@ -8,7 +8,7 @@
 				<h2><span class="label label-default">Add Product</span></h2>
 			</div>
 			<br>
-			{!! Form::open(['url' => '/products']) !!}
+			{!! Form::open(['url' => 'products', 'enctype' => 'multipart/form-data'])  !!}
 			@include('partials.forms.product')
 			{!! Form::close() !!}
 	</div>

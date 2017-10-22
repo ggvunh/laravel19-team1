@@ -1,0 +1,23 @@
+.sub_image {
+  list-style-type: none;
+}
+
+.sub_image li {
+  float: left;
+  display: block;
+  margin: 10px;
+}
+.h3_product {
+	clear: both;
+}
+
+.detail_product span {
+	color: red;
+}
+.detail_product h3,h2 {
+	color: blue;
+}
+
+.pagination {
+	float: right;
+}

@@ -117,10 +117,11 @@
 					<li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="login.html">Login </a></li>
-							<li><a href="signup.html">Sign Up</a></li>
-							<li><a href="login.html">My Orders</a></li>
-							<li><a href="login.html">Wallet</a></li>
+							<li><a href="login">Login </a></li>
+							<li><a href="register">Register</a></li>
+							<li><a href="login">My Orders</a></li>
+							<li><a href="login">Wallet</a></li>
+							<li><a href="{{ !! url('logout')}} !!">Logout</a></li>
 						</ul>
 					</li>
 					<li class="dropdown head-dpdn">
