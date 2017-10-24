@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $fillable=[
     	'name', 'category_id', 'description', 'unit_price',
-    	'manufacturer_id', 'quality_in_store', 'status', 'review','illustrative_photo'
+    	'manufacturer_id', 'quality_in_store', 'status_id','illustrative_photo'
     ];
 
     public function category() {
@@ -29,5 +29,9 @@ class Product extends Model
 
     public function specifications() {
     	return $this->hasMany('App\Specification');
+    }
+
+    public function status() {
+        return $this->belongsTo('App\Status');
     }
 }

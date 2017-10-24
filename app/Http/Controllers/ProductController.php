@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Manufacturer;
 use App\Product;
+use App\Status;
 use App\Photo;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\CreateProductRequest;
@@ -44,7 +45,8 @@ class ProductController extends Controller
     {
       $categories = Category::all()->pluck('name', 'id');
       $manufacturers=Manufacturer::all()->pluck('name', 'id');
-      return view('products.create', compact(['categories','manufacturers']));
+      $status=Status::all()->pluck('name', 'id');
+      return view('products.create', compact(['categories','manufacturers','status']));
     }
 
     public function save(CreateProductRequest $request)
@@ -89,9 +91,10 @@ class ProductController extends Controller
     {
       $categories = Category::all()->pluck('name', 'id');
       $manufacturers=Manufacturer::all()->pluck('name', 'id');
+      $status=Status::all()->pluck('name', 'id');
       $image=$product->illustrative_photo;
       $photos=$product->photos;
-      return view('products.edit', compact(['product', 'categories','manufacturers','image','photos']));
+      return view('products.edit', compact(['product', 'categories','manufacturers','status','image','photos']));
     }
 
     public function update(CreateProductRequest $request,Product $product)

@@ -8,8 +8,8 @@ class Order extends Model
 {
 	//protected $table='orders'
 
-    protected $fillable=['user_id', 'total_price', 'order_address', 
-    'order_phone'];
+    protected $fillable=['user_id', 'total_price','order_date','order_address', 
+    'order_phone','status_id'];
     public function product() {
     	return $this->hasMany('App\Product');
     }
@@ -21,4 +21,10 @@ class Order extends Model
     public function orderDetails() {
     	return $this->hasMany('App\OrderDetail');
     }
+
+    public function status() {
+        return $this->belongsTo('App\Status');
+    }
+
+
 }

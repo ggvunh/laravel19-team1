@@ -91,12 +91,23 @@
     </span>
   @endif
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
   {!! Form::label('status', 'Status') !!}
   <div class="form-controls">
     {!! Form::text('status', null, ['class' => 'form-control']) !!}
   </div>
   @if ( $errors->has('status') )
+    <span class="text-warning">
+        <strong> {{ $errors->first('status') }}</strong>
+    </span>
+  @endif
+</div> -->
+<div class="form-group">
+  {!! Form::label('status_id', 'Status') !!}
+  <div class="form-controls">
+    {!! Form::select('status_id',$status , null, ['class' => 'form-control']) !!}
+  </div>
+  @if ( $errors->has('status_id') )
     <span class="text-warning">
         <strong> {{ $errors->first('status') }}</strong>
     </span>

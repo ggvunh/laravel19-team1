@@ -45,6 +45,26 @@ Route::get('/order-report','SearchOrderController@report');
 Route::get('/orders/search','SearchOrderController@searchOrder');
 Route::get('/detail-order/{order}','SearchOrderController@detail');
 Route::get('/search-date','SearchOrderController@searchDate');
+Route::get('calendar','CalendarController@get');
+Route::get('excel', function() {
+    $data = [
+            ['data1', 'data2'],
+            ['data3', 'data4']
+ ];
+ Excel::create('Filename', function($excel) use($data) {
+    $excel->sheet('Sheetnamechung', function($sheet) use($data) {
+        $sheet->fromArray($data);
+    });
+      $excel->setTitle('Our new awesome title');
+
+    // Chain the setters
+    $excel->setCreator('Maatwebsite')
+          ->setCompany('Maatwebsite');
+
+    // Call them separately
+    $excel->setDescription('A demonstration to change the file properties');
+})->export('xls');
+});
 
 // Route::get('/login.html', function(){
 // 	return view('auth.login');
