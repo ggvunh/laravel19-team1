@@ -8,8 +8,10 @@ class Order extends Model
 {
 	//protected $table='orders'
 
-    protected $fillable=['user_id', 'total_price', 'order_address', 
-    'order_phone'];
+    protected $fillable=[ 
+        'user_id', 'order_date', 'total_price',
+        'order_address', 'order_phone','status'
+    ];
     public function product() {
     	return $this->hasMany('App\Product');
     }
