@@ -119,8 +119,17 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<li><a href="login">Login </a></li>
 							<li><a href="register">Register</a></li>
 							<li><a href="login">My Orders</a></li>
-							<li><a href="login">Wallet</a></li>
-							<li><a href="{{ !! url('logout')}} !!">Logout</a></li>
+							<li>
+                                <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                                </form>
+                            </li>
 						</ul>
 					</li>
 					<li class="dropdown head-dpdn">

@@ -21,14 +21,7 @@ Route::get('/admin', function(){
 	return view('admin_template');
 });
 Route::get('/products', 'ProductController@getproducts');
-Route::group(['prefix'=>'user'],function(){
-	Route::group(['prefix'=>'list'],function(){
-		Route::get('add',['as'=>'layouts.users.getAdd','uses'=>'OrderController@getAdd']);
-		Route::post('add',['as'=>'layouts.users.postAdd','uses'=>'OrderController@postAdd']);
-		Route::get('list',['as'=>'layouts.users.list','uses'=>'OrderController@getList']);
-		Route::get('cancel/{id}',['as'=>'layouts.users.getCancel','uses'=>'OrderController@getCancel']);
-	});
-});
+
 // Route::get('/products', 'ProductController@getBooks');
 // load form create
 Route::get('/products/create', 'ProductController@create');
@@ -49,6 +42,25 @@ Route::get('/search-date','SearchOrderController@searchDate');
 // Route::get('/login.html', function(){
 // 	return view('auth.login');
 // });
+//manage Customer
+Route::group(['prefix'=>'user'],function(){
+		Route::get('listusers', 'UserController@listUsers');
+		Route::get('editusers/{id}', 'UserController@getEditUsers');
+		Route::post('editusers/{id}', 'UserController@postEditUsers');
+		Route::get('deleteusers/{id}', 'UserController@deleteUsers');
+		Route::get('searchusers', 'UserController@searchUser');
+		Route::get('orderlists/{id}', 'UserController@getOrderlists');
+	});
+
+Route::group(['prefix'=>'account'], function(){
+    Route::get('orderlists', 'AccountController@getBills');
+    Route::get('orderdetail/{id}', 'AccountController@getBillDetail');
+    Route::get('orderlists/{id}/delete', 'AccountController@cancelBills');
+    Route::get('information', 'AccountController@getInfo');
+    Route::post('information', 'AccountController@postInfo');
+    });
+	Route::GET('sendmail','CartController@sendmail');
 
 
 Route::get('products/{product}','HomeController@viewProduct');
+
