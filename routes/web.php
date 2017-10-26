@@ -21,6 +21,8 @@ Route::get('/admin', function(){
 	return view('admin_template');
 });
 Route::get('/products', 'ProductController@getproducts');
+Route::get('/api/products', 'ApiProductController@get');
+Route::post('/api', 'ApiProductController@post');
 Route::group(['prefix'=>'user'],function(){
 	Route::group(['prefix'=>'list'],function(){
 		Route::get('add',['as'=>'layouts.users.getAdd','uses'=>'OrderController@getAdd']);
@@ -32,7 +34,7 @@ Route::group(['prefix'=>'user'],function(){
 // Route::get('/products', 'ProductController@getBooks');
 // load form create
 Route::get('/products/create', 'ProductController@create');
-Route::get('/search-product', 'ProductController@search');
+Route::post('/search-product', 'ApiProductController@search');
 // push data to server
 Route::post('/products', 'ProductController@save');
 Route::get('/products/{product}/edit', 'ProductController@edit');

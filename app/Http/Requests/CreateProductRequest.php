@@ -29,8 +29,7 @@ class CreateProductRequest extends FormRequest
             'manufacturer_id' => 'required',
             'description' => 'required',
             'unit_price' => 'required',
-            'quality_in_store' => 'required',
-            'status' => 'required'
+            'quality_in_store' => 'required'
         ];
 
     }

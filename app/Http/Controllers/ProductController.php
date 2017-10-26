@@ -25,7 +25,7 @@ class ProductController extends Controller
     {
       $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
       $total_records=Product::count();
-      $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
+      $limit = isset($_GET['limit']) ? $_GET['limit'] : 1;
       $total_page = ceil($total_records / $limit);
       if ($current_page > $total_page){
           $current_page = $total_page;
@@ -37,7 +37,8 @@ class ProductController extends Controller
       $products = Product::orderBy('created_at', 'dec')->offset($start)->limit($limit)->get();
       $previous_page=$current_page-1;
       $next_page=$current_page+1;
-      return view('products.index', compact(['products','limit','previous_page','next_page']));
+      // return view('products.index', compact(['products','limit','previous_page','next_page']));
+      return view('products.indexExam');
     }
 
     public function create()

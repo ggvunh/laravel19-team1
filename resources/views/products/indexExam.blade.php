@@ -12,14 +12,14 @@
 							<div class="col-xs-8 text-right form-inline">
 								<form action="{{url('search-product')}}" method="get">
 								<div class="form-group">
-									<select name="filter" class="form-control search-option">
+									<select name="filter" id="filter" class="form-control search-option">
 										<option>Product Name</option>
 										<option>Manufacturer Name</option>
 									</select>
 								</div>
 								<div class="form-group">
 									<span>
-									<input name="name" value="{{ old('username') }}" type="text" class="form-control search-input" placeholder="Search...">
+									<input id="search-product" name="name" value="{{ old('username') }}" type="text" class="form-control search-input" placeholder="Search...">
 									<button type="submit" style="border:0;background:transparent;text-indent: -30px;">
 									<span class="glyphicon glyphicon-search"></span>
 									</button>
@@ -42,38 +42,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($products as $product)
-									<tr>
-										<td><a href="{{ url('products/product/'.$product->id) }}">{{ $product->name}}</a></td>
-										<td>{{ $product->category->name}}</td>
-										<td>{{ $product->manufacturer->name}}</td>
-										<td>
-											<a href="{{ url('products/' . $product->id . '/edit') }}"><i class="fa fa-pencil"></i> Edit 
-											</a>
-				   							<a id="delete_data"  href="{{ url('products/' . $product->id . '/delete') }}" >
-				   								<i class="fa fa-trash"></i> Delete
-				   							</a>
-										</td>
-									</tr>
-								@endforeach	
+								
 							</tbody>
 						</table>
 					</div>
 					<div class="page">
 					<ul class="pagination">
-						<li><a href="{{ url('products?page='.$previous_page.'&limit='.$limit) }}">&laquo;</a></li>
-						@for($i=1;$i<=$total_page;$i++)
-						<li><a href="">{{$i}}</a></li>
-						@endfor
-						<li><a href="{{ url('products?page='.$next_page.'&limit='.$limit) }}">&raquo;</a></li>
-					</ul>
+					</ul>	
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer clearfix">
 						<div class="row">
-							<div class="col-md-4 form-inline">
+							<div class="col-xs-2 col-md-4 form-inline">
 								<div class="form-group">
-									<select class="form-control option" id="select-page" onchange="myFunction()">
+									<select class="form-control option" id="select-page" >
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>
@@ -93,24 +75,96 @@
 			</div>
 		</div>
 	</section>
-	<script type="text/javascript">
- 		
- 		function myFunction() {
- 			var x = document.getElementById("select-page").value;
- 			window.location='products?limit='+x;
- 		}
- 	</script>
- 	<script type="text/javascript">
- 		$(document).ready(function(){
- 			
- 	    $('.page .pagination').find('li').click(function() {
- 	 
- 				$(this).attr("class","active");
- 				
- 				
- 			});
- 		});
- 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>	
+	$(document).ready(function(){
+		$("#select-page").change(function() {
+ 			var limit = document.getElementById("select-page").value;
+ 			$.ajax({
+				url:"api",
+				type:"post",
+				data:{limit:limit,_token:"{{ csrf_token() }}"},
+				success: function(data,status){
+					getData(data, status),
+					totalPage(data);
+				}
+			})
+		})
+
+		$("#search-product").keyup(function(){
+			var name=$(this).val();
+			var filter=$("#filter").val();
+			$.ajax({
+				url:"search-product",
+				type:"post",
+				data:{name:name,filter:filter,_token:"{{ csrf_token() }}"},
+				success: function(data,status){
+					console.log(data);
+					getData(data, status)
+					// totalPage(data);
+				}			
+			})
+		})	
+
+		$.ajax({
+		url:"api/products",
+		type:"get",
+		success:function(data, status){
+			getData(data, status), 
+			totalPage(data);
+		}
+		})
+
+		function getData(data, status){
+			$("tbody").empty();
+			$.each(data.products,function(key, product){
+					$("tbody").append (
+						"<tr>" +
+						"<td>" + "<a " + "href="+"products/product/"+product.id+" >"+product.name+
+						" </a>"+"</td>"+
+						"<td>"+product.category.name+"</td>" +	
+						"<td>"+product.manufacturer.name+"</td>"+
+						"<td>"+
+							"<a "+ "href="+"products/"+product.id+"/edit"+" >"+"<i " + "class=fa fa-pencil"+" >"+"</i>" +"Edit " +
+							"</a>" +
+								"<a " +"id="+"delete_data " + "href="+"products/"+product.id+"/delete" +" >"+
+									"<i "+ "class="+"fa fa-trash"+ " >"+"</i>" +"Delete" +
+								"</a>"+
+						"</td>"+
+						"</tr>"
+					)
+
+			})
+		} 
+
+		function totalPage(data, status)
+		{
+			// "<li>"+ "<a " +"href="+"products?page="+data.previous_page+"&limit="+data.limit+" >"+"&laquo;"+"</a>"+"</li>"+
+			$('.page .pagination').empty();
+			for (var i = 1; i<=data.total_page; i++) {
+			$('.page .pagination').append(
+				"<li>"+"<a "+"href=#"+">"+i+"</a"+"</li>"
+			)
+			// $('.page .pagination').find('li').index(1).attr("class","active");
+		}
+			
+		$('.page .pagination').find('li').click(function() {
+			$('.page .pagination').find('li').removeClass("active");
+			$(this).attr("class","active");
+			var limit = document.getElementById("select-page").value;
+			var current_page=$(this).find('a').text();
+			$.ajax({
+				url:"api",
+				type:"post",
+				data:{limit:limit,current_page:current_page,_token:"{{ csrf_token() }}"},
+				success: function(data,status){
+					getData(data, status)
+				}
+			})
+		});
+		}
+	});
+	</script>
 	<!-- footer-top -->
 	<div class="w3agile-ftr-top">
 		<div class="container">
@@ -151,4 +205,5 @@
 	@yield('footer_top')
 	</div>
 	<!-- //footer-top -->
+	
 	@stop
