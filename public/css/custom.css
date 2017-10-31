@@ -1,0 +1,13 @@
+.table-link {
+	cursor: pointer;
+	margin-right: 5px;
+	color: #333;
+}
+.preview-image {
+	width: 100px;
+	padding: 5px;
+	border: 1px solid #f4f4f4;
+}
+.radio label {
+	margin-right: 5px;
+}

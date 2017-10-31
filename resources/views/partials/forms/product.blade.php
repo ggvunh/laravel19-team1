@@ -91,17 +91,6 @@
     </span>
   @endif
 </div>
-<div class="form-group">
-  {!! Form::label('status', 'Status') !!}
-  <div class="form-controls">
-    {!! Form::text('status', null, ['class' => 'form-control']) !!}
-  </div>
-  @if ( $errors->has('status') )
-    <span class="text-warning">
-        <strong> {{ $errors->first('status') }}</strong>
-    </span>
-  @endif
-</div>
 {!! Form::submit('Save Product', ['class' => 'btn btn-primary']) !!}
 @if (isset($image))
   <script>

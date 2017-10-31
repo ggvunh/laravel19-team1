@@ -6,10 +6,10 @@
 				<div class="box">
 					<div class="box-header with-border">
 						<div class="row">
-							<div class="col-xs-6">
+							<div class="col-xs-4">
 								<a href="{{url('products/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Product</a>
 							</div>
-							<div class="col-xs-6 text-right form-inline">
+							<div class="col-xs-8 text-right form-inline">
 								<form action="{{url('search-product')}}" method="get">
 								<div class="form-group">
 									<select name="filter" class="form-control search-option">
@@ -62,11 +62,9 @@
 					<div class="page">
 					<ul class="pagination">
 						<li><a href="{{ url('products?page='.$previous_page.'&limit='.$limit) }}">&laquo;</a></li>
-						<li><a href="{{ url('products?page=1&limit='.$limit) }}">1</a></li>
-						<li><a href="{{ url('products?page=2&limit='.$limit) }}">2</a></li>
-						<li><a href="{{ url('products?page=3&limit='.$limit) }}">3</a></li>
-						<li><a href="{{ url('products?page=4&limit='.$limit) }}">4</a></li>
-						<li><a href="{{ url('products?page=5&limit='.$limit) }}">5</a></li>
+						@for($i=1;$i<=$total_page;$i++)
+						<li><a href="">{{$i}}</a></li>
+						@endfor
 						<li><a href="{{ url('products?page='.$next_page.'&limit='.$limit) }}">&raquo;</a></li>
 					</ul>
 					</div>
@@ -95,6 +93,24 @@
 			</div>
 		</div>
 	</section>
+	<script type="text/javascript">
+ 		
+ 		function myFunction() {
+ 			var x = document.getElementById("select-page").value;
+ 			window.location='products?limit='+x;
+ 		}
+ 	</script>
+ 	<script type="text/javascript">
+ 		$(document).ready(function(){
+ 			
+ 	    $('.page .pagination').find('li').click(function() {
+ 	 
+ 				$(this).attr("class","active");
+ 				
+ 				
+ 			});
+ 		});
+ 	</script>
 	<!-- footer-top -->
 	<div class="w3agile-ftr-top">
 		<div class="container">

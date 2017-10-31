@@ -171,24 +171,29 @@
 						<div class="row">	
             <div class="box-header with-border">
               <h2>Search Order</h2>
-              <div class="row">
-              <div class="col-xs-8 col-xs-offset-4">
-							<div class="col-xs-5 ">
-                <select name="filter" id="filter" class="form-control search-option">
-								<option>Order ID</option>
-								<option>Customer Name</option>
-								<option>Shipping Information</option>
-								<option>Order date</option>
-								</select>
-							</div>
-							<div class="col-xs-5 ">
-							<input type="text" class="form-control" id="search" name="name"  placeholder="Search term..."> 
-	    				</div>
-	    				<div class="col-xs-2">
-                <input type="button" style="display:none" id="searchbtn" value="Search" class="btn btn-info" />
-              </div>
-	            </div>
-	            </div>
+              <div class="col-xs-8 col-xs-offset-2">
+		    				<div class="input-group">
+                <div class="input-group-btn search-panel">
+                	<form action="{{ url('orders/search')}}" method="get">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#orderid">Order ID</a></li>
+                      <li><a href="#customer">Customer Name</a></li>
+                      <li><a href="#shipping">Shipping Information</a></li>
+                      <li><a href="#orderdate">Order date</a></li>
+                    </ul>
+		                </div>
+		                <input type="hidden" name="search_param" value="all" id="search_param">         
+		                <input type="text" class="form-control" id="x" name="x"  placeholder="Search term...">
+		                <span class="input-group-btn">
+		                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+		                </span>
+              	</form>
+            	</div>
+        			</div>
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="table-responsive">
@@ -205,232 +210,56 @@
                   </tr>
                   </thead>
                   <tbody>
- 
+                  	@foreach ($orders as $order)
+						<tr>
+							<td>{{ $order->id}}</td>
+							<td>{{ $order->user->name}}</td>
+							<td>{{ $order->order_address}}</td>
+							<td>{{ $order->order_phone}}</td>
+							<td>{{ $order->order_date}}</td>
+							<td>{{ $order->status}}</td>
+							<td>{{ $order->total_price }}</td>
+							<td><a href="{{ url('detail-order/'.$order->id) }}" >Detail</a></td>
+						</tr>
+                  	@endforeach	
                   </tbody>
                 </table>
               </div>
-              <div class="page">
-					<ul id="pagination" class="pagination">
-
-					</ul>	
-					</div>
-					<!-- /.box-body -->
-					<div class="box-footer clearfix">
-						<div class="row">
-							<div class="col-xs-2 col-md-4 form-inline">
-								<div class="form-group">
-									<select class="form-control option" id="select-page" >
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-										<option selected>6</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-4 text-center info"></div>
-							<div class="col-md-4">
-								<ul class="pagination pagination-sm no-margin pull-right pagination-main"></ul>
-							</div>
+              <!-- /.table-responsive -->
+            
 						</div>
-					</div><!-- /.table-responsive -->
-						</div>
-						<h4> </h4>
 					</div>
 				</div>
 			</div>
 		</div>				
 	</section>
+<!--   <script type="text/javascript">
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+  </script> -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-		$("#select-page").change(function() {
- 			var limit = document.getElementById("select-page").value;
- 			var name=$("#search").val();
-			var filter=$("#filter").val();		
- 			$.ajax({
-				url:"orders/search",
-				type:"post",
-				data:{limit:limit,name:name,filter:filter,_token:"{{ csrf_token() }}"},
-				success: function(data,status){
-					getData(data, status),
-					totalPage(data),
-					disabled(data)	
-				}
-			})
-		})
-
-		$("#filter").change(function() {
-			var filter=$(this).val();
-			if(filter=="Order date")
-			{
-				$("#search").attr("type", "date");
-				$("#search").attr("min","2017-01-01");
-	  		$("#searchbtn").show();
-			}
-			else
-			{
-				$("#searchbtn").hide();
-				$("#search").attr("type", "text");
-				$("#search").val("");
-				
-			}
-
-		})	
-
-		$("#search").keyup(function(){
-			var name=$(this).val();
-			var filter=$("#filter").val();
-			var limit = document.getElementById("select-page").value;
-			$.ajax({
-				url:"orders/search",
-				type:"post",
-				data:{name:name,filter:filter,limit:limit,_token:"{{ csrf_token() }}"},
-				success: function(data,status){
-					getData(data, status),
-					totalPage(data,status),
-					disabled(data)
-				}			
-			})
-
-		})	
-
-		$("#searchbtn").click(function(){
-			var name=$("#search").val();
-			var filter=$("#filter").val();
-			var limit = document.getElementById("select-page").value;
-			$.ajax({
-				url:"orders/search",
-				type:"post",
-				data:{name:name,filter:filter,limit:limit,_token:"{{ csrf_token() }}"},
-				success: function(data,status){
-					console.log(data);
-					getData(data, status),
-					totalPage(data,status),
-					disabled(data)
-				}			
-			})
-		});
-
-		$.ajax({
-			url:"orders/search",
-			type:"post",
-			data:{_token:"{{ csrf_token() }}"},
-			success: function(data,status){
-				console.log(data);
-				getData(data, status),
-				totalPage(data),
-				disabled(data),
-				totalPrice(data)
-			}
-		})
-
-		function getData(data, status){
-			$("tbody").empty();
-			$.each(data.orders,function(key, order){
-					$("tbody").append (
-						"<tr>" +
-							"<td>"+order.id+"</td>" +	
-							"<td>"+order.user.name+"</td>"+
-							"<td>"+order.order_address+"</td>" +	
-							"<td>"+order.order_phone+"</td>"+
-							"<td>"+order.order_date+"</td>" +	
-							"<td>"+order.status+"</td>"+
-							"<td>"+order.total_price+"</td>" +	
-							'<td>'+'<a href=detail-order/'+order.id+'  >Detail</a>'+'</td>'+
-						"</tr>"
-					)
-					 $("#exampleModal").on('show.bs.modal', function () {
-            			alert('The modal is about to be shown.');
-    				});
-			})
-		} 
-
-		function totalPrice(data)
-	    {
-	      $("div h4").text("Total money:"+data.total_price+" VND");
-	    }	
-
-		function disabled(data)
-		{
-			if(data.first==true){
-				$('.page .pagination li:contains("«")').attr("class","disabled");
-			}
-			
-			if(data.last==true){
-				$('.page .pagination li:contains("»")').attr("class","disabled");
-			}
-		}
-
-		function totalPage(data, status)
-		{
-			$('.page .pagination').empty();
-			$('.page .pagination').append(
-				'<li> <a href="#" >&laquo;</a> </li>'
-			)	
-			for (data.start_page; data.start_page<=data.end_page;data.start_page++) {
-			$('.page .pagination').append(
-				'<li> <a href="#" >'+data.start_page+'</a </li>'
-			)
-			}
-			$('.page .pagination').append(
-				'<li> <a href="#" >&raquo;</a> </li>'
-			)
-		
-			$("#pagination li:first-child").next().attr("class","active");
-			if(data.current_page=="»"){
-				$('.page .pagination').find('li').removeClass("active");
-				$("#pagination li:first-child").next().attr("class","active");
-			}
-			else if(data.current_page=="«"){
-				$('.page .pagination').find('li').removeClass("active");
-				$("#pagination li:last-child").prev().attr("class","active");
-			}
-
-			$('.page .pagination').find('li').click(function() {
-
-				$('.page .pagination').find('li').removeClass("active");
-				
-				var limit = document.getElementById("select-page").value;
-				var current_page=$(this).find('a').text();
-				var previous_page=$(this).next().find('a').text();
-				var next_page=$(this).prev().find('a').text();
-				var name=$("#search").val();
-				var filter=$("#filter").val();
-				$(this).attr("class","active");
-				$.ajax({
-					url:"orders/search",
-					type:"post",
-					data: {
-								limit:limit,
-								previous_page:previous_page,
-								next_page:next_page,
-						  	current_page:current_page,
-						  	name:name,
-						  	filter:filter,
-						   	_token:"{{ csrf_token() }}"
-								},
-					success: function(data,status){
-						if(data.current_page=="»")
-						{
-							totalPage(data,status),
-							getData(data, status),
-							disabled(data)	
-						}
-						else if(data.current_page=="«")
-						{
-							totalPage(data,status),
-							getData(data, status),
-							disabled(data)
-						}
-						else {
-							getData(data, status),
-							disabled(data)
-						}
+		    $('.search-panel .dropdown-menu').find('a').click(function() {
+					var param = $(this).attr("href").replace("#","");
+					var concept = $(this).text();
+					if(param=="orderdate")
+					{
+						$("#x").attr("type", "date");
 					}
-				})
+					else
+					{
+					$("#x").attr("type", "text");
+					}	
+					$('.search-panel span#search_concept').text(concept);
+					$('.input-group #search_param').val(param);
+					
 			});
-		}
+
+		    $("#x").keyup(function(){
+		    	alert("ok");
+		    })
+
 		});
 	</script>
 	

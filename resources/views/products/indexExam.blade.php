@@ -1,17 +1,17 @@
-@extends('layouts.admin.master')
-@section('navigation')
+	@extends('layouts.admin.master')
+	@section('navigation')
 	   <!-- /.search form -->
 	      <!-- sidebar menu: : style can be found in sidebar.less -->
 	      <ul class="sidebar-menu" data-widget="tree">
 	        <li class="header">MAIN NAVIGATION</li>
-	         <li >
+	         <li class="active" >
 	          <a href="{{url('/products')}}">
 	            <i class="fa fa-dashboard"></i> <span>Products</span>
 
 	          </a>
 	        </li>
 	        
-	        <li class="active" >
+	        <li >
 	          <a href="{{url('/search-order')}}">
 	            <i class="glyphicon glyphicon-search"> </i> <span>Search Order</span>
 	          </a>
@@ -27,6 +27,11 @@
 
           </a>
         </li>
+        <li>
+          <a href="{{url('/export')}}">
+             <i class="glyphicon glyphicon-download-alt"></i> <span>Export</span>
+          </a>
+          </li>
 	        <li class="treeview">
 	          <a href="#">
 	            <i class="fa fa-pie-chart"></i>
@@ -168,48 +173,42 @@
 			<div class="col-md-12">
 				<div class="box">
 					<div class="box-header with-border">
-						<div class="row">	
-            <div class="box-header with-border">
-              <h2>Search Order</h2>
-              <div class="row">
-              <div class="col-xs-8 col-xs-offset-4">
-							<div class="col-xs-5 ">
-                <select name="filter" id="filter" class="form-control search-option">
-								<option>Order ID</option>
-								<option>Customer Name</option>
-								<option>Shipping Information</option>
-								<option>Order date</option>
-								</select>
+						<div class="row">
+							<div class="col-xs-4">
+								<a href="{{url('products/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Product</a>
 							</div>
-							<div class="col-xs-5 ">
-							<input type="text" class="form-control" id="search" name="name"  placeholder="Search term..."> 
-	    				</div>
-	    				<div class="col-xs-2">
-                <input type="button" style="display:none" id="searchbtn" value="Search" class="btn btn-info" />
-              </div>
-	            </div>
-	            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Order date</th>
-                    <th>Status</th>
-                    <th>Total money</th>
-                  </tr>
-                  </thead>
-                  <tbody>
- 
-                  </tbody>
-                </table>
-              </div>
-              <div class="page">
+							<div class="col-xs-8 text-right form-inline">	
+								<div class="form-group">
+									<select name="filter" id="filter" class="form-control search-option">
+										<option>Product Name</option>
+										<option>Manufacturer Name</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<span>
+									<input id="search-product" name="name" value="{{ old('username') }}" type="text" class="form-control search-input" placeholder="Search...">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body table-responsive">
+						<table class="table table-bordered table-hover" id="datagrid">
+							<thead >
+								<tr >
+									<th>Name</th>
+									<th>Category Name</th>
+									<th>Manufacturer Name</th>
+									<th>Menu</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>
+					<div class="page">
 					<ul id="pagination" class="pagination">
 
 					</ul>	
@@ -234,22 +233,58 @@
 								<ul class="pagination pagination-sm no-margin pull-right pagination-main"></ul>
 							</div>
 						</div>
-					</div><!-- /.table-responsive -->
-						</div>
-						<h4> </h4>
 					</div>
 				</div>
 			</div>
-		</div>				
+		</div>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+					<a href="#exampleModal" class="btn btn-default btn-small" id="custId" data-toggle="modal">Edit</a>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick="update_action()"  class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 	</section>
-	<script type="text/javascript">
-		$(document).ready(function() {
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+	$(document).ready(function(){
+
+   
+
+
 		$("#select-page").change(function() {
  			var limit = document.getElementById("select-page").value;
- 			var name=$("#search").val();
-			var filter=$("#filter").val();		
+ 			var name=$("#search-product").val();
+			var filter=$("#filter").val();
  			$.ajax({
-				url:"orders/search",
+				url:"api",
 				type:"post",
 				data:{limit:limit,name:name,filter:filter,_token:"{{ csrf_token() }}"},
 				success: function(data,status){
@@ -260,96 +295,58 @@
 			})
 		})
 
-		$("#filter").change(function() {
-			var filter=$(this).val();
-			if(filter=="Order date")
-			{
-				$("#search").attr("type", "date");
-				$("#search").attr("min","2017-01-01");
-	  		$("#searchbtn").show();
-			}
-			else
-			{
-				$("#searchbtn").hide();
-				$("#search").attr("type", "text");
-				$("#search").val("");
-				
-			}
-
-		})	
-
-		$("#search").keyup(function(){
+		$("#search-product").keyup(function(){
 			var name=$(this).val();
 			var filter=$("#filter").val();
 			var limit = document.getElementById("select-page").value;
 			$.ajax({
-				url:"orders/search",
+				url:"api",
 				type:"post",
 				data:{name:name,filter:filter,limit:limit,_token:"{{ csrf_token() }}"},
 				success: function(data,status){
 					getData(data, status),
 					totalPage(data,status),
 					disabled(data)
+					console.log(data);
 				}			
 			})
 
 		})	
 
-		$("#searchbtn").click(function(){
-			var name=$("#search").val();
-			var filter=$("#filter").val();
-			var limit = document.getElementById("select-page").value;
-			$.ajax({
-				url:"orders/search",
-				type:"post",
-				data:{name:name,filter:filter,limit:limit,_token:"{{ csrf_token() }}"},
-				success: function(data,status){
-					console.log(data);
-					getData(data, status),
-					totalPage(data,status),
-					disabled(data)
-				}			
-			})
-		});
-
 		$.ajax({
-			url:"orders/search",
+			url:"api",
 			type:"post",
 			data:{_token:"{{ csrf_token() }}"},
 			success: function(data,status){
-				console.log(data);
 				getData(data, status),
 				totalPage(data),
-				disabled(data),
-				totalPrice(data)
+				disabled(data)
 			}
 		})
 
 		function getData(data, status){
 			$("tbody").empty();
-			$.each(data.orders,function(key, order){
+			$.each(data.products,function(key, product){
 					$("tbody").append (
 						"<tr>" +
-							"<td>"+order.id+"</td>" +	
-							"<td>"+order.user.name+"</td>"+
-							"<td>"+order.order_address+"</td>" +	
-							"<td>"+order.order_phone+"</td>"+
-							"<td>"+order.order_date+"</td>" +	
-							"<td>"+order.status+"</td>"+
-							"<td>"+order.total_price+"</td>" +	
-							'<td>'+'<a href=detail-order/'+order.id+'  >Detail</a>'+'</td>'+
+						"<td>" + "<a " + "href="+"products/product/"+product.id+" >"+product.name+
+						" </a>"+"</td>"+
+						"<td>"+product.category.name+"</td>" +	
+						"<td>"+product.manufacturer.name+"</td>"+
+						"<td>"+
+							'<a href="#" id="edit" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-pencil"></i> Edit&nbsp;&nbsp;</a>'+
+								'<a href="#" onclick="delete_data('+product.id+')"><i class="fa fa-trash"></i> Delete</a>'+
+						"</td>"+
 						"</tr>"
 					)
 					 $("#exampleModal").on('show.bs.modal', function () {
-            			alert('The modal is about to be shown.');
-    				});
+            alert('The modal is about to be shown.');
+    });
 			})
-		} 
 
-		function totalPrice(data)
-	    {
-	      $("div h4").text("Total money:"+data.total_price+" VND");
-	    }	
+
+       
+		} 
 
 		function disabled(data)
 		{
@@ -364,6 +361,7 @@
 
 		function totalPage(data, status)
 		{
+			// "<li>"+ "<a " +"href="+"products?page="+data.previous_page+"&limit="+data.limit+" >"+"&laquo;"+"</a>"+"</li>"+
 			$('.page .pagination').empty();
 			$('.page .pagination').append(
 				'<li> <a href="#" >&laquo;</a> </li>'
@@ -395,11 +393,11 @@
 				var current_page=$(this).find('a').text();
 				var previous_page=$(this).next().find('a').text();
 				var next_page=$(this).prev().find('a').text();
-				var name=$("#search").val();
+				var name=$("#search-product").val();
 				var filter=$("#filter").val();
 				$(this).attr("class","active");
 				$.ajax({
-					url:"orders/search",
+					url:"api",
 					type:"post",
 					data: {
 								limit:limit,
@@ -431,9 +429,94 @@
 				})
 			});
 		}
+		
+	});
+	function delete_data(productId){
+		swal({
+	  title: "Are you sure want to delete this data?",   
+		text: "Deleted data can not be restored!",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		  	$.get("/products/"+productId+"/delete");
+		    swal("Data successfully deleted", {
+		      icon: "success",
+		    });
+		  }
 		});
-	</script>
-	
+	}
 
-   
+	function save_action() {
+		alert("ok");
+		var formData = $('#form-action').serialize();
+		$("button[title='save']").html("Saving data, please wait...");
+		// $.post("http://native-theme.com/datagrid_server/public/album/action", formData).done(function(data) {
+		// 	$("button[title='save']").html("Save");
+		// 	$('#form-modal').modal("hide");
+		// 	swal({   
+		// 		title: "Success",
+		// 		text: "Data successfully saved",
+		// 		type: "success"
+		// 	});
+		// 	datagrid.reload();
+	 //      });
+	}
+
+	function update_action() {
+		
+		$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
+	}	
+	</script>
+	<!-- footer-top -->
+	<div class="w3agile-ftr-top">
+		<div class="container">
+			<div class="ftr-toprow">
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>FREE SHIPPING</h4>
+						<p>Shipping after 30 minutes with Da Nang's customer, 2-5 days with customer in others. </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>CUSTOMER CARE</h4>
+						<p>24/24 online advisory staff.</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 ftr-top-grids">
+					<div class="ftr-top-left">
+						<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+					</div>
+					<div class="ftr-top-right">
+						<h4>GOOD QUALITY</h4>
+						<p>Brand new products. </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	@yield('footer_top')
+	</div>
+	<!-- //footer-top -->
+	
 	@stop

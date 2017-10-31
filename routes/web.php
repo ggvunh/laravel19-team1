@@ -21,6 +21,7 @@ Route::get('/admin', function(){
 	return view('admin_template');
 });
 Route::get('/products', 'ProductController@getproducts');
+Route::post('/api', 'ApiProductController@post');
 Route::group(['prefix'=>'user'],function(){
 	Route::group(['prefix'=>'list'],function(){
 		Route::get('add',['as'=>'layouts.users.getAdd','uses'=>'OrderController@getAdd']);
@@ -32,7 +33,7 @@ Route::group(['prefix'=>'user'],function(){
 // Route::get('/products', 'ProductController@getBooks');
 // load form create
 Route::get('/products/create', 'ProductController@create');
-Route::get('/search-product', 'ProductController@search');
+Route::post('/search-product', 'ApiProductController@search');
 // push data to server
 Route::post('/products', 'ProductController@save');
 Route::get('/products/{product}/edit', 'ProductController@edit');
@@ -42,9 +43,14 @@ Route::get('/products/{product}/delete', 'ProductController@delete');
 Route::get('/products/product/{product}','ProductController@view');
 Route::get('/search-order','SearchOrderController@search');
 Route::get('/order-report','SearchOrderController@report');
-Route::get('/orders/search','SearchOrderController@searchOrder');
+Route::post('/orders/search','SearchOrderController@searchOrder');
 Route::get('/detail-order/{order}','SearchOrderController@detail');
 Route::get('/search-date','SearchOrderController@searchDate');
+Route::get('calendar','CalendarController@calendar');
+Route::get('api-calendar','CalendarController@get');
+Route::get('export', function() {
+	return view("export");
+});
 
 // Route::get('/login.html', function(){
 // 	return view('auth.login');
