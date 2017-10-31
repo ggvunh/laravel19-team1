@@ -48,9 +48,11 @@ Route::get('/detail-order/{order}','SearchOrderController@detail');
 Route::get('/search-date','SearchOrderController@searchDate');
 Route::get('calendar','CalendarController@calendar');
 Route::get('api-calendar','CalendarController@get');
-Route::get('export', function() {
-	return view("export");
-});
+Route::get('export','ExcelController@export');
+Route::get('excel/users','ExcelController@exportUsers');
+Route::get('excel/orders','ExcelController@exportOrders');
+Route::get('/order/pdf/{order}','SearchOrderController@exportPdf');
+
 
 // Route::get('/login.html', function(){
 // 	return view('auth.login');

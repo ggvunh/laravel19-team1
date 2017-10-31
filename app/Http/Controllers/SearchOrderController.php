@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 use \Datetime;
 use App\User;
 use App\Order;
-
+use Barryvdh\DomPDF\Facade;
+use \PDF;
+use \App;
 
 class SearchOrderController extends Controller
 {
@@ -32,15 +34,16 @@ class SearchOrderController extends Controller
       return view('order.detail',compact(['order','total_price']));
     }
 
-    public function searchDate()
+    public function exportPdf(Order $order)
     {
-      $data=Input::all();
-      $ordersData=Order::whereDate('order_date','>=' ,"2017-10-24")
-          ->whereDate('order_date','<=' ,"2017-10-30");
-      $orders=$ordersData->get();
-      $total_price=$ordersData->sum('total_price'); 
-      return $orders; 
-      //return view('order.order_report',compact(['orders','total_price']));
+      $total_price=$order->orderDetails->sum('unit_price');
+      // PDF::loadView('vd')->stream();
+      $pdf = PDF::loadView('order.detail', compact(['order','total_price']));
+      // $pdf = App::make('dompdf.wrapper');
+      // $pdf->loadView('order.detail',compact(['order','total_price']));
+      dd($pdf);
+      $pdf->save('myfile.pdf');
+      // setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf')
     }
 
     public function searchOrder()
