@@ -192,7 +192,6 @@ class ProductController extends Controller
     public function delete(Product $product)
     {
       $product->delete();
-      return redirect('/products');
     }
 
 }
