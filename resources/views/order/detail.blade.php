@@ -38,7 +38,7 @@
                   </tbody>
 
                 </table>
-                <h4>Total money: {{ $total_price }} VNĐ</h4>
+               {{--  <h4>Total money: {{ $total_price }} VNĐ</h4> --}}
               </div>
               </div>
 					</div>

@@ -316,6 +316,7 @@ $(document).ready(function(){
               "<td>"+order.status+"</td>"+
               "<td>"+order.total_price+"</td>" +  
               '<td>'+'<a href=detail-order/'+order.id+'  >Detail</a>'+'</td>'+
+              '<td>'+'<a href=order/pdf/'+order.id+'  >Detail</a>'+'</td>'+
             "</tr>"
           )
            $("#exampleModal").on('show.bs.modal', function () {
