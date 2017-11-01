@@ -52,6 +52,10 @@ Route::get('export','ExcelController@export');
 Route::get('excel/users','ExcelController@exportUsers');
 Route::get('excel/orders','ExcelController@exportOrders');
 Route::get('/order/pdf/{order}','SearchOrderController@exportPdf');
+Route::get('vd', function() {
+	return view('vd');
+    //
+});
 
 
 // Route::get('/login.html', function(){

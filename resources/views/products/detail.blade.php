@@ -21,7 +21,6 @@
       <h3>Description: <span>{{$product->description}}</span></h3>
       <h3>Price: <span>{{$product->unit_price}} VNĐ </span></h3>
       <h3>Quality: <span>{{$product->quality_in_store}}</span></h3>
-      <h3>Status: <span>{{$product->status}}</span></h3>
     </div>
     </div>
     </div>
