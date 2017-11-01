@@ -1,3 +1,7 @@
+  <?php
+    $current_url = basename($_SERVER['PHP_SELF']);
+    $active = "class=\"active\"";
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -346,7 +350,41 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-       @yield('navigation')
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">MAIN NAVIGATION</li>
+           <li <?php if($current_url=="products") echo $active;?> > 
+            <a href="{{url('/products')}}">
+              <i class="fa fa-dashboard"></i> <span>Products</span>
+
+            </a>
+          </li>
+          
+           <li <?php if($current_url=="search-order") echo $active;?> > 
+            <a href="{{url('/search-order')}}">
+              <i class="glyphicon glyphicon-search"> </i> <span>Search Order</span>
+            </a>
+          </li>
+         
+           <li <?php if($current_url=="order-report") echo $active;?> >
+            <a href="{{url('/order-report')}}">
+              <i class="glyphicon glyphicon-copy"> </i> <span>Order Report</span>
+            </a>
+          </li>
+        
+           <li <?php if($current_url=="calendar") echo $active;?> >
+          <a href="{{url('/calendar')}}">
+             <i class="fa fa-calendar"></i> <span>Calendar</span>
+
+          </a>
+        </li>
+        
+           <li <?php if($current_url=="export") echo $active;?> > 
+          <a href="{{url('/export')}}">
+             <i class="glyphicon glyphicon-download-alt"></i> <span>Export</span>
+          </a>
+          </li>
+          
+        </ul>
     </section>
     <!-- /.sidebar -->
   </aside>

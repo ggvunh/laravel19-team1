@@ -72,7 +72,7 @@
 <div class="form-group">
   {!! Form::label('unit_price', 'Price') !!}
   <div class="form-controls">
-    {!! Form::text('unit_price', null, ['class' => 'form-control']) !!}
+    {!! Form::number('unit_price', null, ['class' => 'form-control']) !!}
   </div>
   @if ( $errors->has('unit_price') )
     <span class="text-warning">
@@ -83,7 +83,7 @@
 <div class="form-group">
   {!! Form::label('quality_in_store', 'Quality') !!}
   <div class="form-controls">
-    {!! Form::text('quality_in_store', null, ['class' => 'form-control']) !!}
+    {!! Form::number('quality_in_store', null, ['class' => 'form-control']) !!}
   </div>
   @if ( $errors->has('quality_in_store') )
     <span class="text-warning">

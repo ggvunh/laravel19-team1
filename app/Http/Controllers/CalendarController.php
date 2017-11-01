@@ -17,7 +17,8 @@ class CalendarController extends Controller
     		$arrayDate["title"]=$order->user->name;
     		$arrayDate["start"]=$order->order_date;
     		$arrayDate["allDay"]=true;
-    		$arrayDate["url"]='{{url(detail-order/.$order->id)}}';
+            $url="detail-order/".$order->id;
+    		$arrayDate["url"]=$url;
     		array_push($arrayDates,$arrayDate);
     	}
     	
