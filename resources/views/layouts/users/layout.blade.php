@@ -9,7 +9,7 @@
 	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 			function hideURLbar(){ window.scrollTo(0,1); } </script>
-	
+
 	<!-- Custom Theme files -->
 	<link href="{{url('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{url('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
@@ -120,8 +120,17 @@
 							<li><a href="login">Login </a></li>
 							<li><a href="register">Register</a></li>
 							<li><a href="login">My Orders</a></li>
-							<li><a href="login">Wallet</a></li>
-							<li><a href="{{ !! url('logout')}} !!">Logout</a></li>
+							<li>
+                                <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                                </form>
+                            </li>
 						</ul>
 					</li>
 					<li class="dropdown head-dpdn">
@@ -181,7 +190,7 @@
 			<div class="container">
 				<div class="menu">
 					<div class="cd-dropdown-wrapper">
-						<a class="cd-dropdown-trigger" href="#0">Store Categories</a>
+						<a class="cd-dropdown-trigger" href="#0">Store</a>
 						<nav class="cd-dropdown">
 							<a href="#0" class="cd-close">Close</a>
 							<ul class="cd-dropdown-content">
@@ -201,13 +210,6 @@
 												<li><a href="products.html">Sony</a></li>
 												<li><a href="products.html">Nokia</a></li>
 												<li><a href="products.html">HTC</a></li>
-												<li><a href="products.html">ASUS</a></li>
-												<li><a href="products.html">Xiaomi</a></li>
-												<li><a href="products.html">Huawei</a></li>
-												<li><a href="products.html">Mobiistar</a></li>
-												<li><a href="products.html">Mobell</a></li>
-												<li><a href="products.html">Phillips</a></li>
-                                                <li><a href="products.html">Nokia</a></li>
 												<li><a href="products.html">Itel</a></li>
 												<li><a href="products.html">Others</a></li>
 											</ul>
@@ -264,8 +266,6 @@
 												<li><a href="products2.html">Lenovo</a></li>
 												<li><a href="products2.html">HP</a></li>
 												<li><a href="products2.html">MSI</a></li>
-												<li><a href="products2.html">LG</a></li>
-												<li><a href="products2.html">Hãng khác</a></li>
 											</ul>
 										</li>
 						              </ul><!-- .cd-secondary-dropdown -->
@@ -503,7 +503,7 @@
 
     <div>
 		<!-- cart-js -->
-    	<script type="text/javascript"> 
+    	<script type="text/javascript">
 
 		function addCart(id)
 		{
