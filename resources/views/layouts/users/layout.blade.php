@@ -14,6 +14,7 @@
 	<link href="{{url('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{url('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{url('css/animate.min.css')}}" rel="stylesheet" type="text/css" media="all" /><!-- animation -->
+	<link href="{{url('css/ken-burns.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{url('css/menu.css')}}" rel="stylesheet" type="text/css" media="all" /> <!-- menu style -->
 	<!-- //Custom Theme files -->
 	<!-- font-awesome icons -->
@@ -133,31 +134,6 @@
                             </li>
 						</ul>
 					</li>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-percent" aria-hidden="true"></i> Today's Deals<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="offers.html">Cash Back Offers</a></li>
-							<li><a href="offers.html">Product Discounts</a></li>
-							<li><a href="offers.html">Special Offers</a></li>
-						</ul>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gift" aria-hidden="true"></i> Gift Cards<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="offers.html">Product Gift card</a></li>
-							<li><a href="offers.html">Occasions Register</a></li>
-							<li><a href="offers.html">View Balance</a></li>
-						</ul>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="contact.html" class="dropdown-toggle"><i class="fa fa-map-marker" aria-hidden="true"></i> Store Finder</a>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="card.html" class="dropdown-toggle"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Credit Card</a>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="help.html" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
-					</li>
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
@@ -194,7 +170,25 @@
 						<nav class="cd-dropdown">
 							<a href="#0" class="cd-close">Close</a>
 							<ul class="cd-dropdown-content">
-								<li><a href="offers.html">Today's Offers</a></li>
+								<li class="has-children">
+									<a href="products2.html">Laptop</a>
+									<ul class="cd-secondary-dropdown is-hidden">
+										<li class="go-back"><a href="#">Menu</a></li>
+										<li class="see-all"><a href="product">All laptops</a></li>
+										<li class="has-children">
+											<a href="product">Company</a>
+											<ul class="is-hidden">
+												<li><a href="product">Apple (Macbook) </a></li>
+												<li><a href="product">Asus </a></li>
+												<li><a href="product">Dell </a></li>
+												<li><a href="product">Acer</a></li>
+												<li><a href="product">Lenovo</a></li>
+												<li><a href="product">HP</a></li>
+												<li><a href="product">MSI</a></li>
+											</ul>
+										</li>
+						         </ul><!-- .cd-secondary-dropdown -->
+							     </li> <!-- .has-children -->
 								<li class="has-children">
 									<a href="#">Mobile phones</a>
 									<ul class="cd-secondary-dropdown is-hidden">
@@ -214,9 +208,7 @@
 												<li><a href="products.html">Others</a></li>
 											</ul>
 										</li>
-
-
-						            </ul> <!-- .cd-secondary-dropdown -->
+						          </ul> <!-- .cd-secondary-dropdown -->
 						    	</li> <!-- .has-children -->
 								<li class="has-children">
 									<a href="#">Tablets</a>
@@ -243,41 +235,13 @@
 									</ul> <!-- .cd-secondary-dropdown -->
 								</li> <!-- .has-children -->
 								<li class="has-children">
-									<a href="products2.html">Laptop</a>
-									<ul class="cd-secondary-dropdown is-hidden">
-										<li class="go-back"><a href="#">Menu</a></li>
-										<li class="see-all"><a href="products2.html">All laptops</a></li>
-										<li class="has-children">
-											<a href="products2.html">Company</a>
-											<ul class="is-hidden">
-												<li class="go-back"><a href="#">All laptops</a></li>
-                                                <li class="has-children">
-													<a href="#0">Apple (Macbook)</a>
-													<ul class="is-hidden">
-														<li class="go-back"><a href="#"> </a></li>
-														<li><a href="products2.html">Macbook Pro</a></li>
-														<li><a href="products2.html">Macbook Retina</a></li>
-														<li><a href="products2.html">Macbook Air</a></li>
-													</ul>
-												</li>
-												<li><a href="products2.html">Asus </a></li>
-												<li><a href="products2.html">Dell </a></li>
-												<li><a href="products2.html">Acer</a></li>
-												<li><a href="products2.html">Lenovo</a></li>
-												<li><a href="products2.html">HP</a></li>
-												<li><a href="products2.html">MSI</a></li>
-											</ul>
-										</li>
-						              </ul><!-- .cd-secondary-dropdown -->
-							     </li> <!-- .has-children -->
-								<li class="has-children">
 									<a href="#">Desktop</a>
 									<ul class="cd-secondary-dropdown is-hidden">
                                         <li class="has-children">
 											<a href="products2.html">Company</a>
 											<ul class="is-hidden">
 												<li class="go-back"><a href="#">All desktops</a></li>
-                                                <li class="has-children">
+                        <li class="has-children">
 													<a href="#0">Apple</a>
 													<ul class="is-hidden">
 														<li class="go-back"><a href="#"> </a></li>
@@ -295,37 +259,6 @@
 										</li>
 									</ul><!-- .cd-secondary-dropdown -->
 								</li> <!-- .has-children -->
-								<li class="has-children">
-									<a href="#">Linh kiện & Phụ kiện</a>
-									<ul class="cd-secondary-dropdown is-hidden">
-										<li class="go-back"><a href="#">Menu</a></li>
-										<li class="see-all"><a href="products4.html">Tất cả phụ kiện</a></li>
-										<li class="has-children">
-											<a href="#">Linh kiện máy tính</a>
-											<ul class="is-hidden">
-												<li class="go-back"><a href="#"></a></li>
-												<li><a href="products4.html">Monitor</a></li>
-												<li><a href="products4.html">USB</a></li>
-												<li><a href="products4.html">Mouse</a></li>
-												<li><a href="products4.html">Keyboard</a></li>
-												<li><a href="products4.html">Cable</a></li>
-											</ul>
-										</li>
-                                        <li class="has-children">
-											<a href="#">Phụ kiện điện thoại</a>
-											<ul class="is-hidden">
-												<li class="go-back"><a href="#"></a></li>
-												<li><a href="products4.html">Reserve Battery</a></li>
-												<li><a href="products4.html">Headphone & Earphone</a></li>
-												<li><a href="products4.html">Case</a></li>
-												<li><a href="products4.html">Memory Card</a></li>
-												<li><a href="products4.html">Others</a></li>
-											</ul>
-										</li>
-									</ul><!-- .cd-secondary-dropdown -->
-								</li> <!-- .has-children -->
-
-								<li><a href="sitemap.html">Full Site Directory </a></li>
 							</ul> <!-- .cd-dropdown-content -->
 						</nav> <!-- .cd-dropdown -->
 					</div> <!-- .cd-dropdown-wrapper -->
@@ -346,7 +279,50 @@
     <div class="container">
             @yield('content')
     </div>
-
+		<!-- banner -->
+	<div class="banner">
+		<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
+			<!-- Wrapper-for-Slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active"><!-- First-Slide -->
+                    <img src="images/5.jpg" alt="" class="img-responsive" />
+                    <div class="carousel-caption kb_caption kb_caption_right">
+                        <h3 data-animation="animated flipInX">Flat <span>50%</span> Discount</h3>
+                        <h4 data-animation="animated flipInX">Hot Offer Today Only</h4>
+                    </div>
+                </div>
+                <div class="item"> <!-- Second-Slide -->
+                    <img src="images/8.jpeg" alt="" class="img-responsive" />
+                    <div class="carousel-caption kb_caption kb_caption_right">
+                        <h3 data-animation="animated fadeInDown">Our Latest Fashion Editorials</h3>
+                        <h4 data-animation="animated fadeInUp">cupidatat non proident</h4>
+                    </div>
+                </div>
+                <div class="item"><!-- Third-Slide -->
+                    <img src="images/3.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">End Of Season Sale</h3>
+                        <h4 data-animation="animated flipInX">cupidatat non proident</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- Left-Button -->
+            <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
+				<span class="fa fa-angle-left kb_icons" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <!-- Right-Button -->
+            <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
+                <span class="fa fa-angle-right kb_icons" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+		<script src="{{url('js/custom.js')}}"></script>
+	</div>
+	<!-- //banner -->
+	<div>
+	@yield('product')
+	</div>
 	<!-- deals -->
 	<div class="deals">
 		<div class="container">
@@ -441,6 +417,15 @@
 		</div>
 	</div>
 	<!-- //deals -->
+	<!-- coming soon -->
+<div class="soon">
+	<div class="container">
+		<h3>Mega Deal Of the Week</h3>
+		<h4>Coming Soon Don't Miss Out</h4>
+		<div id="countdown1" class="ClassyCountdownDemo"></div>
+	</div>
+</div>
+<!-- //coming soon -->
 	<!-- footer -->
 	<div class="footer">
 		<div class="container">
@@ -525,3 +510,63 @@
         <script src="{{url('js/bootstrap.js')}}"></script>
         @yield('js')
     </div>
+		<!-- countdown.js -->
+		<div>
+	<script src="{{url('js/jquery.knob.js')}}"></script>
+	<script src="{{url('js/jquery.throttle.js')}}"></script>
+	<script src="{{url('js/jquery.classycountdown.js')}}"></script>
+			<script>
+				$(document).ready(function() {
+					$('#countdown1').ClassyCountdown({
+						end: '1388268325',
+						now: '1387999995',
+						labels: true,
+						style: {
+							element: "",
+							textResponsive: .5,
+							days: {
+								gauge: {
+									thickness: .10,
+									bgColor: "rgba(0,0,0,0)",
+									fgColor: "#1abc9c",
+									lineCap: 'round'
+								},
+								textCSS: 'font-weight:300; color:#fff;'
+							},
+							hours: {
+								gauge: {
+									thickness: .10,
+									bgColor: "rgba(0,0,0,0)",
+									fgColor: "#05BEF6",
+									lineCap: 'round'
+								},
+								textCSS: ' font-weight:300; color:#fff;'
+							},
+							minutes: {
+								gauge: {
+									thickness: .10,
+									bgColor: "rgba(0,0,0,0)",
+									fgColor: "#8e44ad",
+									lineCap: 'round'
+								},
+								textCSS: ' font-weight:300; color:#fff;'
+							},
+							seconds: {
+								gauge: {
+									thickness: .10,
+									bgColor: "rgba(0,0,0,0)",
+									fgColor: "#f39c12",
+									lineCap: 'round'
+								},
+								textCSS: ' font-weight:300; color:#fff;'
+							}
+
+						},
+						onEndCallback: function() {
+							console.log("Time out!");
+						}
+					});
+				});
+			</script>
+	</div>
+	<!-- //countdown.js -->

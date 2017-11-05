@@ -15,7 +15,7 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" placeholder="Enter your Email" 
+                                <input id="email" type="email" class="form-control" name="email" placeholder="Enter your Email"
                                 value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
@@ -41,16 +41,6 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Login
@@ -63,17 +53,19 @@
 
                         </div>
                     </form>
+                    <center>
                     <h6> Not a Member? <a href="register">Sign Up Now »</a> </h6>
-					<div class="login-page-bottom social-icons">
-					<h5>Social Network</h5>
-					<ul>
-						<li><a href="#" class="fa fa-facebook icon facebook"> </a></li>
-						<li><a href="#" class="fa fa-twitter icon twitter"> </a></li>
-						<li><a href="#" class="fa fa-google-plus icon googleplus"> </a></li>
-						<li><a href="#" class="fa fa-dribbble icon dribbble"> </a></li>
-						<li><a href="#" class="fa fa-rss icon rss"> </a></li>
-					</ul>
-				</div>
+          					<div class="login-page-bottom social-icons">
+          					<h5>Social Network</h5>
+          					<ul>
+          						<li><a href="#" class="fa fa-facebook icon facebook"> </a></li>
+          						<li><a href="#" class="fa fa-twitter icon twitter"> </a></li>
+          						<li><a href="#" class="fa fa-google-plus icon googleplus"> </a></li>
+          						<li><a href="#" class="fa fa-dribbble icon dribbble"> </a></li>
+          						<li><a href="#" class="fa fa-rss icon rss"> </a></li>
+          					</ul>
+            				</div>
+                    </center>
                 </div>
             </div>
         </div>
