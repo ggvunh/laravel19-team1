@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use Cart;
-
 class CartController extends Controller
 {
+
     public function add($id)
     {
         $product = Product::find($id);
@@ -37,7 +37,7 @@ class CartController extends Controller
     }
         public function down_count($rowId)
     {
-    
+
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty - 1);
         return response(['qty' => $row->qty, 'subtotal' => $row->subtotal], 200);

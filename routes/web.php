@@ -58,6 +58,7 @@ Route::get('vd', function() {
 Route::get('products/{product}','HomeController@viewProduct');
 Route::get('/pricesearch','HomeController@PriceSearch');
 //Cart
+Route::get('product','HomeController@product');
 Route::get('/carts/{id}/add','CartController@add');
 Route::get('/carts/destroy', 'CartController@destroy');
 Route::get('/checkout', 'CartController@checkout');
@@ -82,8 +83,8 @@ Route::group(['prefix'=>'user'],function(){
 
 Route::group(['prefix'=>'account'], function(){
 		    Route::get('orderlists', 'AccountController@getOrders');
-		    Route::get('orderdetail/{id}', 'AccountController@getBillDetail');
-		    Route::get('orderlists/{id}/delete', 'AccountController@cancelBills');
+		    Route::get('orderdetail/{id}', 'AccountController@getOrderDetail');
+		    Route::get('orderlists/{id}/delete', 'AccountController@cancelOrders');
 		    Route::get('information', 'AccountController@getInfo');
 		    Route::post('information', 'AccountController@postInfo');
 		    Route::get('change-password', 'AccountController@getPass');

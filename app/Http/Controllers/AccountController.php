@@ -22,16 +22,16 @@ class AccountController extends Controller
             return view('account.list-bills', compact('orders'));
         }
 
-        public function getBillDetail($id)
+        public function getOrderDetail($id)
         {
-            $billdetails = BillDetail::where('bill_id', $id)->get();
-            return view('account.list-billdetail', compact('billdetails', 'id'));
+            $orederdetails = OrderDetail::where('order_id', $id)->get();
+            return view('account.list-billdetail', compact('orderdetails', 'id'));
         }
 
-        public function cancelBills($id)
+        public function cancelOrders($id)
         {
-            $data = Bill::find($id);
-            $data ->bill_detail()->delete();
+            $data = Order::find($id);
+            $data ->order_detail()->delete();
             $data->delete();
             return redirect('account/orderlists');
         }
