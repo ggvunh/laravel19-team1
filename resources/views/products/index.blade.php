@@ -651,6 +651,7 @@
         url:"products/"+productId+"/edit",
         type:"get",
         success: function(data,status){
+          console.log(data);
           $("#category_id2").empty();
           $("#manufacturer_id2").empty();
           $.each(data.categories,function(key, category){
@@ -672,6 +673,8 @@
           $("#productimage").val(data.product.illustrative_photo); 
           $("#photoimages").val(data.photos);
           $('#update-data').data('myval',data.product.id); //setter
+          console.log( data.photos) ;
+          console.log( data.product.illustrative_photo);
           $("#photo2").empty();
           if (typeof data.product.illustrative_photo!== 'undefined') 
           {

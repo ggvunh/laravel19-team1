@@ -44,8 +44,7 @@
                $("#cart").find("span").text(Number($i)+1);
                 e.preventDefault();
               })
-
-            });  
+            });
         </script>
          <div class="clearfix"> </div>
        </div>
