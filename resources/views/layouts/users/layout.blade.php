@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	@yield('head')
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 	<title>Tech Shop an E-commerce Online Shopping Category </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,17 +26,13 @@
 	<script src="{{url('js/jquery-scrolltofixed-min.js')}}" type="text/javascript"></script><!-- fixed nav js -->
 	<script>
 	    $(document).ready(function() {
-
 	        // Dock the header to the top of the window when scrolled past the banner. This is the default behaviour.
-
 	        $('.header-two').scrollToFixed();
 	        // previous summary up the page.
-
 	        var summaries = $('.summary');
 	        summaries.each(function(i) {
 	            var summary = $(summaries[i]);
 	            var next = summaries[i + 1];
-
 	            summary.scrollToFixed({
 	                marginTop: $('.header-two').outerHeight(true) + 10,
 	                zIndex: 999
@@ -64,16 +61,13 @@
 	<!-- smooth-scrolling-of-move-up -->
 		<script type="text/javascript">
 			$(document).ready(function() {
-
 				var defaults = {
 					containerID: 'toTop', // fading element id
 					containerHoverID: 'toTopHover', // fading element hover id
 					scrollSpeed: 1200,
 					easingType: 'linear'
 				};
-
 				$().UItoTop({ easingType: 'easeOutQuart' });
-
 			});
 		</script>
 		<!-- //smooth-scrolling-of-move-up -->
@@ -86,24 +80,49 @@
 				border-collapse:
 				collapse; border-spacing: 0;
 			}
-
 			td, th
 			{
 				border: 1px solid transparent; /* No more visible border */
 				height: 30px;
 				transition: all 0.3s;  /* Simple transition for hover effect */
 			}
-
 			th
 			{
 				background: #DFDFDF;  /* Darken header a bit */
 				font-weight: bold;
 			}
-
 			td
 			{
 				background: #FAFAFA;
 			}
+			#search-view{
+				list-style-type:none;
+			}
+			#search-view li
+			{
+				height: 60px;
+				padding-top: 5px;
+				color: #333;
+				overflow: hidden;
+				border: 1px dotted #ccc;
+			}
+			#search-view li img
+			{
+				height: 50px;
+				margin-left: 10px;
+			}
+			#search-view:before {
+			    bottom: 100%;
+			    left: 80px;
+			    border: solid transparent;
+			    content: " ";
+			    height: 0;
+			    width: 0;
+			    position: absolute;
+			}
+		  #search-view li span {
+		  	color: red;
+		  }
 		</style>
 </head>
 <body>
@@ -118,20 +137,21 @@
 					<li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="login">Login </a></li>
-							<li><a href="register">Register</a></li>
+							<li><a href="{{url('login')}}">Login </a></li>
+							<li><a href="{{url('register')}}">Register</a></li>
 							<li><a href="login">My Orders</a></li>
+							<li><a href="{{url('admin')}}">Admin</a></li>
 							<li>
-                                <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                Logout
-                                </a>
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Logout
+                </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                                </form>
-                            </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+                </form>
+            </li>
 						</ul>
 					</li>
 				</ul>
@@ -147,7 +167,10 @@
 				<div class="header-search">
 					<form action="{{url('/search')}}" method="get">
 
-						<input type="search" name="key" placeholder="Search for a Product..." required="">
+						<input id="search-product" type="search" name="key" placeholder="Search for a Product..." required="" autocomplete="off">
+						<ul id="search-view">
+
+						</ul>
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
@@ -155,7 +178,7 @@
 				</div>
 				<div class="header-cart">
 					<a id="cart" href="{{url('/checkout')}}" class="btn btn-primary btn-circle btn-lg" style="margin-top:5px">
-						<i class="fa fa-shopping-cart"></i> Cart <span id="count" class="badge" >{{\Cart::count()}}</span>
+						<i class="fa fa-shopping-cart"></i> Cart <span id="count" class="badge" >0</span>
 					</a>
 					<div class="clearfix"> </div>
 				</div>
@@ -178,13 +201,9 @@
 										<li class="has-children">
 											<a href="product">Company</a>
 											<ul class="is-hidden">
-												<li><a href="product">Apple (Macbook) </a></li>
-												<li><a href="product">Asus </a></li>
-												<li><a href="product">Dell </a></li>
-												<li><a href="product">Acer</a></li>
-												<li><a href="product">Lenovo</a></li>
-												<li><a href="product">HP</a></li>
-												<li><a href="product">MSI</a></li>
+												<li><a href="{{url('laptop/apple')}}">Apple (Macbook) </a></li>
+												<li><a href="{{url('laptop/asus')}}">Asus </a></li>
+												<li><a href="{{url('laptop/dell')}}">Dell </a></li>
 											</ul>
 										</li>
 						         </ul><!-- .cd-secondary-dropdown -->
@@ -198,14 +217,10 @@
 											<a href="#">Company</a>
 											<ul class="is-hidden">
 												<li class="go-back"><a href="#">All mobile phone store</a></li>
-												<li class=""><a href="#0">Iphone (Apple)</a></li>
-												<li> <a href="products.html">Samsung</a> </li>
-												<li><a href="products.html">OPPO</a></li>
-												<li><a href="products.html">Sony</a></li>
-												<li><a href="products.html">Nokia</a></li>
-												<li><a href="products.html">HTC</a></li>
-												<li><a href="products.html">Itel</a></li>
-												<li><a href="products.html">Others</a></li>
+												<li class=""><a href="{{url('phone/iphone')}}">Iphone (Apple)</a></li>
+												<li> <a href="{{url('phone/samsung')}}">Samsung</a> </li>
+												<li><a href="{{url('phone/oppo')}}">OPPO</a></li>
+												<li><a href="{{url('phone/sony')}}">Sony</a></li>
 											</ul>
 										</li>
 						          </ul> <!-- .cd-secondary-dropdown -->
@@ -329,13 +344,13 @@
 			<h3 class="w3ls-title">DEALS OF THE DAY </h3>
 			<div class="deals-row">
 				<div class="col-md-3 focus-grid">
-					<a href="products.html" class="wthree-btn">
+					<a href="{{url('phone')}}" class="wthree-btn">
 						<div class="focus-image"><i class="fa fa-mobile"></i></div>
 						<h4 class="clrchg">Mobiles</h4>
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products.html" class="wthree-btn wthree1">
+					<a href="{{url('laptop')}}" class="wthree-btn wthree1">
 						<div class="focus-image"><i class="fa fa-laptop"></i></div>
 						<h4 class="clrchg"> Electronics & Appliances</h4>
 					</a>
@@ -489,7 +504,6 @@
     <div>
 		<!-- cart-js -->
     	<script type="text/javascript">
-
 		function addCart(id)
 		{
 			var root = '{{url('/carts')}}';
@@ -517,6 +531,37 @@
 	<script src="{{url('js/jquery.classycountdown.js')}}"></script>
 			<script>
 				$(document).ready(function() {
+					$('#search-product').keyup(function(){
+						var	name=$(this).val();
+						 $.ajax({
+					      url:"searchproduct",
+					      type:"post",
+					      data:{name:name,_token:"{{ csrf_token() }}"},
+					      success: function(products,status){
+					      	$("ul").empty();
+					      	 $.each(products,function(key, product){
+					      	 var unit_price=number_format( product.unit_price, 0, ',', '.');
+					      	 	$("#search-view").append(
+
+					    			"<li>"+
+											'<div class="row">'+
+					            '<a href="">'+
+					            	'<div class="col-xs-1">'+
+					                    '<img src=upload/'+product.illustrative_photo+'>'+
+					              '</div>'+
+					              '<div class="col-xs-5"> '+
+					               ' <h4>'+product.name+'</h4>'+
+                              '<span class="price" >'+unit_price+'₫</span>'+
+					                    '<cite style="font-style: normal; text-decoration: line-through"></cite>'+
+					               '</div>'+
+					            "</a>"+
+					          	"</div>"+
+			        			"</li>"
+					    			)
+					      	 });
+					      }
+					    })
+					});
 					$('#countdown1').ClassyCountdown({
 						end: '1388268325',
 						now: '1387999995',
@@ -560,13 +605,20 @@
 								},
 								textCSS: ' font-weight:300; color:#fff;'
 							}
-
 						},
 						onEndCallback: function() {
 							console.log("Time out!");
 						}
 					});
 				});
+				function number_format( number, decimals, dec_point, thousands_sep ) {
+					var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
+					var d = dec_point == undefined ? "," : dec_point;
+					var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
+					var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+
+					return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+				}
 			</script>
 	</div>
 	<!-- //countdown.js -->
