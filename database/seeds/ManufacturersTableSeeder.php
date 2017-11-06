@@ -13,8 +13,12 @@ class ManufacturersTableSeeder extends Seeder
     {
         DB::table('manufacturers')->insert([
        		['id'=>1,'name'=>'Apple'],
-       		['id'=>2,'name'=>'Samsung'],
-       		
+       		['id'=>2,'name'=>'Asus'],
+          ['id'=>3,'name'=>'Dell'],
+          ['id'=>4,'name'=>'Samsung'],
+          ['id'=>5,'name'=>'Oppo'],
+          ['id'=>6,'name'=>'Sony'],
+          ['id'=>7,'name'=>'Iphone'],
        ]);
     }
 }

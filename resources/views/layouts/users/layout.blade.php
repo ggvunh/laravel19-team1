@@ -155,7 +155,7 @@
 				</div>
 				<div class="header-cart">
 					<a id="cart" href="{{url('/checkout')}}" class="btn btn-primary btn-circle btn-lg" style="margin-top:5px">
-						<i class="fa fa-shopping-cart"></i> Cart <span id="count" class="badge" >{{\Cart::count()}}</span>
+						<i class="fa fa-shopping-cart"></i> Cart <span id="count" class="badge" >0</span>
 					</a>
 					<div class="clearfix"> </div>
 				</div>
@@ -178,13 +178,9 @@
 										<li class="has-children">
 											<a href="product">Company</a>
 											<ul class="is-hidden">
-												<li><a href="product">Apple (Macbook) </a></li>
-												<li><a href="product">Asus </a></li>
-												<li><a href="product">Dell </a></li>
-												<li><a href="product">Acer</a></li>
-												<li><a href="product">Lenovo</a></li>
-												<li><a href="product">HP</a></li>
-												<li><a href="product">MSI</a></li>
+												<li><a href="{{url('laptop/apple')}}">Apple (Macbook) </a></li>
+												<li><a href="{{url('laptop/asus')}}">Asus </a></li>
+												<li><a href="{{url('laptop/dell')}}">Dell </a></li>
 											</ul>
 										</li>
 						         </ul><!-- .cd-secondary-dropdown -->
@@ -198,14 +194,10 @@
 											<a href="#">Company</a>
 											<ul class="is-hidden">
 												<li class="go-back"><a href="#">All mobile phone store</a></li>
-												<li class=""><a href="#0">Iphone (Apple)</a></li>
-												<li> <a href="products.html">Samsung</a> </li>
-												<li><a href="products.html">OPPO</a></li>
-												<li><a href="products.html">Sony</a></li>
-												<li><a href="products.html">Nokia</a></li>
-												<li><a href="products.html">HTC</a></li>
-												<li><a href="products.html">Itel</a></li>
-												<li><a href="products.html">Others</a></li>
+												<li class=""><a href="{{url('phone/iphone')}}">Iphone (Apple)</a></li>
+												<li> <a href="{{url('phone/samsung')}}">Samsung</a> </li>
+												<li><a href="{{url('phone/oppo')}}">OPPO</a></li>
+												<li><a href="{{url('phone/sony')}}">Sony</a></li>
 											</ul>
 										</li>
 						          </ul> <!-- .cd-secondary-dropdown -->
@@ -329,13 +321,13 @@
 			<h3 class="w3ls-title">DEALS OF THE DAY </h3>
 			<div class="deals-row">
 				<div class="col-md-3 focus-grid">
-					<a href="products.html" class="wthree-btn">
+					<a href="{{url('phone')}}" class="wthree-btn">
 						<div class="focus-image"><i class="fa fa-mobile"></i></div>
 						<h4 class="clrchg">Mobiles</h4>
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products.html" class="wthree-btn wthree1">
+					<a href="{{url('laptop')}}" class="wthree-btn wthree1">
 						<div class="focus-image"><i class="fa fa-laptop"></i></div>
 						<h4 class="clrchg"> Electronics & Appliances</h4>
 					</a>

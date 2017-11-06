@@ -16,6 +16,20 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 Route::get('/search','HomeController@search');
 Route::get('/home', 'HomeController@home');
+Route::group(['prefix'=>'laptop'],function(){
+	Route::get('/','LaptopController@allLaptop');
+	Route::get('apple','LaptopController@apple');
+	Route::get('asus','LaptopController@asus');
+	Route::get('dell','LaptopController@dell');
+});
+
+Route::group(['prefix'=>'phone'],function(){
+	Route::get('/','PhoneController@allPhone');
+	Route::get('iphone','PhoneController@iphone');
+	Route::get('samsung','PhoneController@samsung');
+	Route::get('oppo','PhoneController@oppo');
+	Route::get('sony','PhoneController@sony');
+});
 
 Route::group(['middleware' => ['auth','isAdmin']],function(){
 	Route::get('/admin', function(){
