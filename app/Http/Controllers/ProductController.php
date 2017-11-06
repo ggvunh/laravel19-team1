@@ -9,9 +9,11 @@ use App\Product;
 use App\Photo;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\EditProductRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Toastr;
 
 class ProductController extends Controller
 {
@@ -37,15 +39,17 @@ class ProductController extends Controller
       $products = Product::orderBy('created_at', 'dec')->offset($start)->limit($limit)->get();
       $previous_page=$current_page-1;
       $next_page=$current_page+1;
-      // return view('products.index', compact(['products','limit','previous_page','next_page']));
-      return view('products.indexExam');
+      return view('products.index');
     }
 
     public function create()
     {
-      $categories = Category::all()->pluck('name', 'id');
-      $manufacturers=Manufacturer::all()->pluck('name', 'id');
-      return view('products.create', compact(['categories','manufacturers']));
+      $categories = Category::get();
+      $manufacturers=Manufacturer::get();
+      $data=array();
+      $data['categories']=$categories;
+      $data['manufacturers']=$manufacturers;
+      return response($data,200);
     }
 
     public function save(CreateProductRequest $request)
@@ -82,22 +86,26 @@ class ProductController extends Controller
       } else {
         $data['photos']='';
       }
-
-      return redirect('/products');
     }
 
     public function edit(Product $product)
     {
-      $categories = Category::all()->pluck('name', 'id');
-      $manufacturers=Manufacturer::all()->pluck('name', 'id');
+      $categories = Category::get();
+      $manufacturers=Manufacturer::get();
       $image=$product->illustrative_photo;
-      $photos=$product->photos;
-      return view('products.edit', compact(['product', 'categories','manufacturers','image','photos']));
+      $photos=$product->photos->pluck('url');
+      $data=array();
+      $data['product']=$product;
+      $data['categories']=$categories;
+      $data['manufacturers']=$manufacturers;
+      $data['illustrative_photo']=$image;
+      $data['photos']=$photos;
+      return response($data,200);
     }
 
-    public function update(CreateProductRequest $request,Product $product)
+    public function update(EditProductRequest $request,Product $product)
     {
-		  $data = $request->all();
+		    $data = $request->all();
       if ($request->hasFile('illustrative_photo')  )
       {   
           $file = $request->file('illustrative_photo');
@@ -127,11 +135,12 @@ class ProductController extends Controller
         }
       } else {
         $photoimages=$request->photoimages;
-        foreach (json_decode($photoimages, true) as $photoimage) {
-          $photo=Photo::create($photoimage);
+        foreach (explode(',',$photoimages[0]) as $photoimage) {
+          $photodata['product_id']=$product_id;
+          $photodata['url']=$photoimage;
+          $photo=Photo::create($photodata);
         }
       }  
-		  return redirect('/products');
     }
     public function search()
     {

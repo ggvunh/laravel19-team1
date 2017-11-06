@@ -33,6 +33,7 @@
         $arrayOrders=[];
         $arrayOrders['start_page']=$next_page+1;
         $arrayOrders['end_page']=$next_page+5;
+        $arrayOrders['current_page']=$current_page;
         $current_page=$next_page+1;
       }
 

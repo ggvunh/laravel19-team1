@@ -13,7 +13,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
         "maatwebsite/excel": "~2.1.0",
-        "twilio/sdk": "^5.15"
+        "twilio/sdk": "^5.15",
+        "oriceon/toastr-5-laravel": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -4,6 +4,17 @@
         <meta charset="utf-8">
         <title>pdf</title>
     </head>
+    <style>
+    @font-face {
+      font-family: "Dojo Sans Serif";
+      font-style: normal;
+      font-weight: normal;
+      src: url(http://example.com/fonts/dojosans.ttf) format('truetype');
+    }
+    * {
+      font-family: "Dojo Sans Serif", "DejaVu Sans", sans-serif;
+    }
+    </style>
     <body>
            <div class="table-responsive">
           	<div>
@@ -35,7 +46,7 @@
               	@endforeach
               	<tr>
               		<th colspan="3">Total</th>
-              		<td>{{$total_price}}</td>
+              		<th>{{$total_price}}</th>
               	</tr>
               </tbody>
 
