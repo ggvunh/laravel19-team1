@@ -25,7 +25,7 @@
             </a>
              <div class="agile-product-text">
                <h5><a href="single.html">{{$product->name}}</a></h5>
-               <h6>{{$product->unit_price." VNĐ"}}</h6>
+               <h6>{{number_format( $product->unit_price, 0, ',', '.').'VNĐ'}}</h6>
                <form id="add-cart" action="#" method="post">
                  <input type="hidden" name="cmd" value="_cart" />
                  <input type="hidden" name="add" value="1" />

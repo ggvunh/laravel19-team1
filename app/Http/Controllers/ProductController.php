@@ -203,4 +203,27 @@ class ProductController extends Controller
       $product->delete();
     }
 
+    public function searchProduct()
+    {
+      $name = isset($_POST['name']) ? $_POST['name'] : "";
+      if($name=="")
+      {
+        return;
+      }
+      $manufacturers = Manufacturer::where('name','like','%'.$name.'%')->get();
+      $manufacturerArray=array();
+      foreach ($manufacturers as $manufacturer) {
+        $manufacturerArray[]=$manufacturer->id;
+      }
+      $dataproducts = Product::whereIn('manufacturer_id',$manufacturerArray)->orderBy('created_at', 'dec')->limit(8)->get();
+      if(count($dataproducts)==0)
+      {
+        $dataproducts = Product::where('name','like','%'.$name.'%')->orderBy('created_at', 'dec')->limit(8)->get();
+        return response($dataproducts,200);
+      }
+      return response($dataproducts,200);
+
+      
+    }
+
 }
