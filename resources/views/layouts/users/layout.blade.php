@@ -104,6 +104,40 @@
 			{
 				background: #FAFAFA;
 			}
+
+			#search-view{
+				list-style-type:none;
+			}
+
+			#search-view li
+			{
+
+				height: 60px;
+				padding-top: 5px;
+				color: #333;
+				overflow: hidden;
+				border: 1px dotted #ccc;
+			}
+			#search-view li img
+			{
+				height: 50px;
+				margin-left: 10px;
+			}
+
+			#search-view:before {
+			    bottom: 100%;
+			    left: 80px;
+			    border: solid transparent;
+			    content: " ";
+			    height: 0;
+			    width: 0;
+			    position: absolute;
+			}
+
+		  #search-view li span {
+		  	color: red;
+		  }
+
 		</style>
 </head>
 <body>
@@ -122,16 +156,16 @@
 							<li><a href="register">Register</a></li>
 							<li><a href="login">My Orders</a></li>
 							<li>
-                                <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                Logout
-                                </a>
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Logout
+                </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                                </form>
-                            </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+                </form>
+            </li>
 						</ul>
 					</li>
 				</ul>
@@ -147,7 +181,10 @@
 				<div class="header-search">
 					<form action="{{url('/search')}}" method="get">
 
-						<input type="search" name="key" placeholder="Search for a Product..." required="">
+						<input id="search-product" type="search" name="key" placeholder="Search for a Product..." required="" autocomplete="off">
+						<ul id="search-view">
+							
+						</ul>
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
@@ -509,6 +546,38 @@
 	<script src="{{url('js/jquery.classycountdown.js')}}"></script>
 			<script>
 				$(document).ready(function() {
+					$('#search-product').keyup(function(){
+						var	name=$(this).val();
+						 $.ajax({
+					      url:"searchproduct",
+					      type:"post",
+					      data:{name:name,_token:"{{ csrf_token() }}"},
+					      success: function(products,status){
+					      	$("ul").empty();
+					      	 $.each(products,function(key, product){
+					      	 var unit_price=number_format( product.unit_price, 0, ',', '.');
+					      	 	$("#search-view").append(
+	
+					    			"<li>"+
+											'<div class="row">'+
+					            '<a href="">'+
+					            	'<div class="col-xs-1">'+
+					                    '<img src=upload/'+product.illustrative_photo+'>'+
+					              '</div>'+
+					              '<div class="col-xs-5"> '+     
+					               ' <h4>'+product.name+'</h4>'+
+                              '<span class="price" >'+unit_price+'₫</span>'+
+					                    '<cite style="font-style: normal; text-decoration: line-through"></cite>'+
+					               '</div>'+     
+					            "</a>"+
+					          	"</div>"+
+			        			"</li>"
+					    			)
+					      	 });
+					      }
+					    })
+					});
+
 					$('#countdown1').ClassyCountdown({
 						end: '1388268325',
 						now: '1387999995',
@@ -559,6 +628,14 @@
 						}
 					});
 				});
+				function number_format( number, decimals, dec_point, thousands_sep ) {	 
+					var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
+					var d = dec_point == undefined ? "," : dec_point;
+					var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
+					var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+											 
+					return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+				}
 			</script>
 	</div>
 	<!-- //countdown.js -->

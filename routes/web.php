@@ -16,6 +16,8 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 Route::get('/search','HomeController@search');
 Route::get('/home', 'HomeController@home');
+Route::post('/searchproduct', 'ProductController@searchProduct');
+
 Route::group(['prefix'=>'laptop'],function(){
 	Route::get('/','LaptopController@allLaptop');
 	Route::get('apple','LaptopController@apple');
