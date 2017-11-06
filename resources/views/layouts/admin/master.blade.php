@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <script src="{{ url('js/jquery-2.2.3.min.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="{{ url('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
@@ -47,15 +47,21 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" type="text/css" href="{{ url('css/main.css') }}">
-  <script src="{{ url('js/bootstrap.min.js') }}"></script>
+  <!-- <script src="{{ url('js/bootstrap.min.js') }}"></script> -->
   <link  href="{{ url('css/bootstrap.min.css') }}" />
   <script src="{{ url('js/jquery-1.12.4.js') }}"></script>
-  <script src="{{ url('js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ url('js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ url('js/dataTables.bootstrap.min.js') }}"></script>  
-  <link  href="{{ url('css/dataTables.bootstrap.min.html') }}" />
+  <!-- <script src="{{ url('js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ url('js/jquery.dataTables.min.js') }}"></script> -->
+  <!-- <script src="{{ url('js/dataTables.bootstrap.min.js') }}"></script>  
+  <link  href="{{ url('css/dataTables.bootstrap.min.html') }}" /> -->
   <link  href="{{ url('css/bootstrap-datepicker.css') }}" />
   <script src="{{ url('js/bootstrap-datepicker.js') }}"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  {!! Toastr::render() !!}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -331,7 +337,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src=""{{url('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="{{url('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -399,7 +405,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2017 <a href="https://adminlte.io">ChungDasilva</a>.</strong> All rights
     reserved.
   </footer>
 

@@ -8,12 +8,12 @@
      <h3>Category Name: <span>{{$product->category->name}}</span></h3>
      <h3>Manufacturer Name: <span>{{$product->manufacturer->name}}</span></h3>
      <h3>Avatar</h3>
-     <img src="{{url('upload/'.$product->illustrative_photo)}}"" height="300" width="350" />
+     <img class="img-rounded" src="{{url('upload/'.$product->illustrative_photo)}}" height="300" width="350" />
      <h3>Sub Images</h3>
      <ul class="sub_image">
      @foreach ($product->photos as $photo)
       <li>
-       <img src="{{url('upload/'.$photo->url)}}" height="100" width="120">
+       <img src="{{url('upload/'.$photo->url)}}" class="img-rounded" height="100" width="120">
       </li> 
      @endforeach
     </ul>
