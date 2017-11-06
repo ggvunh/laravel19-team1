@@ -35,18 +35,9 @@ class SearchOrderController extends Controller
     public function exportPdf(Order $order)
     {
       $total_price=$order->orderDetails->sum('unit_price');
-      // PDF::loadView('vd')->stream();
-      // $pdf = PDF::loadView('order.detail', compact(['order','total_price']));
-      //$pdf = App::make('dompdf.wrapper');
-      $pdf=PDF::loadView('vd',compact(['order','total_price']));
+      $pdf=PDF::loadView('pdf',compact(['order','total_price']));
       $filename = time(). "_orderdetail.pdf";
-      //dd($pdf);
-      // $pdf->save('myfile.pdf');
-      // $pdf = App::make('dompdf.wrapper');
-      // $pdf->loadHTML('<h1>Testtgh1>');bgfb&&&
-      // dd($pdf);
       return $pdf->stream($filename);
-      // setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf')
     }
 
     public function searchOrder()
