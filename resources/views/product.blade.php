@@ -44,7 +44,12 @@
                $("#cart").find("span").text(Number($i)+1);
                 e.preventDefault();
               })
+<<<<<<< HEAD
             });
+=======
+
+            });  
+>>>>>>> 69e583cca52f34dd83edebdf7cb3c3800cbbb480
         </script>
          <div class="clearfix"> </div>
        </div>
