@@ -138,9 +138,9 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="{{url('login')}}">Login </a></li>
-							<li><a href="{{url('register')}}">Register</a></li>
+							<li><a href="{{url'(register')}}">Register</a></li>
 							<li><a href="login">My Orders</a></li>
-							<li><a href="{{url('admin')}}">Admin</a></li>
+							<li><a href="{{url'(admin')}}">Admin</a></li>
 							<li>
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
