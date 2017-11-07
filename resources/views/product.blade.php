@@ -21,12 +21,12 @@
            <div class="agile-products">
              <div class="new-tag"><h6>New<br></h6></div>
              <a href="single.html">
-              <img src="{{url('upload/'.$product->illustrative_photo)}}" class="img-responsive" alt="img"/>
+              <img src="{{url('upload/'.$product->illustrative_photo)}}" height="300" class="img-responsive"  alt="img"/>
             </a>
              <div class="agile-product-text">
                <h5><a href="single.html">{{$product->name}}</a></h5>
                <h6>{{number_format( $product->unit_price, 0, ',', '.').'VNĐ'}}</h6>
-               <form id="add-cart" action="#" method="post">
+               <form class="add-cart" action="#" method="post">
                  <input type="hidden" name="cmd" value="_cart" />
                  <input type="hidden" name="add" value="1" />
                  <input type="hidden" name="w3ls_item" value="Audio speaker" />
@@ -39,9 +39,11 @@
         @endforeach
         <script>
             $(document).ready(function(){
-              $("#add-cart").submit(function(e){
-               $i= $("#cart").find("span").text();
-               $("#cart").find("span").text(Number($i)+1);
+              $(".add-cart").submit(function(e){
+                var product_id=$(this).find('button').data('product'); 
+                addCart(product_id);
+               // $i= $("#cart").find("span").text();
+               // $("#cart").find("span").text(Number($i)+1);
                 e.preventDefault();
               })
 <<<<<<< HEAD

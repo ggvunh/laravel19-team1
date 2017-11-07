@@ -25,7 +25,7 @@
 								</form>
 					</td>
 			        <td class="cart_total">
-						<p class="cart_total_price"><span id="sub{{$row->rowId}}">{{ number_format($row->subtotal) .'$' }}</span></p>
+						<p class="cart_total_price"><span id="sub{{$row->rowId}}">{{number_format( $row->subtotal, 0, ',', '.').' VNĐ'}}</span></p>
 					</td>
 			        <td><a href="/carts/{{$row->rowId}}/delete" class="btn btn-danger">&#10006; Delete</a></td>
 			    </tr>
@@ -35,7 +35,7 @@
 		        <tr>
 		            <td></td>
 		            <td><h3><b>Total</b></h3></td>
-		            <td><p  class="cart_total_price"><span id="total">{{ Cart::total() .'$' }}</span></p> <a class="" href=""><i class="fa fa-refresh fa-2" aria-hidden="true"></i></a></td>
+		            <td><p  class="cart_total_price"><span id="total">{{number_format( Cart::total(), 0, ',', '.').'VNĐ'}}</span></p> <a class="" href=""><i class="fa fa-refresh fa-2" aria-hidden="true"></i></a></td>
 		            <td></td>
 		        </tr>
 		    </tfoot>

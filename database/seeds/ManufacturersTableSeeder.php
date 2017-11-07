@@ -18,7 +18,7 @@ class ManufacturersTableSeeder extends Seeder
           ['id'=>4,'name'=>'Samsung'],
           ['id'=>5,'name'=>'Oppo'],
           ['id'=>6,'name'=>'Sony'],
-          ['id'=>7,'name'=>'Iphone'],
+          ['id'=>7,'name'=>'Iphone (Apple)'],
        ]);
     }
 }

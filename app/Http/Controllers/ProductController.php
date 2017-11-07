@@ -215,10 +215,10 @@ class ProductController extends Controller
       foreach ($manufacturers as $manufacturer) {
         $manufacturerArray[]=$manufacturer->id;
       }
-      $dataproducts = Product::whereIn('manufacturer_id',$manufacturerArray)->orderBy('created_at', 'dec')->limit(8)->get();
+      $dataproducts = Product::whereIn('manufacturer_id',$manufacturerArray)->orderBy('created_at', 'dec')->limit(6)->get();
       if(count($dataproducts)==0)
       {
-        $dataproducts = Product::where('name','like','%'.$name.'%')->orderBy('created_at', 'dec')->limit(8)->get();
+        $dataproducts = Product::where('name','like','%'.$name.'%')->orderBy('created_at', 'dec')->limit(6)->get();
         return response($dataproducts,200);
       }
       return response($dataproducts,200);

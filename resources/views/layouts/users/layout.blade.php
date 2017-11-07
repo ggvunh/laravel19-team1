@@ -71,59 +71,7 @@
 			});
 		</script>
 		<!-- //smooth-scrolling-of-move-up -->
-		<style >
-			table
-			{
-				color: #333;
-				font-family: Helvetica, Arial, sans-serif;
-				width: 640px;
-				border-collapse:
-				collapse; border-spacing: 0;
-			}
-			td, th
-			{
-				border: 1px solid transparent; /* No more visible border */
-				height: 30px;
-				transition: all 0.3s;  /* Simple transition for hover effect */
-			}
-			th
-			{
-				background: #DFDFDF;  /* Darken header a bit */
-				font-weight: bold;
-			}
-			td
-			{
-				background: #FAFAFA;
-			}
-			#search-view{
-				list-style-type:none;
-			}
-			#search-view li
-			{
-				height: 60px;
-				padding-top: 5px;
-				color: #333;
-				overflow: hidden;
-				border: 1px dotted #ccc;
-			}
-			#search-view li img
-			{
-				height: 50px;
-				margin-left: 10px;
-			}
-			#search-view:before {
-			    bottom: 100%;
-			    left: 80px;
-			    border: solid transparent;
-			    content: " ";
-			    height: 0;
-			    width: 0;
-			    position: absolute;
-			}
-		  #search-view li span {
-		  	color: red;
-		  }
-		</style>
+		<link rel="stylesheet" type="text/css" href="{{url('css/layoutuser.css')}}">
 </head>
 <body>
 	<!-- header -->
@@ -137,6 +85,7 @@
 					<li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
 						<ul class="dropdown-menu">
+
 							<li><a href="{{url('login')}}">Login </a></li>
 							<li><a href="{{url('register')}}">Register</a></li>
 							<li><a href="login">My Orders</a></li>
@@ -169,7 +118,7 @@
 
 						<input id="search-product" type="search" name="key" placeholder="Search for a Product..." required="" autocomplete="off">
 						<ul id="search-view">
-
+			
 						</ul>
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
@@ -534,25 +483,30 @@
 					$('#search-product').keyup(function(){
 						var	name=$(this).val();
 						 $.ajax({
-					      url:"searchproduct",
+					 
+					      url:"{{url('searchproduct')}}",
 					      type:"post",
 					      data:{name:name,_token:"{{ csrf_token() }}"},
 					      success: function(products,status){
 					      	$("ul").empty();
 					      	 $.each(products,function(key, product){
 					      	 var unit_price=number_format( product.unit_price, 0, ',', '.');
+					      	 var roots="{{url('')}}";
 					      	 	$("#search-view").append(
 
 					    			"<li>"+
 											'<div class="row">'+
-					            '<a href="">'+
+					          
+					            '<a href=products/'+product.id+'>'+
 					            	'<div class="col-xs-1">'+
-					                    '<img src=upload/'+product.illustrative_photo+'>'+
+					                    '<img src='+roots+'/upload/'+product.illustrative_photo+'>'+
 					              '</div>'+
-					              '<div class="col-xs-5"> '+
+					              '<div class="col-xs-5"> '+     
+					             
 					               ' <h4>'+product.name+'</h4>'+
                               '<span class="price" >'+unit_price+'₫</span>'+
 					                    '<cite style="font-style: normal; text-decoration: line-through"></cite>'+
+					             
 					               '</div>'+
 					            "</a>"+
 					          	"</div>"+
@@ -611,6 +565,7 @@
 						}
 					});
 				});
+		
 				function number_format( number, decimals, dec_point, thousands_sep ) {
 					var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
 					var d = dec_point == undefined ? "," : dec_point;

@@ -6,7 +6,7 @@
         <div class="single-page">
             <div class="single-page-row" id="detail-21">
                 <div class="col-md-6 single-top-left">
-                    <img src="{{url($product->illustrative_photo)}}" alt="{{url($product->name)}}" width="400">
+                    <img src="{{url('upload/'.$product->illustrative_photo)}}" alt="{{url($product->name)}}" width="400"/>
                 </div>
                 <div class="col-md-6 single-top-right">
                     <h3 class="item_name"><b>{{$product->name}}</b></h3>
@@ -28,7 +28,7 @@
                     </p>
                     <div class="single-price">
                         <ul>
-                            <li>${{$product->unit_price}}</li>
+                            <li>{{number_format( $product->unit_price, 0, ',', '.').'VNĐ'}}</li>
                             <li>Ends on: June,5th</li>
                             <li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i> Coupon</a></li>
                         </ul>
