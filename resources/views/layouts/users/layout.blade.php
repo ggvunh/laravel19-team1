@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	@yield('head')
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 	<title>Tech Shop an E-commerce Online Shopping Category </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,17 +26,13 @@
 	<script src="{{url('js/jquery-scrolltofixed-min.js')}}" type="text/javascript"></script><!-- fixed nav js -->
 	<script>
 	    $(document).ready(function() {
-
 	        // Dock the header to the top of the window when scrolled past the banner. This is the default behaviour.
-
 	        $('.header-two').scrollToFixed();
 	        // previous summary up the page.
-
 	        var summaries = $('.summary');
 	        summaries.each(function(i) {
 	            var summary = $(summaries[i]);
 	            var next = summaries[i + 1];
-
 	            summary.scrollToFixed({
 	                marginTop: $('.header-two').outerHeight(true) + 10,
 	                zIndex: 999
@@ -64,16 +61,13 @@
 	<!-- smooth-scrolling-of-move-up -->
 		<script type="text/javascript">
 			$(document).ready(function() {
-
 				var defaults = {
 					containerID: 'toTop', // fading element id
 					containerHoverID: 'toTopHover', // fading element hover id
 					scrollSpeed: 1200,
 					easingType: 'linear'
 				};
-
 				$().UItoTop({ easingType: 'easeOutQuart' });
-
 			});
 		</script>
 		<!-- //smooth-scrolling-of-move-up -->
@@ -91,9 +85,11 @@
 					<li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="login">Login </a></li>
-							<li><a href="register">Register</a></li>
+
+							<li><a href="{{url('login')}}">Login </a></li>
+							<li><a href="{{url('register')}}">Register</a></li>
 							<li><a href="login">My Orders</a></li>
+							<li><a href="{{url('admin')}}">Admin</a></li>
 							<li>
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -122,7 +118,7 @@
 
 						<input id="search-product" type="search" name="key" placeholder="Search for a Product..." required="" autocomplete="off">
 						<ul id="search-view">
-							
+			
 						</ul>
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
@@ -457,7 +453,6 @@
     <div>
 		<!-- cart-js -->
     	<script type="text/javascript">
-
 		function addCart(id)
 		{
 			var root = '{{url('/carts')}}';
@@ -488,6 +483,7 @@
 					$('#search-product').keyup(function(){
 						var	name=$(this).val();
 						 $.ajax({
+					 
 					      url:"{{url('searchproduct')}}",
 					      type:"post",
 					      data:{name:name,_token:"{{ csrf_token() }}"},
@@ -495,19 +491,23 @@
 					      	$("ul").empty();
 					      	 $.each(products,function(key, product){
 					      	 var unit_price=number_format( product.unit_price, 0, ',', '.');
+					      	 var roots="{{url('')}}";
 					      	 	$("#search-view").append(
-	
+
 					    			"<li>"+
 											'<div class="row">'+
+					          
 					            '<a href=products/'+product.id+'>'+
 					            	'<div class="col-xs-1">'+
-					                    '<img src=upload/'+product.illustrative_photo+'>'+
+					                    '<img src='+roots+'/upload/'+product.illustrative_photo+'>'+
 					              '</div>'+
 					              '<div class="col-xs-5"> '+     
+					             
 					               ' <h4>'+product.name+'</h4>'+
                               '<span class="price" >'+unit_price+'₫</span>'+
 					                    '<cite style="font-style: normal; text-decoration: line-through"></cite>'+
-					               '</div>'+     
+					             
+					               '</div>'+
 					            "</a>"+
 					          	"</div>"+
 			        			"</li>"
@@ -516,7 +516,6 @@
 					      }
 					    })
 					});
-
 					$('#countdown1').ClassyCountdown({
 						end: '1388268325',
 						now: '1387999995',
@@ -560,19 +559,19 @@
 								},
 								textCSS: ' font-weight:300; color:#fff;'
 							}
-
 						},
 						onEndCallback: function() {
 							console.log("Time out!");
 						}
 					});
 				});
-				function number_format( number, decimals, dec_point, thousands_sep ) {	 
+		
+				function number_format( number, decimals, dec_point, thousands_sep ) {
 					var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
 					var d = dec_point == undefined ? "," : dec_point;
 					var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
 					var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
-											 
+
 					return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 				}
 			</script>

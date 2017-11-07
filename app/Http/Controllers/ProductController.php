@@ -58,8 +58,8 @@ class ProductController extends Controller
       if ($request->hasFile('illustrative_photo')  )
       {
           $file = $request->file('illustrative_photo');
-          $filename = $file->getClientOriginalName(); 
-          $images = time(). "_" . $filename; 
+          $filename = $file->getClientOriginalName();
+          $images = time(). "_" . $filename;
           $destinationPath = public_path('/upload');
           $file->move($destinationPath, $images);
           $data['illustrative_photo'] = $images;
@@ -68,13 +68,13 @@ class ProductController extends Controller
         $data['illustrative_photo'] = '';
         $product = Product::create($data);
       }
-         
+
       if ($request->hasFile('photos') )
       {
         foreach ($request->photos as $photoo) {
           $filename = $photoo->getClientOriginalName();
           $photo= time(). "1_" . $filename;
-          printf($photo); 
+          printf($photo);
           $destinationPath = public_path('upload');
           $photoo->move($destinationPath, $photo);
           $data['photos'] = $photo;
@@ -107,9 +107,9 @@ class ProductController extends Controller
     {
 		    $data = $request->all();
       if ($request->hasFile('illustrative_photo')  )
-      {   
+      {
           $file = $request->file('illustrative_photo');
-          $filename = $file->getClientOriginalName(); 
+          $filename = $file->getClientOriginalName();
           $images = time(). "_" . $filename;
           $destinationPath = public_path('/upload');
           $file->move($destinationPath, $images);
@@ -140,7 +140,7 @@ class ProductController extends Controller
           $photodata['url']=$photoimage;
           $photo=Photo::create($photodata);
         }
-      }  
+      }
     }
     public function search()
     {
@@ -167,14 +167,14 @@ class ProductController extends Controller
           $previous_page=$current_page-1;
           $next_page=$current_page+1;
 			    return view('products.index', compact('products','limit','previous_page','next_page'));
-	    	}	     
+	    	}
     	else {
     			$manufacturers = Manufacturer::where('name','like','%'.$name.'%')->get();
           $manufacturerArray=array();
           foreach ($manufacturers as $manufacturer) {
             $manufacturerArray[]=$manufacturer->id;
           }
-          
+
           $dataproducts = Product::whereIn('manufacturer_id',$manufacturerArray)->orderBy('created_at', 'dec');
           $total_records=$dataproducts->count();
           $total_page = ceil($total_records / $limit);
@@ -189,10 +189,10 @@ class ProductController extends Controller
           $previous_page=$current_page-1;
           $next_page=$current_page+1;
     			return view('products.index', compact(['products','limit','previous_page','next_page']));
-    		}	
+    		}
     }
 
-    public function view(Product $product) 
+    public function view(Product $product)
     {
       $photos=$product->photos;
       return view('products.detail',compact('photos','product'));
@@ -202,7 +202,7 @@ class ProductController extends Controller
     {
       $product->delete();
     }
-
+    
     public function searchProduct()
     {
       $name = isset($_POST['name']) ? $_POST['name'] : "";
@@ -223,7 +223,5 @@ class ProductController extends Controller
       }
       return response($dataproducts,200);
 
-      
     }
-
 }
