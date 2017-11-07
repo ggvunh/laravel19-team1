@@ -98,7 +98,7 @@
           <div class="form-group">
             <label for="illustrative_photo">Avatar</label>
             <div class="form-controls">
-              <input onchange="loadFile(event)" name="illustrative_photo" type="file" id="illustrative_photo">
+              <input onchange="loadFile(event)" name="illustrative_photo" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*"  id="illustrative_photo">
             </div>
             <span class="text-warning">
                 <strong id="errorIllustrative"> </strong>
@@ -106,9 +106,9 @@
             <img id="output">
           </div>
           <div class="form-group">
-            <label for="photos[]">Sub images</label>
+            <label for="photos">Sub images</label>
             <div class="form-controls">
-              <input multiple="" onchange="loadPhoto(event)" name="photos[]" type="file" id="photos[]">
+              <input multiple="" onchange="loadPhoto(event)" name="photos[]" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" id="photos">
             </div>
             <ul class="sub_image" id="photo">
             </ul>
@@ -222,14 +222,14 @@
           <div class="form-group">
             <label for="illustrative_photo2">Avatar</label>
             <div class="form-controls">
-              <input onchange="loadFile2(event)"  name="illustrative_photo" type="file" id="illustrative_photo2" value="ok">
+              <input onchange="loadFile2(event)"  name="illustrative_photo" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" id="illustrative_photo2" value="ok">
             </div>
             <img id="output2">
           </div>
           <div class="form-group">
             <label for="photos2">Sub images</label>
             <div class="form-controls">
-              <input onchange="loadPhoto2(event)" multiple=""  name="photos[]" type="file" id="photos2">
+              <input onchange="loadPhoto2(event)" multiple=""  name="photos[]" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*" id="photos2">
             </div>
             <ul class="sub_image" id="photo2">
             </ul>
@@ -314,6 +314,10 @@
         $("#myModal").modal("show");
     })
     $("#myModal").on('show.bs.modal', function () {  
+      $("#photo").empty();
+      $("#illustrative_photo").val('');
+      $("#photos").val('');
+      document.getElementById('output').height=0;
       $.ajax({
         url:"products/create",
         type:"get",
@@ -405,52 +409,47 @@
       $("button[title='update']").html("Updating data, please wait...");
       
       $.ajax({
-              url:"products/"+product_id,
-              type:'post',
-              data:formdata ? formdata : form.serialize(),
-              enctype: "multipart/form-data",
-              cache       : false,
-              contentType : false,
-              processData : false,
-              success: function(data,status){
-               $('#editModal').modal("hide");
-                $("button[title='update']").html("Update");
-                $.ajax({
-                  url:"api",
-                  type:"post",
-                  data:{_token:"{{ csrf_token() }}"},
-                  success: function(data,status){
-                    getData(data, status),
-                    totalPage(data),
-                    disabled(data),
-                    swal("Data successfully updated", {
-                      icon: "success",
-                      buttons: false,
-                      timer: 1300,
-                    }); 
-                  }
-
-                })
-              },
-              error: function(jqxhr,textStatus,errorThrown)
-              {
-                $("button[title='update']").html("Update");
-                $('#errorName2').text(jqxhr['responseJSON'].name);
-                $('#errorCategory2').text(jqxhr['responseJSON'].category_id);
-                $('#errorManufacturer2').text(jqxhr['responseJSON'].manufacturer_id);
-                $('#errorPrice2').text(jqxhr['responseJSON'].unit_price);
-                $('#errorDescription2').text(jqxhr['responseJSON'].description);
-                $('#errorQuality2').text(jqxhr['responseJSON'].quality_in_store);
-                $('#errorIllustrative2').text(jqxhr['responseJSON'].illustrative_photo);
-                console.log(jqxhr);
-                console.log(textStatus);
-                console.log(errorThrown);                               
-              }
-
-              })
-
-   
-      
+        url:"products/"+product_id,
+        type:'post',
+        data:formdata ? formdata : form.serialize(),
+        enctype: "multipart/form-data",
+        cache       : false,
+        contentType : false,
+        processData : false,
+        success: function(data,status){
+         $('#editModal').modal("hide");
+          $("button[title='update']").html("Update");
+          $.ajax({
+            url:"api",
+            type:"post",
+            data:{_token:"{{ csrf_token() }}"},
+            success: function(data,status){
+              getData(data, status),
+              totalPage(data),
+              disabled(data),
+              swal("Data successfully updated", {
+                icon: "success",
+                buttons: false,
+                timer: 1300,
+              }); 
+            }
+          })
+        },
+        error: function(jqxhr,textStatus,errorThrown)
+        {
+          $("button[title='update']").html("Update");
+          $('#errorName2').text(jqxhr['responseJSON'].name);
+          $('#errorCategory2').text(jqxhr['responseJSON'].category_id);
+          $('#errorManufacturer2').text(jqxhr['responseJSON'].manufacturer_id);
+          $('#errorPrice2').text(jqxhr['responseJSON'].unit_price);
+          $('#errorDescription2').text(jqxhr['responseJSON'].description);
+          $('#errorQuality2').text(jqxhr['responseJSON'].quality_in_store);
+          $('#errorIllustrative2').text(jqxhr['responseJSON'].illustrative_photo);
+          console.log(jqxhr);
+          console.log(textStatus);
+          console.log(errorThrown);                               
+        }
+        })
     })
 
     $("#select-page").change(function() {

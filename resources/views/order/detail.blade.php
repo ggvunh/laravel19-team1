@@ -17,8 +17,8 @@
                   <tr>
                     <th>Product Name</th>
                     <th>Quality</th>
-                    <th>Unit price (VNĐ)</th>
-                    <th>Total money (VNĐ)</th>
+                    <th>Unit price </th>
+                    <th>Total money </th>
                     <th></th>
                   </tr>
                   </thead>
@@ -30,15 +30,15 @@
                   		<tr>
 												<td>{{ $orderDetail->product->name}}</td>
 												<td>{{ $orderDetail->quality}}</td>
-												<td>{{ $orderDetail->product->unit_price }} </td>
-												<td>{{ $orderDetail->unit_price}}</td>
+												<td class="tdclass">{{number_format( $orderDetail->product->unit_price , 0, ',', '.')}} VNĐ </td>
+												<td class="tdclass" >{{number_format(  $orderDetail->unit_price, 0, ',', '.')}} VNĐ</td>
 												<td><a href="{{ url('products/product/'.$orderDetail->product->id) }}">Detail</a></td>
 											</tr>
                   	@endforeach
                   </tbody>
 
                 </table>
-                <h4>Total money: {{ $total_price }} VNĐ</h4>
+                <h4>Total money: {{number_format( $total_price , 0, ',', '.')}} VNĐ</h4>
               </div>
               </div>
 					</div>

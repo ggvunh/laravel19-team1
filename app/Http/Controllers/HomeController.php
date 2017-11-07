@@ -97,9 +97,9 @@ class HomeController extends Controller
     }
     public function confirmOrder()
     {
-        $ldate = Carbon::today()->toDateString();
+        $ldate = Carbon::tomorrow('+1')->toDateString();
         $order_data= new Order;
-        $order_detail=new OrderDetail;
+        // $order_detail=new OrderDetail;
         $order_data_input= Input::all();
         $user=Auth::user();
 
@@ -110,14 +110,14 @@ class HomeController extends Controller
         $order_data->order_phone=$order_data_input['order_phone'];
         $order_data->save();
 
-
-        foreach (\Cart::content() as $row)
+        //dd(Cart::content()->all());
+        foreach (Cart::content()->all() as $row)
         {
-            $order_detail->order_id=$order_data->id;
-            $order_detail->product_id=$row->id;
-            $order_detail->quality=intval($row->qty);
-            $order_detail->unit_price=$row->price;
-            $order_detail->save();
+            $order_detail['order_id']=$order_data->id;
+            $order_detail['product_id']=$row->id;
+            $order_detail['quality']=intval($row->qty);
+            $order_detail['unit_price']=$row->subtotal;
+            OrderDetail::create($order_detail);
         }
         Cart::destroy();
         //dd($order_data,$order_detail,$order_data_input,\Cart::content());
