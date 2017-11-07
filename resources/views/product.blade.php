@@ -19,7 +19,7 @@
         @foreach($products as $product)
          <div class="col-md-3 product-grids">
            <div class="agile-products">
-             <div class="new-tag"><h6>10%<br>Off</h6></div>
+             <div class="new-tag"><h6>New<br></h6></div>
              <a href="single.html">
               <img src="{{url('upload/'.$product->illustrative_photo)}}" class="img-responsive" alt="img"/>
             </a>
@@ -48,7 +48,7 @@
             });
 =======
 
-            });  
+            });
 >>>>>>> 69e583cca52f34dd83edebdf7cb3c3800cbbb480
         </script>
          <div class="clearfix"> </div>
