@@ -11,7 +11,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="{{ url('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="{{ url('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url('bower_components/font-awesome/css/font-awesome.min.css') }}">
@@ -52,7 +52,7 @@
   <script src="{{ url('js/jquery-1.12.4.js') }}"></script>
   <!-- <script src="{{ url('js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ url('js/jquery.dataTables.min.js') }}"></script> -->
-  <!-- <script src="{{ url('js/dataTables.bootstrap.min.js') }}"></script>  
+  <!-- <script src="{{ url('js/dataTables.bootstrap.min.js') }}"></script>
   <link  href="{{ url('css/dataTables.bootstrap.min.html') }}" /> -->
   <link  href="{{ url('css/bootstrap-datepicker.css') }}" />
   <script src="{{ url('js/bootstrap-datepicker.js') }}"></script>
@@ -312,14 +312,21 @@
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
+              <center>
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
+                <li>
+                  <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                  onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+                  Logout
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                  </form>
               </li>
+              </li>
+            </center>
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
@@ -358,38 +365,38 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
-           <li <?php if($current_url=="products") echo $active;?> > 
+           <li <?php if($current_url=="products") echo $active;?> >
             <a href="{{url('/products')}}">
               <i class="fa fa-dashboard"></i> <span>Products</span>
 
             </a>
           </li>
-          
-           <li <?php if($current_url=="search-order") echo $active;?> > 
+
+           <li <?php if($current_url=="search-order") echo $active;?> >
             <a href="{{url('/search-order')}}">
               <i class="glyphicon glyphicon-search"> </i> <span>Search Order</span>
             </a>
           </li>
-         
+
            <li <?php if($current_url=="order-report") echo $active;?> >
             <a href="{{url('/order-report')}}">
               <i class="glyphicon glyphicon-copy"> </i> <span>Order Report</span>
             </a>
           </li>
-        
+
            <li <?php if($current_url=="calendar") echo $active;?> >
           <a href="{{url('/calendar')}}">
              <i class="fa fa-calendar"></i> <span>Calendar</span>
 
           </a>
         </li>
-        
-           <li <?php if($current_url=="export") echo $active;?> > 
+
+           <li <?php if($current_url=="export") echo $active;?> >
           <a href="{{url('/export')}}">
              <i class="glyphicon glyphicon-download-alt"></i> <span>Export</span>
           </a>
           </li>
-          
+
         </ul>
     </section>
     <!-- /.sidebar -->
