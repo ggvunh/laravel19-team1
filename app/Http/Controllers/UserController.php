@@ -19,26 +19,20 @@ class userController extends Controller
         return view('admin.users.list-all-users', compact('users'));
     }
 
-    public function getEditUsers($id)
-    {
-        $user = User::find($id);
-        return view('admin.users.edit-user', compact('user'));
-    }
 
     public function postEditUsers($id ,Request $rq, editUserRequest $request )
     {
         $data = User::find($id);
         $name = $rq->input('user-name');
             if ($name != null) $data ->name=$name;
-        $data->gender = $rq->input('gender');
-        $data->roles = $rq->input('roles');
+        $data->role = $rq->input('roles');
         $email = $rq->input('email');
             if ($email != null) $data ->email=$email;
         $phone_number = $rq->input('phone_number');
-            if ($phone_number != null) $data ->phone_number=$phone_number;
+            if ($phone_number != null) $data ->phone=$phone_number;
         $data->save();
         Toastr::success('Edit successful user', $title = null, $options = []);
-        return redirect('admin/user/listusers');
+        return view('admin.users.list-all-users', compact('users'));
     }
 
     public function deleteUsers($id)
@@ -46,7 +40,7 @@ class userController extends Controller
         $data = User::find($id);
         $data->delete();
         Toastr::success('Delete successful user', $title = null, $options = []);
-        return redirect('admin/user/listusers');
+        return redirect('user/listusers');
     }
 
     public function searchUser(Request $req)
@@ -54,7 +48,7 @@ class userController extends Controller
         $search_users = User::where('name', 'like', '%'.$req ->search_user.'%')
                     ->orWhere('address', 'like', '%'.$req->search_user.'%')
                     ->get();
-        return view('admin.users.searchusers', compact('search_users'));
+        return view('users.searchusers', compact('search_users'));
     }
 
     public function getOrderlists($id)

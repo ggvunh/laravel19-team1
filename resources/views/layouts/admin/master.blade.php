@@ -378,6 +378,12 @@
             </a>
           </li>
 
+          <li <?php if($current_url=="listusers") echo $active;?> >
+           <a href="{{url('/user/listusers')}}">
+             <i class="glyphicon glyphicon-search"> </i> <span>Search User</span>
+           </a>
+         </li>
+
            <li <?php if($current_url=="order-report") echo $active;?> >
             <a href="{{url('/order-report')}}">
               <i class="glyphicon glyphicon-copy"> </i> <span>Order Report</span>
