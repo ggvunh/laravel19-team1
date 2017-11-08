@@ -24,12 +24,12 @@
             					<div class="navbar-header">
             					  <a class="navbar-brand" class="mytile"><p class="myp">LIST OF USERS</p></a>
             					</div>
-            					<form class="navbar-form navbar-left" action="{{url('admin/user/searchusers')}}" method="get">
-            					  <div class="form-group">
-            						<input type="text" class="form-control" placeholder="Search">
-            					  </div>
-            					  <button type="submit" class="btn btn-info  click">Search</button>
-            					</form>
+                      <form class="navbar-form navbar-left" method="get" action="{{ url('user/searchusers') }}">
+                        <div class="form-group">
+                          <input type="text" name="search_user" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-info click">Search</button>
+                      </form>
             				  </div>
 						   </nav>
 					  </div>
@@ -40,9 +40,9 @@
 						@endif
 						<div class="box">
 						    <div class="box-body">
-                                <p><a href="{{ route('export-user') }}"><span class="glyphicon glyphicon-export"></span></a> </p>
+                            <p><a href="{{ route('export-user') }}"><span class="glyphicon glyphicon-export"></span></a> </p>
     		                    <table class="table table-bordered" id="mytable" border="0">
-                					<tr class="mytr" >
+                					  <tr class="mytr" >
                 					  <th class="myth">User code</th>
                 					  <th class="myth">User name</th>
                 					  <th class="myth">Roles</th>
