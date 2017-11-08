@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+
 Auth::routes();
 Route::get('/search','HomeController@search');
 Route::get('/home', 'HomeController@home');
@@ -80,8 +81,6 @@ Route::get('/order/confirm', 'HomeController@confirmOrder');
 //Tuong linh
 Route::group(['prefix'=>'user'],function(){
     Route::get('listusers', 'UserController@listUsers');
-    Route::get('editusers/{id}', 'UserController@getEditUsers');
-    Route::post('editusers/{id}', 'UserController@postEditUsers');
     Route::get('deleteusers/{id}', 'UserController@deleteUsers');
     Route::get('searchusers', 'UserController@searchUser');
     Route::get('orderlists/{id}', 'UserController@getOrderlists');

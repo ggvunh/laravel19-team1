@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_phone');
             $table->string('status');
             $table->string('comfirmation');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

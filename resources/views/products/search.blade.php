@@ -5,34 +5,8 @@
     <div class="products">
         <div class="container">
             <!--test-->
-            <div class="col-md-3 rsidebar">
-                <div >
-                    <div class="slider-row" style="margin-top: 30px;">
-                                   
-                        <div class="row row1 scroll-pane">
-                            <h2 style="margin-bottom: 20px;">Filter by price</h2>
-                             
-                            <select name="pricesearch" form="pricesearch" class="form-control">
-                                <option value="1"><i></i>Under 50$</option>
-                                <option value="2"><i></i>50$-150$</option>
-                                <option value="3"><i></i>150$-300$</option>
-                                <option value="4"><i></i>300$-500$</option>
-                                <option value="5"><i></i>Over 500$</option>
-                            </select> 
-                            <br>
-                            <form id="pricesearch" class="pull-left" action="{{url('/pricesearch')}}" method="get">
-                                <input type="submit" class="btn btn-primary" value="Search by price">
-                            </form>
-                        </div> 
-                    </div>
-                    
-                    <div class="sidebar-row">
-
-                    </div>
-                </div>
-            </div>
             <!--end-->
-            <div class="col-md-9 product-w3ls-right">
+            <div class="col-md-12 product-w3ls-right">
                 @foreach ($products as $product)
                 <div class="col-md-3 product-grids">
                     <div class="agile-products">
