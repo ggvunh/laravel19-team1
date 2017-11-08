@@ -33,7 +33,7 @@
                             <li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i> Coupon</a></li>
                         </ul>
                     </div>
-                    <a href="{{url('/carts/'.$product->id.'/add')}}" class="btn btn-primary" >
+                    <a href="{{url('/carts/'.$product->id.'/add2')}}" class="btn btn-primary" >
                          <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart
                     </a>
                     <button class="btn btn-danger" ><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>

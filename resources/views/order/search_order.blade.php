@@ -240,9 +240,9 @@
 					url:"orders/search",
 					type:"post",
 					data: {
-								limit:limit,
-								previous_page:previous_page,
-								next_page:next_page,
+							limit:limit,
+							previous_page:previous_page,
+							next_page:next_page,
 						  	current_page:current_page,
 						  	name:name,
 						  	filter:filter,

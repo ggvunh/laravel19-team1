@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->double('total_price');
             $table->string('order_address');
             $table->string('order_phone');
-            $table->string('status');
+            $table->string('status')->default('Pending');
             $table->string('comfirmation');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
