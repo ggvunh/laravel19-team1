@@ -49,6 +49,11 @@
           <!-- /.box-body -->
           <div class="box-footer clearfix">
             <div class="row">
+              <div class="col-xs-3 ">
+              <span id="show-entries"></span>
+              </div>
+            </div>  
+            <div class="row">
               <div class="col-xs-2 col-md-4 form-inline">
                 <div class="form-group">
                   <select class="form-control option" id="select-page" >
@@ -357,14 +362,16 @@
               success: function(data,status){
                 $('#myModal').modal("hide");
                 $("button[title='save']").html("Save");
+                var limit = document.getElementById("select-page").value;
                 $.ajax({
                   url:"api",
                   type:"post",
-                  data:{_token:"{{ csrf_token() }}"},
+                  data:{limit:limit,_token:"{{ csrf_token() }}"},
                   success: function(data,status){
                     getData(data, status),
                     totalPage(data),
                     disabled(data),
+                    show(data),
                     swal("Data successfully saved", {
                       icon: "success",
                       buttons: false,
@@ -384,10 +391,10 @@
                 $('#errorDescription').text(jqxhr['responseJSON'].description);
                 $('#errorQuality').text(jqxhr['responseJSON'].quality_in_store);
                 $('#errorIllustrative').text(jqxhr['responseJSON'].illustrative_photo);
-                console.log(jqxhr);
-                console.log(textStatus);
-                console.log(errorThrown);                               
-                console.log(jqxhr['responseJSON'].name);
+                // console.log(jqxhr);
+                // console.log(textStatus);
+                // console.log(errorThrown);                               
+                // console.log(jqxhr['responseJSON'].name);
               }
 
               })
@@ -419,14 +426,21 @@
         success: function(data,status){
          $('#editModal').modal("hide");
           $("button[title='update']").html("Update");
+          var limit = document.getElementById("select-page").value;
+          var current_page=$("#pagination").find(".active").text();
+
           $.ajax({
             url:"api",
             type:"post",
-            data:{_token:"{{ csrf_token() }}"},
+            data:{
+              current_page:current_page,
+              limit:limit,
+              _token:"{{ csrf_token() }}"
+            },
             success: function(data,status){
               getData(data, status),
-              totalPage(data),
               disabled(data),
+              show(data),
               swal("Data successfully updated", {
                 icon: "success",
                 buttons: false,
@@ -445,9 +459,9 @@
           $('#errorDescription2').text(jqxhr['responseJSON'].description);
           $('#errorQuality2').text(jqxhr['responseJSON'].quality_in_store);
           $('#errorIllustrative2').text(jqxhr['responseJSON'].illustrative_photo);
-          console.log(jqxhr);
-          console.log(textStatus);
-          console.log(errorThrown);                               
+          // console.log(jqxhr);
+          // console.log(textStatus);
+          // console.log(errorThrown);                               
         }
         })
     })
@@ -463,7 +477,8 @@
         success: function(data,status){
           getData(data, status),
           totalPage(data),
-          disabled(data)  
+          disabled(data),
+          show(data)
         }
       })
     })
@@ -479,8 +494,8 @@
         success: function(data,status){
           getData(data, status),
           totalPage(data,status),
-          disabled(data)
-          console.log(data);
+          disabled(data),
+          show(data)
         }     
       })
 
@@ -493,7 +508,8 @@
       success: function(data,status){
         getData(data, status),
         totalPage(data),
-        disabled(data)
+        disabled(data),
+        show(data)
       }
     })
 
@@ -586,19 +602,25 @@
           success: function(data,status){
             if(data.current_page=="»")
             {
+              //alert(data.start_page);
+              data.current_page=data.start_page;
               totalPage(data,status),
               getData(data, status),
-              disabled(data)  
+              disabled(data),
+              show(data)  
             }
             else if(data.current_page=="«")
             {
-              totalPage(data,status),
+              totalPage(data,status)
+              data.current_page=data.end_page;
               getData(data, status),
-              disabled(data)
+              disabled(data),
+              show(data)  
             }
             else {
               getData(data, status),
-              disabled(data)
+              disabled(data),
+              show(data)  
             }
           }
         })
@@ -608,7 +630,8 @@
     function delete_data(productId)
     {
       
-      var limit=$("#select-page").val();
+      var limit = document.getElementById("select-page").value;
+      var current_page=$("#pagination").find(".active").text();
       swal({
       title: "Are you sure want to delete this data?",   
       text: "Deleted data can not be restored!",
@@ -625,11 +648,11 @@
               $.ajax({
               url:"api",
               type:"post",
-              data:{limit:limit,_token:"{{ csrf_token() }}"},
+              data:{current_page:current_page,limit:limit,_token:"{{ csrf_token() }}"},
               success: function(data,status){
                 getData(data, status),
-                totalPage(data),
                 disabled(data),
+                show(data),
                 swal("Data successfully deleted", {
                   icon: "success",
                   buttons: false,
@@ -692,7 +715,18 @@
         document.getElementById("form-update").reset();
       
     });
-
+     function show(data){
+      if(data.total_records==0){
+        $('#show-entries').text("No matching records found");
+      }
+      else if(data.limit*data.current_page>data.total_records){
+        $('#show-entries').text('Showing '+(data.limit*(data.current_page-1)+1)+' to '+data.total_records+' of '+data.total_records+' entries');
+      }
+      else {
+        $('#show-entries').text('Showing '+(data.limit*(data.current_page-1)+1)+' to '+data.limit*data.current_page+' of '+data.total_records+' entries');
+      } 
+     }
+     
   </script>
   <!-- footer-top -->
   <div class="w3agile-ftr-top">

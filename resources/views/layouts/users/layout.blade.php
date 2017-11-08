@@ -497,7 +497,7 @@
 					    			"<li>"+
 											'<div class="row">'+
 					          
-					            '<a href=products/'+product.id+'>'+
+					            '<a href='+roots+'/products/'+product.id+'>'+
 					            	'<div class="col-xs-1">'+
 					                    '<img src='+roots+'/upload/'+product.illustrative_photo+'>'+
 					              '</div>'+

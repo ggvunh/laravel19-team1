@@ -67,6 +67,7 @@ Route::get('/pricesearch','HomeController@PriceSearch');
 //Cart
 Route::get('product','HomeController@product');
 Route::get('/carts/{id}/add','CartController@add');
+Route::get('/carts/{id}/add2','CartController@add2');
 Route::get('/carts/destroy', 'CartController@destroy');
 Route::get('/checkout', 'CartController@checkout');
 Route::get('/carts/{rowId}/delete', 'CartController@delete');
