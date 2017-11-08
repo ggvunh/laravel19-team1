@@ -1,6 +1,5 @@
 @extends('layouts.admin.master')
  @section('content')
-   <div class="content-wrapper nxp-admin">
     <!-- Content Header (Page header) -->
        <section class="content-header">
         <h1>
@@ -41,8 +40,9 @@
                         @endif
                         <div class="box">
                           <div class="box-body">
+                          <p><a href="{{ route('export-user') }}"><span class="glyphicon glyphicon-export"></span></a> </p>
                           <table class="table table-bordered" id="mytable" border="0">
-                    <tr class="mytr" >
+                          <tr class="mytr" >
                       <th class="myth">User code</th>
                       <th class="myth">User name</th>
                       <th class="myth">Roles</th>
@@ -59,7 +59,7 @@
                         <td >{{$search_user->email}}</td>
                         <td >{{$search_user->address}}</td>
                         <td >{{$search_user->phone}}</td>
-                        <td ><span class="glyphicon glyphicon-trash"></span><a href="{{url('admin/user/deleteusers')}}/{{$search_user->id}}" style="color:red" class="simpleConfirm">Delete</a></td>
+                        <td ><span class="glyphicon glyphicon-trash"></span><a href="{{url('user/deleteusers')}}/{{$search_user->id}}" style="color:red" class="simpleConfirm">Delete</a></td>
                     </tr>
                     @endforeach
                             </table>
@@ -70,5 +70,4 @@
             </div>
          </div>
         </section>
-   </div>
  @stop
