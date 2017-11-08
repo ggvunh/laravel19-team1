@@ -52,3 +52,5 @@
       $arrayProducts['first']=false;
     }
   }
+  $arrayProducts['total_records']= $total_records;
+  $arrayProducts['limit']= $limit; 

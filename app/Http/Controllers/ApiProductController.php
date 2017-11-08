@@ -63,7 +63,6 @@ class ApiProductController extends Controller
         $arrayProducts['category']=$product->category;
         $arrayProducts['manufacturer']=$product->manufacturer;
       }
-      $arrayProducts['limit']=$limit;
       return response($arrayProducts);
     }
   

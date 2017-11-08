@@ -13,9 +13,17 @@ class CartController extends Controller
         $product = Product::find($id);
         Cart::add($product->id, $product->name, 1, $product->unit_price);
         $count = Cart::count();
-        return view('products.checkout');
         return response(['count' => $count], 200);
     }
+
+    public function add2($id)
+    {
+        $product = Product::find($id);
+        Cart::add($product->id, $product->name, 1, $product->unit_price);
+        $count = Cart::count();
+        return view('products.checkout');
+    }
+
     public function destroy()
     {
         Cart::destroy();
