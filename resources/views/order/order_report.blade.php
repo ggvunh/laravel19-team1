@@ -112,6 +112,8 @@ $(document).ready(function(){
       alert("Both Date is Required");
     }
   });
+
+  
   
     $("#select-page").change(function() {
       var limit = document.getElementById("select-page").value;
@@ -154,7 +156,7 @@ $(document).ready(function(){
               "<td>"+order.order_address+"</td>" +  
               "<td>"+order.order_phone+"</td>"+
               "<td>"+order.order_date+"</td>" + 
-              "<td>"+order.status+"</td>"+
+              '<td>'+order.status+'<a class="change" href="" title="change order status" data-order-id='+order.id+' >&nbsp; &nbsp;&nbsp;change</a> </td>'+
               '<td class="tdclass" >'+total_price+" VNĐ</td>" +  
               '<td>'+'<a href=detail-order/'+order.id+'  >Detail</a>'+'</td>'+
               '<td>'+'<a href=order/pdf/'+order.id+'  >PDF</a>'+'</td>'+
@@ -165,8 +167,47 @@ $(document).ready(function(){
     });
       })
 
+      $(".change").click(function(e){
+         swal({
+      title: "Are you sure want to change order status?",   
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          var orderId = $(this).data('order-id');
+          var status=$(this).parent().text().replace("change", "").trim();
+          $.ajax({
+          url:"order/"+orderId,
+          type:"post",
+          data: {
+            status:status,
+            _token:"{{ csrf_token() }}",
+            _method:"PUT",
 
-       
+          },
+          success: function(data,status){
+            swal("Order status successfully changed", {
+                  icon: "success",
+                  buttons: false,
+                  timer: 1200,
+                });
+            $.ajax({
+              url:"orders/search",
+              type:"post",
+              data:{_token:"{{ csrf_token() }}"},
+              success: function(data,status){
+                getData(data, status)
+              }
+            })    
+
+          }
+        });
+        }
+      });
+        e.preventDefault();
+      });  
     } 
 
     function disabled(data)
@@ -182,7 +223,7 @@ $(document).ready(function(){
 
     function totalPrice(data)
     {
-      $("div h4").text("Total money:"+data.total_price+" VND");
+     $("div h4").text("Total money: " +number_format( data.total_price, 0, ',', '.')+" VNĐ");
     }
 
     function totalPage(data, status)

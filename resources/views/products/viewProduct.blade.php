@@ -24,7 +24,10 @@
                     </div>
                     <p class="single-price-text">
                         <h4 style="margin-bottom:10px;"><b>Description</b></h4>
-                        {{$product->description}}
+                        @php 
+                          $description = str_replace("\r\n", "<br/>", $product->description);
+                        @endphp
+                        {!!$description!!}
                     </p>
                     <div class="single-price">
                         <ul>

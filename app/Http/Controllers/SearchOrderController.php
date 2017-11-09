@@ -40,6 +40,19 @@ class SearchOrderController extends Controller
       return $pdf->stream($filename);
     }
 
+    public function update(Order $order)
+    {
+      $status = $_POST['status'];
+      if($status=="Pending")
+      {
+        $order->update(['status' => "Delivered"]);
+      }
+      else
+      {
+        $order->update(['status' => "Pending"]);
+      }  
+    }
+
     public function searchOrder()
     {
       $current_page = isset($_POST['current_page']) ? $_POST['current_page'] : 1;

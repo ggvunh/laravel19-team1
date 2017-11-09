@@ -1,5 +1,8 @@
 @extends('layouts.admin.master')
 @section('content')
+@php 
+  $description = str_replace("\r\n", "<br/>", $product->description);
+@endphp
   <section class="content">
     <div class="box">
     <div class="box-header with-border">
@@ -18,7 +21,8 @@
      @endforeach
     </ul>
     <div class="h3_product">
-      <h3>Description: <span>{{$product->description}}</span></h3>
+      <h3>Description:<br>
+       <span>{!!$description!!}</span></h3>
       <h3>Price: <span >{{number_format( $product->unit_price, 0, ',', '.')}} VNĐ </span></h3>
       <h3>Quality: <span>{{number_format( $product->quality_in_store, 0, ',', '.')}}</span></h3>
     </div>

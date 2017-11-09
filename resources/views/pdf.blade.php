@@ -3,18 +3,22 @@
     <head>
         <meta charset="utf-8">
         <title>pdf</title>
+        <style>
+          @font-face {
+            font-family: "Dojo Sans Serif";
+            font-style: normal;
+            font-weight: normal;
+            src: url(http://example.com/fonts/dojosans.ttf) format('truetype');
+          }
+          * {
+            font-family: "Dojo Sans Serif", "DejaVu Sans", sans-serif;
+          }
+          table,td,th{
+            border: 1px solid black;
+          }
+
+        </style>
     </head>
-    <style>
-    @font-face {
-      font-family: "Dojo Sans Serif";
-      font-style: normal;
-      font-weight: normal;
-      src: url(http://example.com/fonts/dojosans.ttf) format('truetype');
-    }
-    * {
-      font-family: "Dojo Sans Serif", "DejaVu Sans", sans-serif;
-    }
-    </style>
     <body>
            <div class="table-responsive">
           	<div>
@@ -39,19 +43,19 @@
               	@foreach ($order->orderDetails as $orderDetail)
               		<tr>
 										<td>{{ $orderDetail->product->name}}</td>
-										<td>{{ $orderDetail->quality}}</td>
-										<td>{{ $orderDetail->product->unit_price }} </td>
-										<td>{{ $orderDetail->unit_price}}</td>
+										<td>{{number_format( $orderDetail->quality, 0, ',', '.')}} </td>
+										<td>{{number_format( $orderDetail->product->unit_price, 0, ',', '.')}} VNĐ </td>
+										<td>{{number_format( $orderDetail->unit_price, 0, ',', '.')}} VNĐ</td>
 									</tr>
               	@endforeach
               	<tr>
               		<th colspan="3">Total</th>
-              		<th>{{$total_price}}</th>
+              		<th>{{number_format( $total_price , 0, ',', '.')}} VNĐ</th>
               	</tr>
               </tbody>
 
                 </table>
-               {{--  <h4>Total money: {{ $total_price }} VNĐ</h4> --}}
+               <h4>Total money: {{number_format( $total_price , 0, ',', '.')}} VNĐ</h4>
               </div>
               </div>
     </body>
