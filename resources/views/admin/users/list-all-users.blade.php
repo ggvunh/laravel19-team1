@@ -1,8 +1,6 @@
 @extends('layouts.admin.master')
  @section('content')
-   <div class="content-wrapper nxp-admin">
 	<!-- Content Header (Page header) -->
-	   <div id="ajax_loader" class="ajax-load-qa"><h2 class="loading">Loading...</h2></div>
 	   <section class="content-header">
 		<h1>
 		  User
@@ -26,12 +24,12 @@
             					<div class="navbar-header">
             					  <a class="navbar-brand" class="mytile"><p class="myp">LIST OF USERS</p></a>
             					</div>
-            					<form class="navbar-form navbar-left" action="{{url('admin/user/searchusers')}}" method="get">
-            					  <div class="form-group">
-            						<input type="text" class="form-control" placeholder="Search">
-            					  </div>
-            					  <button type="submit" class="btn btn-info  click">Search</button>
-            					</form>
+                      <form class="navbar-form navbar-left" method="get" action="{{ url('user/searchusers') }}">
+                        <div class="form-group">
+                          <input type="text" name="search_user" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-info click">Search</button>
+                      </form>
             				  </div>
 						   </nav>
 					  </div>
@@ -42,30 +40,26 @@
 						@endif
 						<div class="box">
 						    <div class="box-body">
-                                <p>Export user: <a href="{{ route('export-user') }}"><span class="glyphicon glyphicon-export"></span></a> </p>
+                            <p><a href="{{ route('export-user') }}"><span class="glyphicon glyphicon-export"></span></a> </p>
     		                    <table class="table table-bordered" id="mytable" border="0">
-                					<tr class="mytr" >
+                					  <tr class="mytr" >
                 					  <th class="myth">User code</th>
                 					  <th class="myth">User name</th>
-                					  <th class="myth">Gender</th>
                 					  <th class="myth">Roles</th>
                 					  <th class="myth">Email</th>
                 					  <th class="myth">Address</th>
                 					  <th class="myth">Phone Number</th>
-                					  <th class="myth">Edit</th>
                 					  <th class="myth">Delete</th>
                 					</tr>
                 					@foreach($users as $user)
                 					<tr>
                 						<td >{{$user->id}}</td>
                 						<td ><a href="{{ url('admin/user/orderlists/'.$user->id) }}">{{$user->name}}</a></td>
-                						<td >{{$user->gender}}</td>
-                						<td >@if(($user->roles)==1) Admin @else User @endif</td>
+                						<td >@if(($user->role)==1) Admin @else User @endif</td>
                 						<td >{{$user->email}}</td>
                 						<td >{{$user->address}}</td>
-                						<td >{{$user->phone_number}}</td>
-                						<td ><span class="glyphicon glyphicon-pencil"></span><a href="{{url('admin/user/editusers')}}/{{$user->id}}" style="color:red" class="click">Edit</a></td>
-                						<td ><span class="glyphicon glyphicon-trash"></span><a href="{{url('admin/user/deleteusers')}}/{{$user->id}}" style="color:red" class="simpleConfirm">Delete</a></td>
+                						<td >{{$user->phone}}</td>
+                						<td ><span class="glyphicon glyphicon-trash"></span><a href="{{url('user/deleteusers/'.$user->id)}}" style="color:red" class="simpleConfirm">Delete</a></td>
                 					</tr>
                 					@endforeach
     						    </table>
@@ -76,5 +70,4 @@
 			</div>
 		 </div>
 		</section>
-   </div>
  @stop

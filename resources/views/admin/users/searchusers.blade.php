@@ -1,8 +1,6 @@
 @extends('layouts.admin.master')
  @section('content')
-   <div class="content-wrapper nxp-admin">
     <!-- Content Header (Page header) -->
-      <div id="ajax_loader" class="ajax-load-qa"><h2 class="loading">Loading...</h2></div>
        <section class="content-header">
         <h1>
           User
@@ -42,28 +40,26 @@
                         @endif
                         <div class="box">
                           <div class="box-body">
+                          <p><a href="{{ route('export-user') }}"><span class="glyphicon glyphicon-export"></span></a> </p>
                           <table class="table table-bordered" id="mytable" border="0">
-                    <tr class="mytr" >
+                          <tr class="mytr" >
                       <th class="myth">User code</th>
                       <th class="myth">User name</th>
                       <th class="myth">Roles</th>
                       <th class="myth">Email</th>
                       <th class="myth">Address</th>
                       <th class="myth">Phone Number</th>
-                      <th class="myth">Edit</th>
                       <th class="myth">Delete</th>
                     </tr>
                     @foreach($search_users as $search_user)
                     <tr>
                         <td >{{$search_user->id}}</td>
                         <td >{{$search_user->name}}</td>
-                        <td >{{$search_user->gender}}</td>
-                        <td >{{$search_user->roles}}</td>
+                        <td >{{$search_user->role}}</td>
                         <td >{{$search_user->email}}</td>
                         <td >{{$search_user->address}}</td>
                         <td >{{$search_user->phone}}</td>
-                        <td ><span class="glyphicon glyphicon-pencil"></span><a href="{{url('admin/user/editusers')}}/{{$search_user->id}}" style="color:red" class="click">Edit</a></td>
-                        <td ><span class="glyphicon glyphicon-trash"></span><a href="{{url('admin/user/deleteusers')}}/{{$search_user->id}}" style="color:red" class="simpleConfirm">Delete</a></td>
+                        <td ><span class="glyphicon glyphicon-trash"></span><a href="{{url('user/deleteusers')}}/{{$search_user->id}}" style="color:red" class="simpleConfirm">Delete</a></td>
                     </tr>
                     @endforeach
                             </table>
@@ -74,5 +70,4 @@
             </div>
          </div>
         </section>
-   </div>
  @stop

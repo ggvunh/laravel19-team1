@@ -40,7 +40,7 @@
         <script>
             $(document).ready(function(){
               $(".add-cart").submit(function(e){
-                var product_id=$(this).find('button').data('product'); 
+                var product_id=$(this).find('button').data('product');
                 addCart(product_id);
                 e.preventDefault();
               })
