@@ -54,7 +54,7 @@
                 					@foreach($users as $user)
                 					<tr>
                 						<td >{{$user->id}}</td>
-                						<td ><a href="{{ url('admin/user/orderlists/'.$user->id) }}">{{$user->name}}</a></td>
+                						<td ><a href="{{ url('user/orderlists/'.$user->id) }}">{{$user->name}}</a></td>
                 						<td >@if(($user->role)==1) Admin @else User @endif</td>
                 						<td >{{$user->email}}</td>
                 						<td >{{$user->address}}</td>
