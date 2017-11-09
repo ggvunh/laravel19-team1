@@ -313,8 +313,6 @@
 <script>
 
   $(document).ready(function(){
-
-
     $("#add-product").click(function(){
         $("#myModal").modal("show");
     })

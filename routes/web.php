@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth','isAdmin']],function(){
 	Route::get('excel/users','ExcelController@exportUsers');
 	Route::get('excel/orders','ExcelController@exportOrders');
 	Route::get('/order/pdf/{order}','SearchOrderController@exportPdf');
+	Route::put('/order/{order}','SearchOrderController@update');
 });
 
 Route::get('products/{product}','HomeController@viewProduct');

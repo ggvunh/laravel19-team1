@@ -26,3 +26,7 @@
 	text-align: right;
 	width: 140px;
 }
+
+tbody td a:hover {
+	 text-decoration: none;
+}

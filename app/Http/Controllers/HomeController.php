@@ -97,7 +97,7 @@ class HomeController extends Controller
     }
     public function confirmOrder()
     {
-        $ldate = Carbon::tomorrow('+1')->toDateString();
+        $ldate = Carbon::tomorrow()->toDateString();
         $order_data= new Order;
         // $order_detail=new OrderDetail;
         $order_data_input= Input::all();

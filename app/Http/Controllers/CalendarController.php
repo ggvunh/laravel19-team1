@@ -14,6 +14,14 @@ class CalendarController extends Controller
     	$arrayDate=array();
 
     	foreach ($orders as $order) {
+            if ($order->status=="Pending") {          
+                $arrayDate["backgroundColor"]='#f39c12';
+                $arrayDate["borderColor"]='#f39c12';
+            }
+            else {
+                $arrayDate["backgroundColor"]='#00a65a';
+                $arrayDate["borderColor"]='#00a65a';
+            }
     		$arrayDate["title"]=$order->user->name;
     		$arrayDate["start"]=$order->order_date;
     		$arrayDate["allDay"]=true;
