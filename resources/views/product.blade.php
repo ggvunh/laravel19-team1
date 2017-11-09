@@ -20,7 +20,7 @@
          <div class="col-md-3 product-grids">
            <div class="agile-products">
              <div class="new-tag"><h6>New<br></h6></div>
-             <a href="single.html">
+             <a href="{{url('products/'.$product->id)}}">
               <img src="{{url('upload/'.$product->illustrative_photo)}}" height="300" class="img-responsive"  alt="img"/>
             </a>
              <div class="agile-product-text">

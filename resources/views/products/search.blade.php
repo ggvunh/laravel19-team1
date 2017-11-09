@@ -34,28 +34,5 @@
     </div>
 
 
-<!--        <div class=" products-row">
-            @foreach ($products as $product)
-                <div class="col-md-3 product-grids">
-                    <div class="agile-products">
-                        <div class="new-tag"><h6>{{$product->status}}</h6></div>
-                            <a href="{{url('products/' . $product->id)}}"><img src="
-                               {{$product->illustrative_photo}}" class="img-fixed" alt="img" width="211" height="242">
-                           </a>
-                        <div class="agile-product-text">
-                            <h5><a href="single.html">{{$product->name}}</a></h5>
-                            <h6>${{$product->unit_price}}</h6>
 
-                            <a href="javascript:void(0)"  class="btn btn-default add-to-cart add_product" onclick="addCart({{$product->id}})" style="margin-top:10px;">
-                                 <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart
-                            </a>
-
-                        </div>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="clearfix"> </div>
-    </div> -->
 @endsection
