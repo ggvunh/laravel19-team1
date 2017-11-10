@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use App\Order;
 use App\OrderDetail;
 use Toastr;
+use Auth;
 
 class userController extends Controller
 {
@@ -40,4 +41,19 @@ class userController extends Controller
         $orderlists = Order::Where('user_id', $id)->get();
         return view('admin.users.list-order', compact('orderlists'));
     }
+
+    public function myOrder()
+    {
+        $user_id=Auth::id();
+        $user=User::find($user_id);
+        $orders=$user->orders;
+        return view('account.list-bills',compact('orders'));
+    }
+
+    public function deleteOrder(Order $order)
+    {
+        $order->delete();
+        return redirect('user/myorder');
+    }
+
 }

@@ -600,7 +600,6 @@
           success: function(data,status){
             if(data.current_page=="»")
             {
-              //alert(data.start_page);
               data.current_page=data.start_page;
               totalPage(data,status),
               getData(data, status),
