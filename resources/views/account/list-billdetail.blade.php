@@ -57,11 +57,11 @@
                  <h3>Thông tin khách hàng</h3><br>
                  <table class="table table-bordered" id="mytable" border="0">
                      <tr>
-                         <th>Tên</th>
+                         <th>Name</th>
                          <td>{{ Auth::user()->name }}</td>
                      </tr>
                      <tr>
-                         <th>Số điện thoại</th>
+                         <th>phone</th>
                          <td>{{ Auth::user()->phone_number }}</td>
                      </tr>
                      <tr>
