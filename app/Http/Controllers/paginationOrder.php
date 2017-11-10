@@ -52,3 +52,5 @@
         $arrayOrders['first']=false;
       }
     }
+    $arrayOrders['total_records']= $total_records;
+    $arrayOrders['limit']= $limit; 

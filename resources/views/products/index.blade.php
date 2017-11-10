@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                   <span>
-                  <input id="search-product" name="name" value="{{ old('username') }}" type="text" class="form-control search-input" placeholder="Search...">
+                  <input id="search-product" autocomplete="off" name="name" value="{{ old('username') }}" type="text" class="form-control search-input" placeholder="Search...">
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
             <div class="form-group">
             <label for="name">Name</label>
             <div class="form-controls">
-              <input class="form-control" name="name" type="text" id="name">
+              <input class="form-control" autocomplete="off" name="name" type="text" id="name">
             </div>
             <span class="text-warning">
                 <strong id="errorName"> </strong>
@@ -151,7 +151,7 @@
           <div class="form-group">
             <label for="unit_price">Price</label>
             <div class="form-controls">
-              <input class="form-control" name="unit_price" type="number" id="unit_price">
+              <input autocomplete="off" class="form-control" name="unit_price" type="number" id="unit_price">
             </div>
             <span class="text-warning">
                 <strong id="errorPrice"> </strong>
@@ -160,7 +160,7 @@
           <div class="form-group">
             <label for="quality_in_store">Quality</label>
             <div class="form-controls">
-              <input class="form-control" name="quality_in_store" type="number" id="quality_in_store">
+              <input autocomplete="off" class="form-control" name="quality_in_store" type="number" id="quality_in_store">
             </div>
             <span class="text-warning">
                 <strong id="errorQuality"> </strong>
@@ -600,7 +600,6 @@
           success: function(data,status){
             if(data.current_page=="»")
             {
-              //alert(data.start_page);
               data.current_page=data.start_page;
               totalPage(data,status),
               getData(data, status),

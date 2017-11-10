@@ -55,6 +55,11 @@
           <!-- /.box-body -->
           <div class="box-footer clearfix">
             <div class="row">
+              <div class="col-xs-3 ">
+              <span id="show-entries"></span>
+              </div>
+            </div> 
+            <div class="row">
               <div class="col-xs-2 col-md-4 form-inline">
                 <div class="form-group">
                   <select class="form-control option" id="select-page" >
@@ -103,7 +108,8 @@ $(document).ready(function(){
           getData(data, status),
           totalPage(data),
           disabled(data),
-          totalPrice(data)  
+          totalPrice(data),
+          show(data)  
         }
       })
     }
@@ -127,7 +133,8 @@ $(document).ready(function(){
           getData(data, status),
           totalPage(data),
           disabled(data),
-          totalPrice(data)  
+          totalPrice(data),
+          show(data)  
         }
       })
     })
@@ -141,7 +148,8 @@ $(document).ready(function(){
         getData(data, status),
         totalPage(data),
         disabled(data),
-        totalPrice(data)
+        totalPrice(data),
+        show(data)
       }
     })
 
@@ -277,24 +285,41 @@ $(document).ready(function(){
           success: function(data,status){
             if(data.current_page=="»")
             {
+              data.current_page=data.start_page;
               totalPage(data,status),
               getData(data, status),
-              disabled(data)  
+              disabled(data),
+              show(data)  
             }
             else if(data.current_page=="«")
             {
-              totalPage(data,status),
+              totalPage(data,status)
+              data.current_page=data.end_page;
               getData(data, status),
-              disabled(data)
+              disabled(data),
+              show(data)
             }
             else {
               getData(data, status),
-              disabled(data)
+              disabled(data),
+              show(data)
             }
           }
         })
       });
     }
+
+    function show(data){
+      if(data.total_records==0){
+        $('#show-entries').text("No matching records found");
+      }
+      else if(data.limit*data.current_page>data.total_records){
+        $('#show-entries').text('Showing '+(data.limit*(data.current_page-1)+1)+' to '+data.total_records+' of '+data.total_records+' entries');
+      }
+      else {
+        $('#show-entries').text('Showing '+(data.limit*(data.current_page-1)+1)+' to '+data.limit*data.current_page+' of '+data.total_records+' entries');
+      } 
+     }
   
 });
         function number_format( number, decimals, dec_point, thousands_sep ) {   

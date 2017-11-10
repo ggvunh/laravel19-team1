@@ -82,6 +82,8 @@ Route::get('/checkout/info', 'HomeController@checkoutInfo');
 Route::get('/order/confirm', 'HomeController@confirmOrder');
 //Tuong linh
 Route::group(['prefix'=>'user'],function(){
+	Route::get('myorder', 'UserController@myOrder');
+	Route::get('myorder/{order}/delete', 'UserController@deleteOrder');
     Route::get('listusers', 'UserController@listUsers');
     Route::get('deleteusers/{id}', 'UserController@deleteUsers');
     Route::get('searchusers', 'UserController@searchUser');

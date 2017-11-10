@@ -88,7 +88,7 @@
 
 							<li><a href="{{url('login')}}">Login </a></li>
 							<li><a href="{{url('register')}}">Register</a></li>
-							<li><a href="login">My Orders</a></li>
+							<li><a href="{{url('user/myorder')}}">My Orders</a></li>
 							<li><a href="{{url('admin')}}">Admin</a></li>
 							<li>
                 <a href="{{ route('logout') }}"
