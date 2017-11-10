@@ -118,7 +118,7 @@
 
 						<input id="search-product" type="search" name="key" placeholder="Search for a Product..." required="" autocomplete="off">
 						<ul id="search-view">
-			
+
 						</ul>
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
@@ -305,73 +305,73 @@
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products4.html" class="wthree-btn wthree2">
+					<a href="#" class="wthree-btn wthree2">
 						<div class="focus-image"><i class="fa fa-wheelchair"></i></div>
 						<h4 class="clrchg">Furnitures</h4>
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products3.html" class="wthree-btn wthree3">
+					<a href="#" class="wthree-btn wthree3">
 						<div class="focus-image"><i class="fa fa-home"></i></div>
 						<h4 class="clrchg">Home Decor</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl">
-					<a href="products9.html" class="wthree-btn wthree3">
+					<a href="#" class="wthree-btn wthree3">
 						<div class="focus-image"><i class="fa fa-book"></i></div>
 						<h4 class="clrchg">Books & Music</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl">
-					<a href="products1.html" class="wthree-btn wthree4">
+					<a href="#" class="wthree-btn wthree4">
 						<div class="focus-image"><i class="fa fa-asterisk"></i></div>
 						<h4 class="clrchg">Fashion</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl">
-					<a href="products2.html" class="wthree-btn wthree2">
+					<a href="#" class="wthree-btn wthree2">
 						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
 						<h4 class="clrchg">Kids</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl">
-					<a href="products5.html" class="wthree-btn wthree">
+					<a href="#" class="wthree-btn wthree">
 						<div class="focus-image"><i class="fa fa-shopping-basket"></i></div>
 						<h4 class="clrchg">Groceries</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl">
-					<a href="products7.html" class="wthree-btn wthree5">
+					<a href="#" class="wthree-btn wthree5">
 						<div class="focus-image"><i class="fa fa-medkit"></i></div>
 						<h4 class="clrchg">Health</h4>
 					</a>
 				</div>
 				<div class="col-md-2 focus-grid w3focus-grid-mdl">
-					<a href="products8.html" class="wthree-btn wthree1">
+					<a href="#" class="wthree-btn wthree1">
 						<div class="focus-image"><i class="fa fa-car"></i></div>
 						<h4 class="clrchg">Automotive</h4>
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products5.html" class="wthree-btn wthree2">
+					<a href="#" class="wthree-btn wthree2">
 						<div class="focus-image"><i class="fa fa-cutlery"></i></div>
 						<h4 class="clrchg">Food</h4>
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products4.html" class="wthree-btn wthree5">
+					<a href="#" class="wthree-btn wthree5">
 						<div class="focus-image"><i class="fa fa-futbol-o"></i></div>
 						<h4 class="clrchg">Sports</h4>
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products2.html" class="wthree-btn wthree3">
+					<a href="#" class="wthree-btn wthree3">
 						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
 						<h4 class="clrchg">Games & Toys</h4>
 					</a>
 				</div>
 				<div class="col-md-3 focus-grid">
-					<a href="products6.html" class="wthree-btn ">
+					<a href="#" class="wthree-btn ">
 						<div class="focus-image"><i class="fa fa-gift"></i></div>
 						<h4 class="clrchg">Gifts</h4>
 					</a>
@@ -483,7 +483,7 @@
 					$('#search-product').keyup(function(){
 						var	name=$(this).val();
 						 $.ajax({
-					 
+
 					      url:"{{url('searchproduct')}}",
 					      type:"post",
 					      data:{name:name,_token:"{{ csrf_token() }}"},
@@ -496,17 +496,17 @@
 
 					    			"<li>"+
 											'<div class="row">'+
-					          
+
 					            '<a href='+roots+'/products/'+product.id+'>'+
 					            	'<div class="col-xs-1">'+
 					                    '<img src='+roots+'/upload/'+product.illustrative_photo+'>'+
 					              '</div>'+
-					              '<div class="col-xs-5"> '+     
-					             
+					              '<div class="col-xs-5"> '+
+
 					               ' <h4>'+product.name+'</h4>'+
                               '<span class="price" >'+unit_price+'₫</span>'+
 					                    '<cite style="font-style: normal; text-decoration: line-through"></cite>'+
-					             
+
 					               '</div>'+
 					            "</a>"+
 					          	"</div>"+
@@ -565,7 +565,7 @@
 						}
 					});
 				});
-		
+
 				function number_format( number, decimals, dec_point, thousands_sep ) {
 					var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
 					var d = dec_point == undefined ? "," : dec_point;
