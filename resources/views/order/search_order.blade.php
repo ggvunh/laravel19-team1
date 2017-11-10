@@ -19,7 +19,7 @@
 								</select>
 							</div>
 							<div class="col-xs-5 ">
-							<input type="text" class="form-control" id="search" name="name"  placeholder="Search term..."> 
+							<input type="text" autocomplete="off" class="form-control" id="search" name="name"  placeholder="Search term..."> 
 	    				</div>
 	    				<div class="col-xs-2">
                 <input type="button" style="display:none" id="searchbtn" value="Search" class="btn btn-info" />
@@ -53,6 +53,11 @@
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer clearfix">
+						<div class="row">
+              <div class="col-xs-3 ">
+              <span id="show-entries"></span>
+              </div>
+            </div> 
 						<div class="row">
 							<div class="col-xs-2 col-md-4 form-inline">
 								<div class="form-group">
@@ -92,7 +97,8 @@
 				success: function(data,status){
 					getData(data, status),
 					totalPage(data),
-					disabled(data)	
+					disabled(data),
+					show(data)	
 				}
 			})
 		})
@@ -126,7 +132,8 @@
 				success: function(data,status){
 					getData(data, status),
 					totalPage(data,status),
-					disabled(data)
+					disabled(data),
+					show(data)
 				}			
 			})
 
@@ -144,7 +151,8 @@
 					console.log(data);
 					getData(data, status),
 					totalPage(data,status),
-					disabled(data)
+					disabled(data),
+					show(data)
 				}			
 			})
 		});
@@ -154,11 +162,11 @@
 			type:"post",
 			data:{_token:"{{ csrf_token() }}"},
 			success: function(data,status){
-				console.log(data);
 				getData(data, status),
 				totalPage(data),
 				disabled(data),
-				totalPrice(data)
+				totalPrice(data),
+				show(data)
 			}
 		})
 
@@ -251,24 +259,41 @@
 					success: function(data,status){
 						if(data.current_page=="»")
 						{
+							data.current_page=data.start_page;
 							totalPage(data,status),
 							getData(data, status),
-							disabled(data)	
+							disabled(data),
+							show(data)	
 						}
 						else if(data.current_page=="«")
 						{
 							totalPage(data,status),
+							data.current_page=data.end_page;
 							getData(data, status),
-							disabled(data)
+							disabled(data),
+							show(data)
 						}
 						else {
 							getData(data, status),
-							disabled(data)
+							disabled(data),
+							show(data)
 						}
 					}
 				})
 			});
 		}
+
+		function show(data){
+      if(data.total_records==0){
+        $('#show-entries').text("No matching records found");
+      }
+      else if(data.limit*data.current_page>data.total_records){
+        $('#show-entries').text('Showing '+(data.limit*(data.current_page-1)+1)+' to '+data.total_records+' of '+data.total_records+' entries');
+      }
+      else {
+        $('#show-entries').text('Showing '+(data.limit*(data.current_page-1)+1)+' to '+data.limit*data.current_page+' of '+data.total_records+' entries');
+      } 
+     }
 		});
 	function number_format( number, decimals, dec_point, thousands_sep ) 
 	{   
