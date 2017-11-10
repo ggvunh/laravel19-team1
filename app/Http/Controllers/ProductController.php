@@ -103,7 +103,7 @@ class ProductController extends Controller
       return response($data,200);
     }
 
-    public function update(EditProductRequest $request,Product $product)
+    public function update(EditProductRequest $request, Product $product)
     {
 		    $data = $request->all();
       if ($request->hasFile('illustrative_photo')  )
@@ -153,7 +153,7 @@ class ProductController extends Controller
       $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
       $limit = isset($_GET['limit']) ? $_GET['limit'] : 100;
     	if ($filter=="Product Name") {
-	    		$dataproducts = Product::where('name','like','%'.$name.'%')->orderBy('created_at', 'dec');
+	    		$dataproducts = Product::where('name', 'like', '%'.$name.'%')->orderBy('created_at', 'dec');
           $total_records=$dataproducts->count();
           $total_page = ceil($total_records / $limit);
           if ($current_page > $total_page){
