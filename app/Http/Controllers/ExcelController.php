@@ -18,7 +18,7 @@ class ExcelController extends Controller
     {
     	$users=User::get();
 		Excel::create('UsersExcel', function($excel) use($users) {
-		    $excel->sheet('Sheetnamechung', function($sheet) use($users) {
+		    $excel->sheet('UsersExcel', function($sheet) use($users) {
 		        $sheet->fromArray($users);
 		    });
 		    $excel->setTitle('Our new awesome title');
@@ -33,7 +33,7 @@ class ExcelController extends Controller
     {
     	$orders=Order::orderBy('created_at', 'dec')->get();
     	Excel::create('OrdersExcel', function($excel) use($orders) {
-		    $excel->sheet('Sheetnamechung', function($sheet) use($orders) {
+		    $excel->sheet('OrdersExcel', function($sheet) use($orders) {
 		        $sheet->fromArray($orders);
 		    });
 		    $excel->setTitle('Our new awesome title');

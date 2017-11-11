@@ -1,13 +1,13 @@
  <?php
- if($current_page=="«"){
-    if($previous_page!=1)
+ if($current_page == "«"){
+    if($previous_page != 1)
     {
       $arrayProducts=[];
       $arrayProducts['start_page']=$previous_page-5;
       $arrayProducts['end_page']=$previous_page-1;
       $arrayProducts['current_page']=$current_page;
       $current_page=$previous_page-1;
-      if($previous_page==6){
+      if($previous_page == 6){
         $arrayProducts['first']=true;
       }
     }
@@ -16,12 +16,8 @@
       $arrayProducts['first']=true;
     }
   }
-  elseif ($current_page=="»"){ 
-      // if($total_page==$next_page){
-      //   $arrayProducts['last']=true;
-      // }
-
-      if($total_page<=$next_page+5){
+  elseif ($current_page == "»"){ 
+      if($total_page <= $next_page+5){
         $arrayProducts=[];
         $arrayProducts['start_page']=$next_page+1;
         $arrayProducts['end_page']=$total_page;
@@ -41,14 +37,14 @@
   else{
     $arrayProducts=[];
     $arrayProducts['start_page']=1;
-    $arrayProducts['end_page']=($total_page<5)?$total_page:5;
+    $arrayProducts['end_page']=($total_page<5) ? $total_page : 5;
     $arrayProducts['current_page']=$current_page;
     $arrayProducts['first']=true;
-    if($total_page<=5){
+    if($total_page <= 5){
       $arrayProducts['last']=true;
       $arrayProducts['first']=true;
     }
-    elseif($next_page>5||$next_page=="«"){
+    elseif($next_page > 5 || $next_page == "«"){
       $arrayProducts['first']=false;
     }
   }

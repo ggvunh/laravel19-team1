@@ -17,10 +17,58 @@ use Toastr;
 
 class ProductController extends Controller
 {
-    public function home()
-    {
-     //return redirect('/products');
-
+    public function post(){
+      $current_page = isset($_POST['current_page']) ? $_POST['current_page'] : 1;
+      $total_records=Product::count();
+      $limit = isset($_POST['limit']) ? $_POST['limit'] : 6;
+      $total_page = ceil($total_records / $limit);
+      $previous_page = isset($_POST['previous_page']) ? $_POST['previous_page']:1;
+      $next_page = isset($_POST['next_page']) ? $_POST['next_page']:5;
+      $filter= isset($_POST['filter']) ? $_POST['filter'] : "";
+      $name=isset($_POST['name']) ? $_POST['name'] : "";
+      if($name!="")
+      {
+        if ($filter=="Product Name") {
+          $start = ($current_page - 1) * $limit;
+          $total_records=Product::where('name', 'like', '%'.$name.'%')->count();
+          $total_page = ceil($total_records / $limit);
+          $products = Product::where('name', 'like', '%'.$name.'%')->orderBy('created_at', 'dec')->offset($start)->limit($limit)->get();
+          include("paginationProduct.php");
+          $arrayProducts['products']=$products;
+          foreach ($products as $product) {
+          $arrayProducts['category']=$product->category;
+          $arrayProducts['manufacturer']=$product->manufacturer;
+          }
+          return response($arrayProducts);
+        }      
+        else {
+          $manufacturers = Manufacturer::where('name', 'like', '%'.$name.'%')->get();
+          $manufacturerArray=array();
+          foreach ($manufacturers as $manufacturer) {
+            $manufacturerArray[]=$manufacturer->id;
+          }
+          $start = ($current_page - 1) * $limit;
+          $total_records=Product::whereIn('manufacturer_id', $manufacturerArray)->count();
+          $total_page = ceil($total_records / $limit);
+          $products = Product::whereIn('manufacturer_id', $manufacturerArray)->orderBy('created_at', 'dec')->offset($start)->limit($limit)->get();
+          include("paginationProduct.php");
+          $arrayProducts['products']=$products;
+          foreach ($products as $product) {
+          $arrayProducts['category']=$product->category;
+          $arrayProducts['manufacturer']=$product->manufacturer;
+          }
+          return response($arrayProducts);
+          } 
+      }
+      include("paginationProduct.php");
+      $start = ($current_page - 1) * $limit;
+      $products = Product::orderBy('created_at', 'dec')->offset($start)->limit($limit)->get();
+      $arrayProducts['products']=$products;
+      foreach ($products as $product) {
+        $arrayProducts['category']=$product->category;
+        $arrayProducts['manufacturer']=$product->manufacturer;
+      }
+      return response($arrayProducts);
     }
 
     public function getproducts()
@@ -100,7 +148,7 @@ class ProductController extends Controller
       $data['manufacturers']=$manufacturers;
       $data['illustrative_photo']=$image;
       $data['photos']=$photos;
-      return response($data,200);
+      return response($data, 200);
     }
 
     public function update(EditProductRequest $request, Product $product)
@@ -144,8 +192,6 @@ class ProductController extends Controller
     }
     public function search()
     {
-      //$username = $request->old('name_product');
-      //dd($username);
     	$products=Product::all()->pluck('name', 'id');
     	$data =Input::all();
     	$filter=$data['filter'];
@@ -166,10 +212,10 @@ class ProductController extends Controller
           $products=$dataproducts->offset($start)->limit($limit)->get();
           $previous_page=$current_page-1;
           $next_page=$current_page+1;
-			    return view('products.index', compact('products','limit','previous_page','next_page'));
+			    return view('products.index', compact('products', 'limit','previous_page', 'next_page'));
 	    	}
     	else {
-    			$manufacturers = Manufacturer::where('name','like','%'.$name.'%')->get();
+    			$manufacturers = Manufacturer::where('name', 'like', '%'.$name.'%')->get();
           $manufacturerArray=array();
           foreach ($manufacturers as $manufacturer) {
             $manufacturerArray[]=$manufacturer->id;
@@ -188,18 +234,22 @@ class ProductController extends Controller
           $products=$dataproducts->offset($start)->limit($limit)->get();
           $previous_page=$current_page-1;
           $next_page=$current_page+1;
-    			return view('products.index', compact(['products','limit','previous_page','next_page']));
+    			return view('products.index', compact(['products', 'limit', 'previous_page', 'next_page']));
     		}
     }
 
     public function view(Product $product)
     {
       $photos=$product->photos;
-      return view('products.detail',compact('photos','product'));
+      return view('products.detail',compact('photos', 'product'));
     }
 
     public function delete(Product $product)
     {
+      unlink(public_path('/upload/'.$product->illustrative_photo));
+      foreach ($product->photos as $photo) {
+        unlink(public_path('/upload/'.$photo->url));
+      }   
       $product->delete();
     }
     
@@ -210,18 +260,18 @@ class ProductController extends Controller
       {
         return;
       }
-      $manufacturers = Manufacturer::where('name','like','%'.$name.'%')->get();
+      $manufacturers = Manufacturer::where('name', 'like', '%'.$name.'%')->get();
       $manufacturerArray=array();
       foreach ($manufacturers as $manufacturer) {
         $manufacturerArray[]=$manufacturer->id;
       }
-      $dataproducts = Product::whereIn('manufacturer_id',$manufacturerArray)->orderBy('created_at', 'dec')->limit(6)->get();
+      $dataproducts = Product::whereIn('manufacturer_id', $manufacturerArray)->orderBy('created_at', 'dec')->limit(6)->get();
       if(count($dataproducts)==0)
       {
-        $dataproducts = Product::where('name','like','%'.$name.'%')->orderBy('created_at', 'dec')->limit(6)->get();
-        return response($dataproducts,200);
+        $dataproducts = Product::where('name', 'like', '%'.$name.'%')->orderBy('created_at', 'dec')->limit(6)->get();
+        return response($dataproducts, 200);
       }
-      return response($dataproducts,200);
+      return response($dataproducts, 200);
 
     }
 }

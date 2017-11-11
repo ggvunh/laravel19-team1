@@ -93,7 +93,7 @@
  			$.ajax({
 				url:"orders/search",
 				type:"post",
-				data:{limit:limit,name:name,filter:filter,_token:"{{ csrf_token() }}"},
+				data:{limit:limit, name:name, filter:filter, _token:"{{ csrf_token() }}"},
 				success: function(data,status){
 					getData(data, status),
 					totalPage(data),
@@ -108,7 +108,7 @@
 			if(filter=="Order date")
 			{
 				$("#search").attr("type", "date");
-				$("#search").attr("min","2017-01-01");
+				$("#search").attr("min", "2017-01-01");
 	  		$("#searchbtn").show();
 			}
 			else
@@ -128,10 +128,10 @@
 			$.ajax({
 				url:"orders/search",
 				type:"post",
-				data:{name:name,filter:filter,limit:limit,_token:"{{ csrf_token() }}"},
+				data:{name:name, filter:filter, limit:limit, _token:"{{ csrf_token() }}"},
 				success: function(data,status){
 					getData(data, status),
-					totalPage(data,status),
+					totalPage(data, status),
 					disabled(data),
 					show(data)
 				}			
@@ -146,11 +146,11 @@
 			$.ajax({
 				url:"orders/search",
 				type:"post",
-				data:{name:name,filter:filter,limit:limit,_token:"{{ csrf_token() }}"},
-				success: function(data,status){
+				data:{name:name, filter:filter, limit:limit, _token:"{{ csrf_token() }}"},
+				success: function(data, status){
 					console.log(data);
 					getData(data, status),
-					totalPage(data,status),
+					totalPage(data, status),
 					disabled(data),
 					show(data)
 				}			
@@ -200,11 +200,11 @@
 		function disabled(data)
 		{
 			if(data.first==true){
-				$('.page .pagination li:contains("«")').attr("class","disabled");
+				$('.page .pagination li:contains("«")').attr("class", "disabled");
 			}
 			
 			if(data.last==true){
-				$('.page .pagination li:contains("»")').attr("class","disabled");
+				$('.page .pagination li:contains("»")').attr("class", "disabled");
 			}
 		}
 
@@ -214,23 +214,23 @@
 			$('.page .pagination').append(
 				'<li> <a href="#" >&laquo;</a> </li>'
 			)	
-			for (data.start_page; data.start_page<=data.end_page;data.start_page++) {
+			for (data.start_page; data.start_page <= data.end_page;data.start_page++) {
 			$('.page .pagination').append(
-				'<li> <a href="#" >'+data.start_page+'</a </li>'
+				'<li> <a href="#" >'+data.start_page+'</a> </li>'
 			)
 			}
 			$('.page .pagination').append(
 				'<li> <a href="#" >&raquo;</a> </li>'
 			)
 		
-			$("#pagination li:first-child").next().attr("class","active");
-			if(data.current_page=="»"){
+			$("#pagination li:first-child").next().attr("class", "active");
+			if(data.current_page == "»"){
 				$('.page .pagination').find('li').removeClass("active");
-				$("#pagination li:first-child").next().attr("class","active");
+				$("#pagination li:first-child").next().attr("class", "active");
 			}
-			else if(data.current_page=="«"){
+			else if(data.current_page == "«"){
 				$('.page .pagination').find('li').removeClass("active");
-				$("#pagination li:last-child").prev().attr("class","active");
+				$("#pagination li:last-child").prev().attr("class", "active");
 			}
 
 			$('.page .pagination').find('li').click(function() {
@@ -243,7 +243,7 @@
 				var next_page=$(this).prev().find('a').text();
 				var name=$("#search").val();
 				var filter=$("#filter").val();
-				$(this).attr("class","active");
+				$(this).attr("class", "active");
 				$.ajax({
 					url:"orders/search",
 					type:"post",
@@ -256,18 +256,18 @@
 						  	filter:filter,
 						   	_token:"{{ csrf_token() }}"
 								},
-					success: function(data,status){
-						if(data.current_page=="»")
+					success: function(data, status){
+						if(data.current_page == "»")
 						{
 							data.current_page=data.start_page;
-							totalPage(data,status),
+							totalPage(data, status),
 							getData(data, status),
 							disabled(data),
 							show(data)	
 						}
-						else if(data.current_page=="«")
+						else if(data.current_page == "«")
 						{
-							totalPage(data,status),
+							totalPage(data, status),
 							data.current_page=data.end_page;
 							getData(data, status),
 							disabled(data),
@@ -284,10 +284,10 @@
 		}
 
 		function show(data){
-      if(data.total_records==0){
+      if(data.total_records == 0){
         $('#show-entries').text("No matching records found");
       }
-      else if(data.limit*data.current_page>data.total_records){
+      else if(data.limit*data.current_page > data.total_records){
         $('#show-entries').text('Showing '+(data.limit*(data.current_page-1)+1)+' to '+data.total_records+' of '+data.total_records+' entries');
       }
       else {
