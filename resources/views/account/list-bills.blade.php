@@ -36,7 +36,7 @@
                             đã giao hàng
                             @endif
                          </td>
-                         @if($order ->status==0)
+                         @if($order ->status=="Pending")
                             <td class="myth"><span class="glyphicon glyphicon-trash"></span><a href="{{ url('user/myorder/'.$order->id.'/delete') }}" style="color:red" class="click"> Cancel</a></td>
                          @else
                             <td class="myth"><span class="glyphicon glyphicon-lock"></span> not cancel</td>

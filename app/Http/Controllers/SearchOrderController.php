@@ -16,26 +16,25 @@ class SearchOrderController extends Controller
   	{
   		$orders=Order::all();
           $total_price=$orders->sum('total_price');
-  		return view('order.order_report',compact(['orders','total_price']));
+  		return view('order.order_report', compact(['orders', 'total_price']));
   	}
     public function search()
     {
     	$orders=Order::all();
-    	return view('order.search_order',compact('orders'));
+    	return view('order.search_order', compact('orders'));
 
     }
 
     public function detail(Order $order)
     {
-      //dd($order);
       $total_price=$order->orderDetails->sum('unit_price');
-      return view('order.detail',compact(['order','total_price']));
+      return view('order.detail', compact(['order', 'total_price']));
     }
 
     public function exportPdf(Order $order)
     {
       $total_price=$order->orderDetails->sum('unit_price');
-      $pdf=PDF::loadView('pdf',compact(['order','total_price']));
+      $pdf=PDF::loadView('pdf',compact(['order', 'total_price']));
       $filename = time(). "_orderdetail.pdf";
       return $pdf->stream($filename);
     }
@@ -59,13 +58,13 @@ class SearchOrderController extends Controller
       $total_records=Order::count();
       $limit = isset($_POST['limit']) ? $_POST['limit'] : 6;
       $total_page = ceil($total_records / $limit);
-      $previous_page = isset($_POST['previous_page']) ? $_POST['previous_page']:1;
-      $next_page = isset($_POST['next_page']) ? $_POST['next_page']:5;
+      $previous_page = isset($_POST['previous_page']) ? $_POST['previous_page'] : 1;
+      $next_page = isset($_POST['next_page']) ? $_POST['next_page'] : 5;
       $filter= isset($_POST['filter']) ? $_POST['filter'] : "";
       $name=isset($_POST['name']) ? $_POST['name'] : "";
       $startDate= isset($_POST['start_date'])? $_POST['start_date']:"";
       $endDate=isset($_POST['end_date'])? $_POST['end_date']:"";
-      if($startDate!="" && $endDate!="")
+      if($startDate != "" && $endDate != "")
       {
         $start = ($current_page - 1) * $limit;
         $ordersData=Order::whereDate('order_date', '>=', $startDate)
@@ -82,9 +81,9 @@ class SearchOrderController extends Controller
         }  
         return response($arrayOrders);  
       } 
-       if($name!="")
+       if($name != "")
       {
-        if ($filter=="Order ID") {
+        if ($filter == "Order ID") {
           $start = ($current_page - 1) * $limit;
           $ordersData=Order::where('id', $name);
           $total_records=$ordersData->count();
@@ -121,9 +120,8 @@ class SearchOrderController extends Controller
 
         }
         elseif ($filter=="Shipping Information") {
-          //$orders=Order::where('status','like','%'.$name.'%' )->get();
           $start = ($current_page - 1) * $limit;
-          $ordersData=Order::where('status','like','%'.$name.'%' );
+          $ordersData=Order::where('status', 'like', '%'.$name.'%' );
           $total_records=$ordersData->count();
           $total_page = ceil($total_records / $limit);
           $orders=$ordersData->orderBy('created_at', 'dec')->offset($start)->limit($limit)->get();
@@ -137,7 +135,6 @@ class SearchOrderController extends Controller
           return response($arrayOrders);
         }
         elseif ($filter=="Order date") {
-          //$orders=Order::whereDate('order_date',$name)->get();
           $start = ($current_page - 1) * $limit;
           $ordersData=Order::whereDate('order_date',$name);
           $total_records=$ordersData->count();

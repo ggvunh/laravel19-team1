@@ -27,14 +27,14 @@ class CalendarController extends Controller
     		$arrayDate["allDay"]=true;
             $url="detail-order/".$order->id;
     		$arrayDate["url"]=$url;
-    		array_push($arrayDates,$arrayDate);
+    		array_push($arrayDates, $arrayDate);
     	}
     	
-    	return response($arrayDates,200);
+    	return response($arrayDates, 200);
     }
 
     public function calendar()
     {
-    	return view("calendar2");
+    	return view("calendar");
     }
 }

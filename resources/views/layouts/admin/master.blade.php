@@ -47,13 +47,8 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" type="text/css" href="{{ url('css/main.css') }}">
-  <!-- <script src="{{ url('js/bootstrap.min.js') }}"></script> -->
   <link  href="{{ url('css/bootstrap.min.css') }}" />
   <script src="{{ url('js/jquery-1.12.4.js') }}"></script>
-  <!-- <script src="{{ url('js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ url('js/jquery.dataTables.min.js') }}"></script> -->
-  <!-- <script src="{{ url('js/dataTables.bootstrap.min.js') }}"></script>
-  <link  href="{{ url('css/dataTables.bootstrap.min.html') }}" /> -->
   <link  href="{{ url('css/bootstrap-datepicker.css') }}" />
   <script src="{{ url('js/bootstrap-datepicker.js') }}"></script>
   <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">

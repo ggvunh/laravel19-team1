@@ -38,30 +38,26 @@ Route::group(['middleware' => ['auth','isAdmin']],function(){
 		return view('admin_template');
 	});
 	Route::get('/products', 'ProductController@getproducts');
-	Route::post('/api', 'ApiProductController@post');
-	// Route::get('/products', 'ProductController@getBooks');
-	// load form create
+	Route::post('/api', 'ProductController@post');
 	Route::get('/products/create', 'ProductController@create');
-	Route::post('/search-product', 'ApiProductController@search');
-	// push data to server
+	Route::post('/search-product', 'ProductController@search');
 	Route::post('/products', 'ProductController@save');
 	Route::get('/products/{product}/edit', 'ProductController@edit');
 	Route::put('/products/{product}', 'ProductController@update');
-
 	Route::get('/products/{product}/delete', 'ProductController@delete');
-	Route::get('/products/product/{product}','ProductController@view');
-	Route::get('/search-order','SearchOrderController@search');
-	Route::get('/order-report','SearchOrderController@report');
-	Route::post('/orders/search','SearchOrderController@searchOrder');
-	Route::get('/detail-order/{order}','SearchOrderController@detail');
-	Route::get('/search-date','SearchOrderController@searchDate');
-	Route::get('calendar','CalendarController@calendar');
-	Route::get('api-calendar','CalendarController@get');
-	Route::get('export','ExcelController@export');
-	Route::get('excel/users','ExcelController@exportUsers');
-	Route::get('excel/orders','ExcelController@exportOrders');
-	Route::get('/order/pdf/{order}','SearchOrderController@exportPdf');
-	Route::put('/order/{order}','SearchOrderController@update');
+	Route::get('/products/product/{product}', 'ProductController@view');
+	Route::get('/search-order', 'SearchOrderController@search');
+	Route::get('/order-report', 'SearchOrderController@report');
+	Route::post('/orders/search', 'SearchOrderController@searchOrder');
+	Route::get('/detail-order/{order}', 'SearchOrderController@detail');
+	Route::get('/search-date', 'SearchOrderController@searchDate');
+	Route::get('calendar', 'CalendarController@calendar');
+	Route::get('api-calendar', 'CalendarController@get');
+	Route::get('export', 'ExcelController@export');
+	Route::get('excel/users', 'ExcelController@exportUsers');
+	Route::get('excel/orders', 'ExcelController@exportOrders');
+	Route::get('/order/pdf/{order}', 'SearchOrderController@exportPdf');
+	Route::put('/order/{order}', 'SearchOrderController@update');
 });
 
 Route::get('products/{product}','HomeController@viewProduct');
